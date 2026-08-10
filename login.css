@@ -1,0 +1,606 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Atlas Gestão - Sistema inteligente de gerenciamento empresarial e Garantia da Qualidade."
+    >
+
+    <meta
+        name="theme-color"
+        content="#2563EB"
+    >
+
+    <title>Atlas Gestão | Login</title>
+
+    <!-- =====================================================
+         FONTES
+         ===================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- =====================================================
+         FONT AWESOME
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- =====================================================
+         CSS
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/login.css"
+    >
+
+</head>
+
+
+<body class="login-page">
+
+
+    <!-- =====================================================
+         CONTAINER DO LOGIN
+         ===================================================== -->
+
+    <main class="login-container">
+
+
+        <!-- =================================================
+             ÁREA ESQUERDA
+             ================================================= -->
+
+        <section class="login-brand">
+
+
+            <div class="brand-content">
+
+
+                <!-- LOGO -->
+
+                <div class="brand-logo">
+
+                    <div class="logo-icon">
+                        A
+                    </div>
+
+                    <div class="logo-text">
+                        Atlas <span>Gestão</span>
+                    </div>
+
+                </div>
+
+
+                <!-- TEXTO -->
+
+                <h1>
+                    Gestão inteligente
+                    <br>
+                    para empresas modernas.
+                </h1>
+
+
+                <p>
+                    Controle seus processos, produtos,
+                    vendas, equipe e Garantia da Qualidade
+                    em uma única plataforma.
+                </p>
+
+
+                <!-- DIFERENCIAIS -->
+
+                <div class="brand-features">
+
+
+                    <div class="brand-feature">
+
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+
+                        <div>
+                            <strong>
+                                Gestão completa
+                            </strong>
+
+                            <span>
+                                Indicadores e informações
+                                em tempo real.
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="brand-feature">
+
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+
+                        <div>
+                            <strong>
+                                Garantia da Qualidade
+                            </strong>
+
+                            <span>
+                                Controle de inspeções,
+                                não conformidades e ações.
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="brand-feature">
+
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+
+                        <div>
+                            <strong>
+                                Dados organizados
+                            </strong>
+
+                            <span>
+                                Informações centralizadas
+                                para facilitar decisões.
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <div class="brand-footer">
+
+                <span>
+                    © 2026 Atlas Gestão
+                </span>
+
+                <span>
+                    Gestão inteligente para empresas modernas.
+                </span>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             ÁREA DO FORMULÁRIO
+             ================================================= -->
+
+        <section class="login-form-section">
+
+
+            <div class="login-box">
+
+
+                <!-- CABEÇALHO -->
+
+                <div class="login-header">
+
+
+                    <div class="mobile-logo">
+
+                        <div class="logo-icon">
+                            A
+                        </div>
+
+                        <div class="logo-text">
+                            Atlas <span>Gestão</span>
+                        </div>
+
+                    </div>
+
+
+                    <h2>
+                        Bem-vindo de volta!
+                    </h2>
+
+
+                    <p>
+                        Entre na sua conta para acessar
+                        o sistema.
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     ALERTA DE LOGIN
+                     ================================================= -->
+
+                <div
+                    id="loginAlert"
+                    class="login-alert"
+                    role="alert"
+                    aria-live="polite"
+                ></div>
+
+
+
+                <!-- =================================================
+                     FORMULÁRIO
+                     ================================================= -->
+
+                <form
+                    id="loginForm"
+                    autocomplete="on"
+                >
+
+
+                    <!-- E-MAIL -->
+
+                    <div class="login-form-group">
+
+                        <label
+                            for="email"
+                            class="form-label"
+                        >
+                            E-mail
+                        </label>
+
+
+                        <div class="input-icon">
+
+                            <i class="fa-regular fa-envelope"></i>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                class="form-control"
+                                placeholder="seuemail@empresa.com"
+                                autocomplete="email"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- SENHA -->
+
+                    <div class="login-form-group">
+
+                        <div class="password-label-row">
+
+                            <label
+                                for="password"
+                                class="form-label"
+                            >
+                                Senha
+                            </label>
+
+
+                            <a
+                                href="#"
+                                id="forgotPassword"
+                                class="forgot-link"
+                            >
+                                Esqueci minha senha
+                            </a>
+
+                        </div>
+
+
+                        <div class="input-icon">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                class="form-control"
+                                placeholder="Digite sua senha"
+                                autocomplete="current-password"
+                                required
+                            >
+
+
+                            <button
+                                type="button"
+                                id="togglePassword"
+                                class="password-toggle"
+                                aria-label="Mostrar senha"
+                            >
+
+                                <i
+                                    id="passwordIcon"
+                                    class="fa-regular fa-eye"
+                                ></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- LEMBRAR -->
+
+                    <div class="remember-row">
+
+                        <label class="checkbox-label">
+
+                            <input
+                                type="checkbox"
+                                id="rememberMe"
+                            >
+
+                            <span>
+                                Lembrar de mim
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+
+                    <!-- BOTÃO -->
+
+                    <button
+                        type="submit"
+                        id="loginButton"
+                        class="btn btn-primary login-button"
+                    >
+
+                        <span id="loginButtonText">
+                            Entrar
+                        </span>
+
+                        <i
+                            id="loginButtonIcon"
+                            class="fa-solid fa-arrow-right"
+                        ></i>
+
+                    </button>
+
+
+                </form>
+
+
+
+                <!-- =================================================
+                     USUÁRIO DEMONSTRAÇÃO
+                     ================================================= -->
+
+                <div class="demo-login">
+
+
+                    <div class="demo-divider">
+
+                        <span>
+                            Ambiente de demonstração
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="demoLogin"
+                        class="demo-button"
+                    >
+
+                        <i class="fa-solid fa-flask"></i>
+
+                        Entrar como demonstração
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     SEGURANÇA
+                     ================================================= -->
+
+                <div class="login-security">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <span>
+                        Seus dados são armazenados com segurança.
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         MODAL RECUPERAR SENHA
+         ===================================================== -->
+
+    <div
+        id="forgotPasswordModal"
+        class="modal-overlay"
+    >
+
+        <div
+            class="modal forgot-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="forgotPasswordTitle"
+        >
+
+
+            <div class="modal-header">
+
+                <div>
+
+                    <div
+                        id="forgotPasswordTitle"
+                        class="modal-title"
+                    >
+                        Recuperar senha
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    id="closeForgotPassword"
+                    aria-label="Fechar"
+                >
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+
+                <div class="forgot-icon">
+
+                    <i class="fa-solid fa-key"></i>
+
+                </div>
+
+
+                <p class="forgot-description">
+
+                    Informe o e-mail cadastrado.
+                    Se existir uma conta, você receberá
+                    instruções para recuperar o acesso.
+
+                </p>
+
+
+                <form id="forgotPasswordForm">
+
+
+                    <div class="form-group">
+
+                        <label
+                            for="recoveryEmail"
+                            class="form-label"
+                        >
+                            E-mail
+                        </label>
+
+
+                        <input
+                            type="email"
+                            id="recoveryEmail"
+                            class="form-control"
+                            placeholder="seuemail@empresa.com"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div
+                        id="recoveryMessage"
+                        class="recovery-message"
+                    ></div>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        style="width: 100%; margin-top: 15px;"
+                    >
+
+                        <i class="fa-solid fa-paper-plane"></i>
+
+                        Enviar instruções
+
+                    </button>
+
+
+                </form>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         SCRIPTS
+         ===================================================== -->
+
+    <script
+        src="js/database.js"
+    ></script>
+
+    <script
+        src="js/login.js"
+    ></script>
+
+
+</body>
+
+</html>
+```
