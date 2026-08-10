@@ -1,0 +1,1716 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Atlas Gestão - Controle financeiro empresarial"
+    >
+
+    <title>Financeiro | Atlas Gestão</title>
+
+
+    <!-- Google Fonts -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- CSS -->
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/financeiro.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     APP
+     ===================================================== -->
+
+<div class="app-container">
+
+
+    <!-- =================================================
+         SIDEBAR
+         ================================================= -->
+
+    <aside
+        class="sidebar"
+        id="sidebar"
+    >
+
+        <div class="sidebar-header">
+
+            <a
+                href="dashboard.html"
+                class="sidebar-logo"
+            >
+
+                <div class="logo-icon">
+
+                    <i class="fa-solid fa-layer-group"></i>
+
+                </div>
+
+                <div class="logo-text">
+
+                    <strong>Atlas</strong>
+
+                    <span>Gestão</span>
+
+                </div>
+
+            </a>
+
+
+            <button
+                type="button"
+                class="sidebar-close"
+                id="sidebarClose"
+                aria-label="Fechar menu"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- Navegação -->
+
+        <nav class="sidebar-navigation">
+
+            <div class="navigation-section">
+
+                <span class="navigation-title">
+                    PRINCIPAL
+                </span>
+
+
+                <a
+                    href="dashboard.html"
+                    class="navigation-link"
+                >
+
+                    <i class="fa-solid fa-chart-pie"></i>
+
+                    <span>Dashboard</span>
+
+                </a>
+
+
+                <a
+                    href="produtos.html"
+                    class="navigation-link"
+                >
+
+                    <i class="fa-solid fa-box"></i>
+
+                    <span>Produtos</span>
+
+                </a>
+
+
+                <a
+                    href="financeiro.html"
+                    class="navigation-link active"
+                    aria-current="page"
+                >
+
+                    <i class="fa-solid fa-wallet"></i>
+
+                    <span>Financeiro</span>
+
+                </a>
+
+
+                <a
+                    href="vendas.html"
+                    class="navigation-link"
+                >
+
+                    <i class="fa-solid fa-cart-shopping"></i>
+
+                    <span>Vendas</span>
+
+                </a>
+
+            </div>
+
+
+            <div class="navigation-section">
+
+                <span class="navigation-title">
+                    GESTÃO
+                </span>
+
+
+                <a
+                    href="equipe.html"
+                    class="navigation-link"
+                >
+
+                    <i class="fa-solid fa-users"></i>
+
+                    <span>Equipe</span>
+
+                </a>
+
+
+                <a
+                    href="qualidade.html"
+                    class="navigation-link"
+                >
+
+                    <i class="fa-solid fa-shield-check"></i>
+
+                    <span>Qualidade</span>
+
+                </a>
+
+            </div>
+
+
+            <div class="navigation-section">
+
+                <span class="navigation-title">
+                    SISTEMA
+                </span>
+
+
+                <a
+                    href="contato.html"
+                    class="navigation-link"
+                >
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <span>Contato</span>
+
+                </a>
+
+
+                <a
+                    href="configuracoes.html"
+                    class="navigation-link"
+                >
+
+                    <i class="fa-solid fa-gear"></i>
+
+                    <span>Configurações</span>
+
+                </a>
+
+            </div>
+
+        </nav>
+
+
+        <!-- Usuário -->
+
+        <div class="sidebar-user">
+
+            <div
+                class="user-avatar"
+                id="sidebarUserAvatar"
+            >
+                A
+            </div>
+
+            <div class="user-information">
+
+                <strong id="sidebarUserName">
+                    Administrador
+                </strong>
+
+                <span id="sidebarUserRole">
+                    Administrador
+                </span>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="logoutButton"
+                class="logout-button"
+                title="Sair"
+            >
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- Overlay mobile -->
+
+    <div
+        class="sidebar-overlay"
+        id="sidebarOverlay"
+    ></div>
+
+
+
+    <!-- =================================================
+         CONTEÚDO PRINCIPAL
+         ================================================= -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             TOPBAR
+             ================================================= -->
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button
+                    type="button"
+                    class="mobile-menu-button"
+                    id="sidebarToggle"
+                    aria-label="Abrir menu"
+                >
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+
+                <div class="global-search">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="search"
+                        id="globalSearchInput"
+                        placeholder="Pesquisar..."
+                        autocomplete="off"
+                    >
+
+                    <span class="search-shortcut">
+                        /
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+
+                <!-- Notificações -->
+
+                <div class="notification-wrapper">
+
+                    <button
+                        type="button"
+                        class="topbar-icon-button"
+                        id="notificationButton"
+                        aria-label="Notificações"
+                    >
+
+                        <i class="fa-regular fa-bell"></i>
+
+                        <span
+                            class="notification-badge"
+                            id="notificationCount"
+                        >
+                            0
+                        </span>
+
+                    </button>
+
+
+                    <div
+                        class="notification-panel"
+                        id="notificationPanel"
+                    >
+
+                        <div class="notification-panel-header">
+
+                            <div>
+
+                                <strong>
+                                    Notificações
+                                </strong>
+
+                                <span id="notificationSubtitle">
+                                    0 pendentes
+                                </span>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                id="markNotificationsRead"
+                            >
+                                Marcar como lidas
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            class="notification-list"
+                            id="notificationList"
+                        >
+
+                            <div class="notification-empty">
+
+                                <i class="fa-regular fa-bell-slash"></i>
+
+                                <p>
+                                    Nenhuma notificação.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Perfil -->
+
+                <div class="profile-wrapper">
+
+                    <button
+                        type="button"
+                        class="profile-button"
+                        id="profileButton"
+                    >
+
+                        <span
+                            class="profile-avatar"
+                            id="topbarAvatar"
+                        >
+                            A
+                        </span>
+
+                        <span class="profile-data">
+
+                            <strong id="topbarUserName">
+                                Administrador
+                            </strong>
+
+                            <small id="topbarUserRole">
+                                Administrador
+                            </small>
+
+                        </span>
+
+                        <i class="fa-solid fa-chevron-down"></i>
+
+                    </button>
+
+
+                    <div
+                        class="profile-menu"
+                        id="profileMenu"
+                    >
+
+                        <div class="profile-menu-header">
+
+                            <span
+                                class="profile-menu-avatar"
+                                id="profileMenuAvatar"
+                            >
+                                A
+                            </span>
+
+                            <div>
+
+                                <strong id="profileMenuName">
+                                    Administrador
+                                </strong>
+
+                                <small id="profileMenuEmail">
+                                    admin@atlasgestao.com
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="profile-menu-divider"></div>
+
+
+                        <a
+                            href="configuracoes.html"
+                            class="profile-menu-link"
+                        >
+
+                            <i class="fa-solid fa-user-gear"></i>
+
+                            Minha conta
+
+                        </a>
+
+
+                        <button
+                            type="button"
+                            class="profile-menu-link"
+                            id="profileLogout"
+                        >
+
+                            <i class="fa-solid fa-right-from-bracket"></i>
+
+                            Sair
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             PÁGINA
+             ================================================= -->
+
+        <section class="page-content">
+
+
+            <!-- Cabeçalho -->
+
+            <div class="page-header">
+
+                <div>
+
+                    <div class="breadcrumb">
+
+                        <span>Atlas Gestão</span>
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                        <span>Financeiro</span>
+
+                    </div>
+
+
+                    <h1>
+                        Financeiro
+                    </h1>
+
+                    <p>
+                        Controle as receitas, despesas e resultados
+                        financeiros da empresa.
+                    </p>
+
+                </div>
+
+
+                <div class="page-header-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="exportFinanceButton"
+                    >
+
+                        <i class="fa-solid fa-file-export"></i>
+
+                        Exportar
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        id="newTransactionButton"
+                    >
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        Nova movimentação
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 INDICADORES
+                 ================================================= -->
+
+            <div class="finance-summary-grid">
+
+
+                <!-- Receita -->
+
+                <article class="finance-summary-card revenue">
+
+                    <div class="finance-summary-top">
+
+                        <div class="finance-summary-icon">
+
+                            <i class="fa-solid fa-arrow-trend-up"></i>
+
+                        </div>
+
+                        <span class="finance-period">
+                            Este mês
+                        </span>
+
+                    </div>
+
+
+                    <span class="finance-summary-label">
+                        Receita total
+                    </span>
+
+
+                    <strong
+                        class="finance-summary-value"
+                        id="totalRevenue"
+                    >
+                        R$ 0,00
+                    </strong>
+
+
+                    <div class="finance-summary-footer">
+
+                        <span
+                            id="revenueVariation"
+                            class="variation positive"
+                        >
+                            <i class="fa-solid fa-arrow-up"></i>
+                            0%
+                        </span>
+
+                        <span>
+                            em relação ao mês anterior
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- Despesas -->
+
+                <article class="finance-summary-card expenses">
+
+                    <div class="finance-summary-top">
+
+                        <div class="finance-summary-icon">
+
+                            <i class="fa-solid fa-arrow-trend-down"></i>
+
+                        </div>
+
+                        <span class="finance-period">
+                            Este mês
+                        </span>
+
+                    </div>
+
+
+                    <span class="finance-summary-label">
+                        Despesas
+                    </span>
+
+
+                    <strong
+                        class="finance-summary-value"
+                        id="totalExpenses"
+                    >
+                        R$ 0,00
+                    </strong>
+
+
+                    <div class="finance-summary-footer">
+
+                        <span
+                            id="expenseVariation"
+                            class="variation negative"
+                        >
+                            <i class="fa-solid fa-arrow-down"></i>
+                            0%
+                        </span>
+
+                        <span>
+                            em relação ao mês anterior
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- Lucro -->
+
+                <article class="finance-summary-card profit">
+
+                    <div class="finance-summary-top">
+
+                        <div class="finance-summary-icon">
+
+                            <i class="fa-solid fa-chart-line"></i>
+
+                        </div>
+
+                        <span class="finance-period">
+                            Este mês
+                        </span>
+
+                    </div>
+
+
+                    <span class="finance-summary-label">
+                        Lucro líquido
+                    </span>
+
+
+                    <strong
+                        class="finance-summary-value"
+                        id="totalProfit"
+                    >
+                        R$ 0,00
+                    </strong>
+
+
+                    <div class="finance-summary-footer">
+
+                        <span
+                            id="profitVariation"
+                            class="variation positive"
+                        >
+                            <i class="fa-solid fa-arrow-up"></i>
+                            0%
+                        </span>
+
+                        <span>
+                            em relação ao mês anterior
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- Margem -->
+
+                <article class="finance-summary-card margin">
+
+                    <div class="finance-summary-top">
+
+                        <div class="finance-summary-icon">
+
+                            <i class="fa-solid fa-percent"></i>
+
+                        </div>
+
+                        <span class="finance-period">
+                            Atual
+                        </span>
+
+                    </div>
+
+
+                    <span class="finance-summary-label">
+                        Margem de lucro
+                    </span>
+
+
+                    <strong
+                        class="finance-summary-value"
+                        id="profitMargin"
+                    >
+                        0%
+                    </strong>
+
+
+                    <div class="finance-summary-footer">
+
+                        <span>
+                            Resultado operacional
+                        </span>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 GRÁFICOS
+                 ================================================= -->
+
+            <div class="finance-charts-grid">
+
+
+                <!-- Fluxo financeiro -->
+
+                <article class="finance-card finance-chart-card">
+
+                    <div class="finance-card-header">
+
+                        <div>
+
+                            <h2>
+                                Fluxo financeiro
+                            </h2>
+
+                            <p>
+                                Receitas e despesas ao longo do período
+                            </p>
+
+                        </div>
+
+
+                        <select
+                            id="financeChartPeriod"
+                            class="finance-select"
+                        >
+
+                            <option value="6">
+                                Últimos 6 meses
+                            </option>
+
+                            <option value="12" selected>
+                                Últimos 12 meses
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="chart-container">
+
+                        <canvas
+                            id="financeChart"
+                        ></canvas>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- Distribuição -->
+
+                <article class="finance-card category-chart-card">
+
+                    <div class="finance-card-header">
+
+                        <div>
+
+                            <h2>
+                                Distribuição das despesas
+                            </h2>
+
+                            <p>
+                                Por categoria
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="expense-category-chart">
+
+                        <div class="donut-container">
+
+                            <canvas
+                                id="expenseCategoryChart"
+                            ></canvas>
+
+
+                            <div class="donut-center">
+
+                                <strong
+                                    id="expenseChartTotal"
+                                >
+                                    R$ 0
+                                </strong>
+
+                                <span>
+                                    despesas
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="expense-legend"
+                            id="expenseLegend"
+                        ></div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 FILTROS
+                 ================================================= -->
+
+            <div class="finance-card transactions-card">
+
+
+                <div class="transactions-header">
+
+                    <div>
+
+                        <h2>
+                            Movimentações financeiras
+                        </h2>
+
+                        <p id="transactionResultCount">
+                            0 movimentações
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="primary-button small"
+                        id="newTransactionButtonTop"
+                    >
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        Nova movimentação
+
+                    </button>
+
+                </div>
+
+
+                <div class="finance-filters">
+
+
+                    <!-- Pesquisa -->
+
+                    <div class="finance-search">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="search"
+                            id="transactionSearch"
+                            placeholder="Pesquisar movimentação..."
+                        >
+
+                    </div>
+
+
+                    <!-- Tipo -->
+
+                    <select
+                        id="transactionTypeFilter"
+                        class="finance-filter-select"
+                    >
+
+                        <option value="">
+                            Todos os tipos
+                        </option>
+
+                        <option value="receita">
+                            Receitas
+                        </option>
+
+                        <option value="despesa">
+                            Despesas
+                        </option>
+
+                    </select>
+
+
+                    <!-- Categoria -->
+
+                    <select
+                        id="transactionCategoryFilter"
+                        class="finance-filter-select"
+                    >
+
+                        <option value="">
+                            Todas as categorias
+                        </option>
+
+                    </select>
+
+
+                    <!-- Período -->
+
+                    <select
+                        id="transactionPeriodFilter"
+                        class="finance-filter-select"
+                    >
+
+                        <option value="">
+                            Todo o período
+                        </option>
+
+                        <option value="today">
+                            Hoje
+                        </option>
+
+                        <option value="week">
+                            Esta semana
+                        </option>
+
+                        <option value="month">
+                            Este mês
+                        </option>
+
+                        <option value="year">
+                            Este ano
+                        </option>
+
+                    </select>
+
+
+                    <button
+                        type="button"
+                        class="clear-filters-button"
+                        id="clearFinanceFilters"
+                    >
+
+                        <i class="fa-solid fa-filter-circle-xmark"></i>
+
+                        Limpar
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     TABELA
+                     ================================================= -->
+
+                <div class="table-responsive">
+
+                    <table class="finance-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Data
+                                </th>
+
+                                <th>
+                                    Tipo
+                                </th>
+
+                                <th>
+                                    Categoria
+                                </th>
+
+                                <th>
+                                    Descrição
+                                </th>
+
+                                <th>
+                                    Forma de pagamento
+                                </th>
+
+                                <th>
+                                    Valor
+                                </th>
+
+                                <th>
+                                    Ações
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody
+                            id="transactionsTableBody"
+                        >
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+
+                <!-- Estado vazio -->
+
+                <div
+                    class="finance-empty-state"
+                    id="transactionsEmptyState"
+                    hidden
+                >
+
+                    <div class="empty-icon">
+
+                        <i class="fa-solid fa-receipt"></i>
+
+                    </div>
+
+                    <h3>
+                        Nenhuma movimentação encontrada
+                    </h3>
+
+                    <p>
+                        Cadastre receitas e despesas
+                        para começar a controlar suas finanças.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="primary-button"
+                        id="emptyNewTransactionButton"
+                    >
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        Adicionar movimentação
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- Paginação -->
+
+                <div class="finance-pagination">
+
+                    <span id="financePaginationInfo">
+                        Mostrando 0–0 de 0 movimentações
+                    </span>
+
+
+                    <div class="pagination-controls">
+
+                        <button
+                            type="button"
+                            id="previousTransactionPage"
+                            disabled
+                            aria-label="Página anterior"
+                        >
+
+                            <i class="fa-solid fa-chevron-left"></i>
+
+                        </button>
+
+
+                        <span id="currentTransactionPage">
+                            1
+                        </span>
+
+
+                        <button
+                            type="button"
+                            id="nextTransactionPage"
+                            disabled
+                            aria-label="Próxima página"
+                        >
+
+                            <i class="fa-solid fa-chevron-right"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- =====================================================
+     MODAL - NOVA MOVIMENTAÇÃO
+     ===================================================== -->
+
+<div
+    class="modal-overlay"
+    id="transactionModal"
+    aria-hidden="true"
+>
+
+    <div
+        class="modal finance-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="transactionModalTitle"
+    >
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="modal-icon">
+
+                    <i class="fa-solid fa-wallet"></i>
+
+                </span>
+
+                <div>
+
+                    <h2 id="transactionModalTitle">
+                        Nova movimentação
+                    </h2>
+
+                    <p>
+                        Registre uma receita ou despesa.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeTransactionModal"
+                aria-label="Fechar"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+
+        <form
+            id="transactionForm"
+            novalidate
+        >
+
+            <input
+                type="hidden"
+                id="transactionId"
+                name="id"
+            >
+
+
+            <div
+                class="form-error"
+                id="transactionFormError"
+                hidden
+            >
+
+                <i class="fa-solid fa-circle-exclamation"></i>
+
+                <span></span>
+
+            </div>
+
+
+
+            <div class="transaction-type-selector">
+
+                <label
+                    class="transaction-type-option revenue-option"
+                >
+
+                    <input
+                        type="radio"
+                        name="tipo"
+                        value="receita"
+                        id="transactionRevenue"
+                        checked
+                    >
+
+                    <span class="type-option-content">
+
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+
+                        <strong>
+                            Receita
+                        </strong>
+
+                        <small>
+                            Entrada de dinheiro
+                        </small>
+
+                    </span>
+
+                </label>
+
+
+                <label
+                    class="transaction-type-option expense-option"
+                >
+
+                    <input
+                        type="radio"
+                        name="tipo"
+                        value="despesa"
+                        id="transactionExpense"
+                    >
+
+                    <span class="type-option-content">
+
+                        <i class="fa-solid fa-arrow-trend-down"></i>
+
+                        <strong>
+                            Despesa
+                        </strong>
+
+                        <small>
+                            Saída de dinheiro
+                        </small>
+
+                    </span>
+
+                </label>
+
+            </div>
+
+
+
+            <div class="form-grid">
+
+
+                <!-- Data -->
+
+                <div class="form-group">
+
+                    <label for="transactionDate">
+                        Data <span>*</span>
+                    </label>
+
+                    <div class="input-with-icon">
+
+                        <i class="fa-regular fa-calendar"></i>
+
+                        <input
+                            type="date"
+                            id="transactionDate"
+                            name="data"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Categoria -->
+
+                <div class="form-group">
+
+                    <label for="transactionCategory">
+                        Categoria <span>*</span>
+                    </label>
+
+                    <select
+                        id="transactionCategory"
+                        name="categoria"
+                        required
+                    >
+
+                        <option value="">
+                            Selecione uma categoria
+                        </option>
+
+                        <option value="Vendas">
+                            Vendas
+                        </option>
+
+                        <option value="Serviços">
+                            Serviços
+                        </option>
+
+                        <option value="Salários">
+                            Salários
+                        </option>
+
+                        <option value="Fornecedores">
+                            Fornecedores
+                        </option>
+
+                        <option value="Aluguel">
+                            Aluguel
+                        </option>
+
+                        <option value="Energia">
+                            Energia
+                        </option>
+
+                        <option value="Marketing">
+                            Marketing
+                        </option>
+
+                        <option value="Impostos">
+                            Impostos
+                        </option>
+
+                        <option value="Transporte">
+                            Transporte
+                        </option>
+
+                        <option value="Equipamentos">
+                            Equipamentos
+                        </option>
+
+                        <option value="Outros">
+                            Outros
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Valor -->
+
+                <div class="form-group">
+
+                    <label for="transactionAmount">
+                        Valor <span>*</span>
+                    </label>
+
+                    <div class="input-with-prefix">
+
+                        <span>
+                            R$
+                        </span>
+
+                        <input
+                            type="number"
+                            id="transactionAmount"
+                            name="valor"
+                            min="0"
+                            step="0.01"
+                            placeholder="0,00"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Forma de pagamento -->
+
+                <div class="form-group">
+
+                    <label for="transactionPayment">
+                        Forma de pagamento
+                    </label>
+
+                    <select
+                        id="transactionPayment"
+                        name="formaPagamento"
+                    >
+
+                        <option value="">
+                            Não informado
+                        </option>
+
+                        <option value="Pix">
+                            Pix
+                        </option>
+
+                        <option value="Cartão de crédito">
+                            Cartão de crédito
+                        </option>
+
+                        <option value="Cartão de débito">
+                            Cartão de débito
+                        </option>
+
+                        <option value="Boleto">
+                            Boleto
+                        </option>
+
+                        <option value="Transferência">
+                            Transferência
+                        </option>
+
+                        <option value="Dinheiro">
+                            Dinheiro
+                        </option>
+
+                        <option value="Débito automático">
+                            Débito automático
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Descrição -->
+
+                <div class="form-group full-width">
+
+                    <label for="transactionDescription">
+                        Descrição <span>*</span>
+                    </label>
+
+                    <textarea
+                        id="transactionDescription"
+                        name="descricao"
+                        rows="3"
+                        maxlength="250"
+                        placeholder="Descreva a movimentação..."
+                        required
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="cancelTransaction"
+                >
+
+                    Cancelar
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                    id="saveTransaction"
+                >
+
+                    <i class="fa-solid fa-check"></i>
+
+                    Salvar movimentação
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MODAL - EXCLUSÃO
+     ===================================================== -->
+
+<div
+    class="modal-overlay"
+    id="deleteTransactionModal"
+    aria-hidden="true"
+>
+
+    <div
+        class="modal confirmation-modal"
+        role="dialog"
+        aria-modal="true"
+    >
+
+        <div class="confirmation-icon danger">
+
+            <i class="fa-solid fa-trash"></i>
+
+        </div>
+
+
+        <h2>
+            Excluir movimentação?
+        </h2>
+
+
+        <p>
+
+            Tem certeza que deseja excluir
+            <strong id="deleteTransactionDescription">
+                esta movimentação
+            </strong>?
+
+            Esta ação não poderá ser desfeita.
+
+        </p>
+
+
+        <div class="confirmation-actions">
+
+            <button
+                type="button"
+                class="secondary-button"
+                id="cancelDeleteTransaction"
+            >
+
+                Cancelar
+
+            </button>
+
+
+            <button
+                type="button"
+                class="danger-button"
+                id="confirmDeleteTransaction"
+            >
+
+                <i class="fa-solid fa-trash"></i>
+
+                Excluir
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     TOAST
+     ===================================================== -->
+
+<div
+    class="toast"
+    id="financeToast"
+    role="status"
+    aria-live="polite"
+>
+
+    <i
+        id="financeToastIcon"
+        class="fa-solid fa-circle-check"
+    ></i>
+
+    <span id="financeToastMessage">
+        Operação realizada com sucesso.
+    </span>
+
+
+    <button
+        type="button"
+        id="closeFinanceToast"
+        aria-label="Fechar"
+    >
+
+        <i class="fa-solid fa-xmark"></i>
+
+    </button>
+
+</div>
+
+
+
+<!-- =====================================================
+     BIBLIOTECAS
+     ===================================================== -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"
+></script>
+
+
+<!-- Banco de dados -->
+
+<script src="js/database.js"></script>
+
+
+<!-- JavaScript financeiro -->
+
+<script src="js/financeiro.js"></script>
+
+
+</body>
+
+</html>
+```
