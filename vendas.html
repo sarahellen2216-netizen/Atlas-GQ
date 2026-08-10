@@ -1,0 +1,1543 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Atlas Gestão - Gerenciamento de vendas"
+    >
+
+    <title>Vendas | Atlas Gestão</title>
+
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- CSS global -->
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <!-- CSS do módulo -->
+    <link
+        rel="stylesheet"
+        href="css/vendas.css"
+    >
+
+</head>
+
+
+<body>
+
+<div class="app-container">
+
+
+    <!-- =====================================================
+         SIDEBAR
+         ===================================================== -->
+
+    <aside
+        class="sidebar"
+        id="sidebar"
+    >
+
+        <div class="sidebar-header">
+
+            <a
+                href="dashboard.html"
+                class="brand"
+            >
+
+                <div class="brand-icon">
+
+                    <i class="fa-solid fa-layer-group"></i>
+
+                </div>
+
+                <div class="brand-text">
+
+                    <strong>Atlas</strong>
+
+                    <span>Gestão</span>
+
+                </div>
+
+            </a>
+
+
+            <button
+                type="button"
+                class="sidebar-close"
+                id="sidebarClose"
+                aria-label="Fechar menu"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- Menu -->
+
+        <nav class="sidebar-nav">
+
+            <p class="nav-section-title">
+                PRINCIPAL
+            </p>
+
+
+            <a
+                href="dashboard.html"
+                class="nav-link"
+            >
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <a
+                href="produtos.html"
+                class="nav-link"
+            >
+
+                <i class="fa-solid fa-box"></i>
+
+                <span>Produtos</span>
+
+            </a>
+
+
+            <a
+                href="financeiro.html"
+                class="nav-link"
+            >
+
+                <i class="fa-solid fa-wallet"></i>
+
+                <span>Financeiro</span>
+
+            </a>
+
+
+            <a
+                href="vendas.html"
+                class="nav-link active"
+            >
+
+                <i class="fa-solid fa-cart-shopping"></i>
+
+                <span>Vendas</span>
+
+            </a>
+
+
+            <a
+                href="equipe.html"
+                class="nav-link"
+            >
+
+                <i class="fa-solid fa-users"></i>
+
+                <span>Equipe</span>
+
+            </a>
+
+
+            <p class="nav-section-title">
+                GESTÃO DA QUALIDADE
+            </p>
+
+
+            <a
+                href="qualidade.html"
+                class="nav-link"
+            >
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <span>Qualidade</span>
+
+            </a>
+
+
+            <p class="nav-section-title">
+                SISTEMA
+            </p>
+
+
+            <a
+                href="contato.html"
+                class="nav-link"
+            >
+
+                <i class="fa-solid fa-envelope"></i>
+
+                <span>Contato</span>
+
+            </a>
+
+
+            <a
+                href="configuracoes.html"
+                class="nav-link"
+            >
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span>Configurações</span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- Usuário -->
+
+        <div class="sidebar-user">
+
+            <div
+                class="user-avatar"
+                id="sidebarUserAvatar"
+            >
+                A
+            </div>
+
+
+            <div class="user-info">
+
+                <strong id="sidebarUserName">
+                    Administrador
+                </strong>
+
+                <span id="sidebarUserRole">
+                    Administrador
+                </span>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="user-menu-button"
+                id="profileButton"
+                aria-label="Abrir perfil"
+            >
+
+                <i class="fa-solid fa-ellipsis-vertical"></i>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- Overlay mobile -->
+
+    <div
+        class="sidebar-overlay"
+        id="sidebarOverlay"
+    ></div>
+
+
+    <!-- =====================================================
+         CONTEÚDO PRINCIPAL
+         ===================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             TOPBAR
+             ================================================= -->
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button
+                    type="button"
+                    class="sidebar-toggle"
+                    id="sidebarToggle"
+                    aria-label="Abrir menu"
+                >
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+
+                <div class="page-title">
+
+                    <span class="breadcrumb">
+                        Gestão
+                    </span>
+
+                    <h1>
+                        Vendas
+                    </h1>
+
+                </div>
+
+            </div>
+
+
+            <div class="topbar-actions">
+
+
+                <!-- Pesquisa -->
+
+                <div class="global-search">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="search"
+                        id="globalSearchInput"
+                        placeholder="Pesquisar..."
+                        autocomplete="off"
+                    >
+
+                    <kbd>/</kbd>
+
+                </div>
+
+
+                <!-- Notificações -->
+
+                <div class="notification-wrapper">
+
+                    <button
+                        type="button"
+                        class="topbar-icon-button"
+                        id="notificationButton"
+                        aria-label="Notificações"
+                    >
+
+                        <i class="fa-regular fa-bell"></i>
+
+                        <span
+                            class="notification-badge"
+                            id="notificationCount"
+                        >
+                            0
+                        </span>
+
+                    </button>
+
+
+                    <div
+                        class="notification-panel"
+                        id="notificationPanel"
+                    >
+
+                        <div class="notification-header">
+
+                            <div>
+
+                                <strong>
+                                    Notificações
+                                </strong>
+
+                                <span id="notificationSubtitle">
+                                    0 pendentes
+                                </span>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                id="markNotificationsRead"
+                            >
+                                Marcar como lidas
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            class="notification-list"
+                            id="notificationList"
+                        >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Perfil -->
+
+                <div class="profile-wrapper">
+
+                    <button
+                        type="button"
+                        class="profile-button"
+                        id="profileButtonTop"
+                    >
+
+                        <div
+                            class="topbar-avatar"
+                            id="topbarAvatar"
+                        >
+                            A
+                        </div>
+
+
+                        <div class="topbar-user">
+
+                            <strong id="topbarUserName">
+                                Administrador
+                            </strong>
+
+                            <span id="topbarUserRole">
+                                Administrador
+                            </span>
+
+                        </div>
+
+
+                        <i class="fa-solid fa-chevron-down"></i>
+
+                    </button>
+
+
+                    <div
+                        class="profile-menu"
+                        id="profileMenu"
+                    >
+
+                        <div class="profile-menu-header">
+
+                            <div
+                                class="profile-menu-avatar"
+                                id="profileMenuAvatar"
+                            >
+                                A
+                            </div>
+
+
+                            <div>
+
+                                <strong id="profileMenuName">
+                                    Administrador
+                                </strong>
+
+                                <span id="profileMenuEmail">
+                                    admin@atlasgestao.com
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="profile-menu-divider"></div>
+
+
+                        <a
+                            href="configuracoes.html"
+                            class="profile-menu-item"
+                        >
+
+                            <i class="fa-solid fa-user"></i>
+
+                            Meu perfil
+
+                        </a>
+
+
+                        <a
+                            href="configuracoes.html"
+                            class="profile-menu-item"
+                        >
+
+                            <i class="fa-solid fa-gear"></i>
+
+                            Configurações
+
+                        </a>
+
+
+                        <button
+                            type="button"
+                            class="profile-menu-item danger"
+                            id="logoutButton"
+                        >
+
+                            <i class="fa-solid fa-right-from-bracket"></i>
+
+                            Sair
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             CONTEÚDO
+             ================================================= -->
+
+        <section class="page-content">
+
+
+            <!-- Cabeçalho -->
+
+            <div class="content-header">
+
+                <div>
+
+                    <span class="section-label">
+                        COMERCIAL
+                    </span>
+
+                    <h2>
+                        Gestão de Vendas
+                    </h2>
+
+                    <p>
+                        Registre vendas, acompanhe resultados
+                        e consulte o histórico comercial.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="newSaleButton"
+                >
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Nova venda
+
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 CARDS
+                 ================================================= -->
+
+            <div class="sales-summary-grid">
+
+
+                <!-- Vendas do mês -->
+
+                <article class="sales-summary-card">
+
+                    <div class="summary-card-icon blue">
+
+                        <i class="fa-solid fa-cart-shopping"></i>
+
+                    </div>
+
+
+                    <div class="summary-card-content">
+
+                        <span>
+                            Vendas no mês
+                        </span>
+
+                        <strong id="monthlySalesCount">
+                            0
+                        </strong>
+
+                        <small
+                            id="monthlySalesVariation"
+                            class="variation positive"
+                        >
+                            <i class="fa-solid fa-arrow-up"></i>
+                            0%
+                        </small>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Faturamento -->
+
+                <article class="sales-summary-card">
+
+                    <div class="summary-card-icon green">
+
+                        <i class="fa-solid fa-dollar-sign"></i>
+
+                    </div>
+
+
+                    <div class="summary-card-content">
+
+                        <span>
+                            Faturamento do mês
+                        </span>
+
+                        <strong id="monthlySalesRevenue">
+                            R$ 0,00
+                        </strong>
+
+                        <small
+                            id="monthlyRevenueVariation"
+                            class="variation positive"
+                        >
+                            <i class="fa-solid fa-arrow-up"></i>
+                            0%
+                        </small>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Ticket médio -->
+
+                <article class="sales-summary-card">
+
+                    <div class="summary-card-icon purple">
+
+                        <i class="fa-solid fa-receipt"></i>
+
+                    </div>
+
+
+                    <div class="summary-card-content">
+
+                        <span>
+                            Ticket médio
+                        </span>
+
+                        <strong id="averageTicket">
+                            R$ 0,00
+                        </strong>
+
+                        <small>
+                            por venda
+                        </small>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Clientes -->
+
+                <article class="sales-summary-card">
+
+                    <div class="summary-card-icon orange">
+
+                        <i class="fa-solid fa-user-group"></i>
+
+                    </div>
+
+
+                    <div class="summary-card-content">
+
+                        <span>
+                            Clientes atendidos
+                        </span>
+
+                        <strong id="monthlyCustomers">
+                            0
+                        </strong>
+
+                        <small>
+                            este mês
+                        </small>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <!-- =================================================
+                 GRÁFICO + TOP PRODUTOS
+                 ================================================= -->
+
+            <div class="sales-dashboard-grid">
+
+
+                <!-- Gráfico -->
+
+                <article class="panel sales-chart-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>
+                                Desempenho de vendas
+                            </h3>
+
+                            <span>
+                                Acompanhe a evolução do faturamento
+                            </span>
+
+                        </div>
+
+
+                        <select
+                            id="salesChartPeriod"
+                            class="select-control"
+                        >
+
+                            <option value="7">
+                                Últimos 7 dias
+                            </option>
+
+                            <option
+                                value="30"
+                                selected
+                            >
+                                Últimos 30 dias
+                            </option>
+
+                            <option value="90">
+                                Últimos 90 dias
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="chart-container">
+
+                        <canvas
+                            id="salesChart"
+                        ></canvas>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Produtos mais vendidos -->
+
+                <article class="panel top-products-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>
+                                Produtos mais vendidos
+                            </h3>
+
+                            <span>
+                                Ranking por quantidade
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="top-products-list"
+                        id="topProductsList"
+                    >
+
+                        <div class="empty-mini-state">
+
+                            <i class="fa-solid fa-box-open"></i>
+
+                            <span>
+                                Nenhuma venda registrada
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <!-- =================================================
+                 HISTÓRICO
+                 ================================================= -->
+
+            <section class="panel sales-history-panel">
+
+                <div class="panel-header sales-history-header">
+
+                    <div>
+
+                        <h3>
+                            Histórico de vendas
+                        </h3>
+
+                        <span id="salesResultCount">
+                            0 vendas
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        id="exportSalesButton"
+                    >
+
+                        <i class="fa-solid fa-file-export"></i>
+
+                        Exportar
+
+                    </button>
+
+                </div>
+
+
+                <!-- Filtros -->
+
+                <div class="sales-filters">
+
+
+                    <div class="filter-search">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="search"
+                            id="salesSearch"
+                            placeholder="Pesquisar cliente ou produto..."
+                        >
+
+                    </div>
+
+
+                    <select
+                        id="salesPaymentFilter"
+                        class="filter-select"
+                    >
+
+                        <option value="">
+                            Todas as formas de pagamento
+                        </option>
+
+                        <option value="Dinheiro">
+                            Dinheiro
+                        </option>
+
+                        <option value="Pix">
+                            Pix
+                        </option>
+
+                        <option value="Cartão de crédito">
+                            Cartão de crédito
+                        </option>
+
+                        <option value="Cartão de débito">
+                            Cartão de débito
+                        </option>
+
+                        <option value="Boleto">
+                            Boleto
+                        </option>
+
+                    </select>
+
+
+                    <select
+                        id="salesPeriodFilter"
+                        class="filter-select"
+                    >
+
+                        <option value="">
+                            Todos os períodos
+                        </option>
+
+                        <option value="today">
+                            Hoje
+                        </option>
+
+                        <option value="week">
+                            Esta semana
+                        </option>
+
+                        <option value="month">
+                            Este mês
+                        </option>
+
+                        <option value="year">
+                            Este ano
+                        </option>
+
+                    </select>
+
+
+                    <button
+                        type="button"
+                        class="filter-clear"
+                        id="clearSalesFilters"
+                    >
+
+                        <i class="fa-solid fa-filter-circle-xmark"></i>
+
+                        Limpar
+
+                    </button>
+
+                </div>
+
+
+                <!-- Tabela -->
+
+                <div class="table-wrapper">
+
+                    <table class="data-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Data
+                                </th>
+
+                                <th>
+                                    Cliente
+                                </th>
+
+                                <th>
+                                    Produto
+                                </th>
+
+                                <th>
+                                    Quantidade
+                                </th>
+
+                                <th>
+                                    Forma de pagamento
+                                </th>
+
+                                <th>
+                                    Valor
+                                </th>
+
+                                <th>
+                                    Ações
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody
+                            id="salesTableBody"
+                        ></tbody>
+
+                    </table>
+
+
+                    <!-- Estado vazio -->
+
+                    <div
+                        class="table-empty-state"
+                        id="salesEmptyState"
+                        hidden
+                    >
+
+                        <div class="empty-icon">
+
+                            <i class="fa-solid fa-cart-shopping"></i>
+
+                        </div>
+
+                        <h4>
+                            Nenhuma venda encontrada
+                        </h4>
+
+                        <p>
+                            Cadastre sua primeira venda
+                            para começar a acompanhar os resultados.
+                        </p>
+
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            id="emptyNewSaleButton"
+                        >
+
+                            <i class="fa-solid fa-plus"></i>
+
+                            Nova venda
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Paginação -->
+
+                <div class="table-pagination">
+
+                    <span id="salesPaginationInfo">
+                        Mostrando 0–0 de 0 vendas
+                    </span>
+
+
+                    <div class="pagination-controls">
+
+                        <button
+                            type="button"
+                            class="pagination-button"
+                            id="previousSalePage"
+                            disabled
+                            aria-label="Página anterior"
+                        >
+
+                            <i class="fa-solid fa-chevron-left"></i>
+
+                        </button>
+
+
+                        <span
+                            class="current-page"
+                            id="currentSalePage"
+                        >
+                            1
+                        </span>
+
+
+                        <button
+                            type="button"
+                            class="pagination-button"
+                            id="nextSalePage"
+                            disabled
+                            aria-label="Próxima página"
+                        >
+
+                            <i class="fa-solid fa-chevron-right"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =========================================================
+     MODAL — NOVA VENDA
+     ========================================================= -->
+
+<div
+    class="modal"
+    id="saleModal"
+    aria-hidden="true"
+>
+
+    <div class="modal-dialog">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="modal-label">
+                    COMERCIAL
+                </span>
+
+                <h3 id="saleModalTitle">
+                    Nova venda
+                </h3>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeSaleModal"
+                aria-label="Fechar"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <form
+            id="saleForm"
+            novalidate
+        >
+
+            <input
+                type="hidden"
+                id="saleId"
+                name="id"
+            >
+
+
+            <!-- Cliente -->
+
+            <div class="form-group">
+
+                <label for="saleCustomer">
+
+                    Cliente
+
+                    <span>*</span>
+
+                </label>
+
+                <input
+                    type="text"
+                    id="saleCustomer"
+                    name="cliente"
+                    placeholder="Nome do cliente"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Produto -->
+
+            <div class="form-group">
+
+                <label for="saleProduct">
+
+                    Produto
+
+                    <span>*</span>
+
+                </label>
+
+                <select
+                    id="saleProduct"
+                    name="produto"
+                    required
+                >
+
+                    <option value="">
+                        Selecione um produto
+                    </option>
+
+                </select>
+
+                <small
+                    class="field-help"
+                    id="productStockInfo"
+                ></small>
+
+            </div>
+
+
+            <!-- Data + quantidade -->
+
+            <div class="form-row">
+
+
+                <div class="form-group">
+
+                    <label for="saleDate">
+
+                        Data
+
+                        <span>*</span>
+
+                    </label>
+
+                    <input
+                        type="date"
+                        id="saleDate"
+                        name="data"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="saleQuantity">
+
+                        Quantidade
+
+                        <span>*</span>
+
+                    </label>
+
+                    <input
+                        type="number"
+                        id="saleQuantity"
+                        name="quantidade"
+                        min="1"
+                        step="1"
+                        value="1"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Valor -->
+
+            <div class="form-row">
+
+
+                <div class="form-group">
+
+                    <label for="saleUnitPrice">
+
+                        Preço unitário
+
+                        <span>*</span>
+
+                    </label>
+
+                    <div class="input-with-prefix">
+
+                        <span>
+                            R$
+                        </span>
+
+                        <input
+                            type="number"
+                            id="saleUnitPrice"
+                            name="valorUnitario"
+                            min="0"
+                            step="0.01"
+                            placeholder="0,00"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="saleTotal">
+
+                        Valor total
+
+                    </label>
+
+                    <div class="input-with-prefix readonly">
+
+                        <span>
+                            R$
+                        </span>
+
+                        <input
+                            type="text"
+                            id="saleTotal"
+                            value="0,00"
+                            readonly
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Pagamento -->
+
+            <div class="form-group">
+
+                <label for="salePayment">
+
+                    Forma de pagamento
+
+                    <span>*</span>
+
+                </label>
+
+                <select
+                    id="salePayment"
+                    name="formaPagamento"
+                    required
+                >
+
+                    <option value="">
+                        Selecione
+                    </option>
+
+                    <option value="Dinheiro">
+                        Dinheiro
+                    </option>
+
+                    <option value="Pix">
+                        Pix
+                    </option>
+
+                    <option value="Cartão de crédito">
+                        Cartão de crédito
+                    </option>
+
+                    <option value="Cartão de débito">
+                        Cartão de débito
+                    </option>
+
+                    <option value="Boleto">
+                        Boleto
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Observações -->
+
+            <div class="form-group">
+
+                <label for="saleNotes">
+                    Observações
+                </label>
+
+                <textarea
+                    id="saleNotes"
+                    name="observacoes"
+                    rows="3"
+                    placeholder="Informações adicionais sobre a venda..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- Erro -->
+
+            <div
+                class="form-error"
+                id="saleFormError"
+                hidden
+            >
+
+                <i class="fa-solid fa-circle-exclamation"></i>
+
+                <span></span>
+
+            </div>
+
+
+            <!-- Ações -->
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    id="cancelSale"
+                >
+
+                    Cancelar
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    id="saveSale"
+                >
+
+                    <i class="fa-solid fa-check"></i>
+
+                    Salvar venda
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     MODAL — EXCLUSÃO
+     ========================================================= -->
+
+<div
+    class="modal modal-small"
+    id="deleteSaleModal"
+    aria-hidden="true"
+>
+
+    <div class="modal-dialog">
+
+
+        <div class="delete-modal-content">
+
+            <div class="delete-icon">
+
+                <i class="fa-solid fa-trash"></i>
+
+            </div>
+
+
+            <h3>
+                Excluir venda?
+            </h3>
+
+
+            <p>
+                Esta ação não poderá ser desfeita.
+            </p>
+
+
+            <strong id="deleteSaleDescription">
+            </strong>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    id="cancelDeleteSale"
+                >
+
+                    Cancelar
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="btn btn-danger"
+                    id="confirmDeleteSale"
+                >
+
+                    <i class="fa-solid fa-trash"></i>
+
+                    Excluir
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     TOAST
+     ========================================================= -->
+
+<div
+    class="toast"
+    id="salesToast"
+    role="status"
+    aria-live="polite"
+>
+
+    <div class="toast-icon">
+
+        <i
+            class="fa-solid fa-circle-check"
+            id="salesToastIcon"
+        ></i>
+
+    </div>
+
+
+    <span id="salesToastMessage">
+        Operação realizada com sucesso.
+    </span>
+
+
+    <button
+        type="button"
+        id="closeSalesToast"
+        aria-label="Fechar mensagem"
+    >
+
+        <i class="fa-solid fa-xmark"></i>
+
+    </button>
+
+</div>
+
+
+<!-- =========================================================
+     SCRIPTS
+     ========================================================= -->
+
+<!-- Banco de dados -->
+<script src="js/database.js"></script>
+
+<!-- Chart.js -->
+<script
+    src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"
+></script>
+
+<!-- JavaScript do módulo -->
+<script src="js/vendas.js"></script>
+
+
+</body>
+
+</html>
+```
