@@ -1,0 +1,1619 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Atlas Gestão - Gestão inteligente para empresas modernas"
+    >
+
+    <title>Equipe | Atlas Gestão</title>
+
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- CSS global -->
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+
+    <!-- CSS da página -->
+
+    <link
+        rel="stylesheet"
+        href="css/equipe.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SIDEBAR
+     ===================================================== -->
+
+<aside
+    class="sidebar"
+    id="sidebar"
+>
+
+
+    <!-- LOGO -->
+
+    <div class="sidebar-header">
+
+        <a
+            href="dashboard.html"
+            class="brand"
+        >
+
+            <div class="brand-icon">
+
+                <i class="fa-solid fa-mountain"></i>
+
+            </div>
+
+
+            <div class="brand-text">
+
+                <strong>
+                    Atlas
+                </strong>
+
+                <span>
+                    Gestão
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <button
+            type="button"
+            class="sidebar-close"
+            id="sidebarClose"
+            aria-label="Fechar menu"
+        >
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+    </div>
+
+
+    <!-- MENU -->
+
+    <nav class="sidebar-nav">
+
+
+        <span class="nav-section-title">
+            PRINCIPAL
+        </span>
+
+
+        <a
+            href="dashboard.html"
+            class="nav-link"
+        >
+
+            <i class="fa-solid fa-chart-pie"></i>
+
+            <span>
+                Dashboard
+            </span>
+
+        </a>
+
+
+        <a
+            href="produtos.html"
+            class="nav-link"
+        >
+
+            <i class="fa-solid fa-box"></i>
+
+            <span>
+                Produtos
+            </span>
+
+        </a>
+
+
+        <a
+            href="financeiro.html"
+            class="nav-link"
+        >
+
+            <i class="fa-solid fa-wallet"></i>
+
+            <span>
+                Financeiro
+            </span>
+
+        </a>
+
+
+        <a
+            href="vendas.html"
+            class="nav-link"
+        >
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            <span>
+                Vendas
+            </span>
+
+        </a>
+
+
+        <span class="nav-section-title">
+            GESTÃO
+        </span>
+
+
+        <a
+            href="equipe.html"
+            class="nav-link active"
+        >
+
+            <i class="fa-solid fa-users"></i>
+
+            <span>
+                Equipe
+            </span>
+
+        </a>
+
+
+        <a
+            href="qualidade.html"
+            class="nav-link"
+        >
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <span>
+                Qualidade
+            </span>
+
+        </a>
+
+
+        <a
+            href="contato.html"
+            class="nav-link"
+        >
+
+            <i class="fa-solid fa-headset"></i>
+
+            <span>
+                Contato
+            </span>
+
+        </a>
+
+
+        <span class="nav-section-title">
+            SISTEMA
+        </span>
+
+
+        <a
+            href="configuracoes.html"
+            class="nav-link"
+        >
+
+            <i class="fa-solid fa-gear"></i>
+
+            <span>
+                Configurações
+            </span>
+
+        </a>
+
+
+    </nav>
+
+
+    <!-- USUÁRIO -->
+
+    <div class="sidebar-user">
+
+
+        <div
+            class="sidebar-user-avatar"
+            id="sidebarUserAvatar"
+        >
+            AD
+        </div>
+
+
+        <div class="sidebar-user-info">
+
+            <strong id="sidebarUserName">
+                Administrador
+            </strong>
+
+            <span id="sidebarUserRole">
+                Administrador
+            </span>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="sidebar-user-menu"
+            id="profileButton"
+            aria-label="Menu do usuário"
+        >
+
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+
+        </button>
+
+
+    </div>
+
+</aside>
+
+
+<!-- Overlay para celular -->
+
+<div
+    class="sidebar-overlay"
+    id="sidebarOverlay"
+></div>
+
+
+<!-- =====================================================
+     CONTEÚDO PRINCIPAL
+     ===================================================== -->
+
+<main class="main-content">
+
+
+    <!-- =================================================
+         TOPBAR
+         ================================================= -->
+
+    <header class="topbar">
+
+
+        <div class="topbar-left">
+
+
+            <button
+                type="button"
+                class="sidebar-toggle"
+                id="sidebarToggle"
+                aria-label="Abrir menu"
+            >
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+            <div class="page-heading">
+
+                <span class="breadcrumb">
+                    Gestão
+                </span>
+
+                <h1>
+                    Equipe
+                </h1>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="topbar-right">
+
+
+            <!-- Pesquisa global -->
+
+            <div class="global-search">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="search"
+                    id="globalSearchInput"
+                    placeholder="Pesquisar..."
+                    autocomplete="off"
+                >
+
+                <kbd>
+                    /
+                </kbd>
+
+            </div>
+
+
+            <!-- Notificações -->
+
+            <button
+                type="button"
+                class="topbar-icon-button"
+                id="notificationButton"
+                aria-label="Notificações"
+            >
+
+                <i class="fa-regular fa-bell"></i>
+
+                <span
+                    class="notification-badge"
+                    id="notificationCount"
+                >
+                    0
+                </span>
+
+            </button>
+
+
+            <!-- Perfil -->
+
+            <button
+                type="button"
+                class="topbar-profile"
+                id="profileButtonTop"
+            >
+
+                <div
+                    class="topbar-avatar"
+                    id="topbarAvatar"
+                >
+                    AD
+                </div>
+
+
+                <div class="topbar-profile-info">
+
+                    <strong id="topbarUserName">
+                        Administrador
+                    </strong>
+
+                    <span id="topbarUserRole">
+                        Administrador
+                    </span>
+
+                </div>
+
+
+                <i class="fa-solid fa-chevron-down"></i>
+
+            </button>
+
+
+        </div>
+
+    </header>
+
+
+    <!-- =================================================
+         CONTEÚDO DA EQUIPE
+         ================================================= -->
+
+    <section class="page-content">
+
+
+        <!-- CABEÇALHO -->
+
+        <div class="content-header">
+
+
+            <div>
+
+                <span class="content-eyebrow">
+                    GESTÃO DE PESSOAS
+                </span>
+
+
+                <h2>
+                    Equipe
+                </h2>
+
+
+                <p>
+                    Gerencie os colaboradores, cargos e setores da empresa.
+                </p>
+
+            </div>
+
+
+            <div class="content-header-actions">
+
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    id="exportEmployeesButton"
+                >
+
+                    <i class="fa-solid fa-download"></i>
+
+                    Exportar
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="newEmployeeButton"
+                >
+
+                    <i class="fa-solid fa-user-plus"></i>
+
+                    Novo colaborador
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =================================================
+             CARDS DE INDICADORES
+             ================================================= -->
+
+        <div class="team-stats-grid">
+
+
+            <!-- Total -->
+
+            <article class="team-stat-card">
+
+
+                <div class="team-stat-icon blue">
+
+                    <i class="fa-solid fa-users"></i>
+
+                </div>
+
+
+                <div class="team-stat-content">
+
+                    <span>
+                        Total de colaboradores
+                    </span>
+
+
+                    <strong id="totalEmployees">
+                        0
+                    </strong>
+
+
+                    <small>
+                        cadastrados
+                    </small>
+
+                </div>
+
+
+            </article>
+
+
+            <!-- Ativos -->
+
+            <article class="team-stat-card">
+
+
+                <div class="team-stat-icon green">
+
+                    <i class="fa-solid fa-user-check"></i>
+
+                </div>
+
+
+                <div class="team-stat-content">
+
+                    <span>
+                        Colaboradores ativos
+                    </span>
+
+
+                    <strong id="activeEmployees">
+                        0
+                    </strong>
+
+
+                    <small>
+                        trabalhando atualmente
+                    </small>
+
+                </div>
+
+
+            </article>
+
+
+            <!-- Setores -->
+
+            <article class="team-stat-card">
+
+
+                <div class="team-stat-icon purple">
+
+                    <i class="fa-solid fa-building"></i>
+
+                </div>
+
+
+                <div class="team-stat-content">
+
+                    <span>
+                        Setores
+                    </span>
+
+
+                    <strong id="totalDepartments">
+                        0
+                    </strong>
+
+
+                    <small>
+                        setores cadastrados
+                    </small>
+
+                </div>
+
+
+            </article>
+
+
+            <!-- Pendências -->
+
+            <article class="team-stat-card">
+
+
+                <div class="team-stat-icon orange">
+
+                    <i class="fa-solid fa-user-clock"></i>
+
+                </div>
+
+
+                <div class="team-stat-content">
+
+                    <span>
+                        Afastados
+                    </span>
+
+
+                    <strong id="inactiveEmployees">
+                        0
+                    </strong>
+
+
+                    <small>
+                        colaboradores afastados
+                    </small>
+
+                </div>
+
+
+            </article>
+
+
+        </div>
+
+
+        <!-- =================================================
+             TABELA
+             ================================================= -->
+
+        <section class="team-panel">
+
+
+            <!-- Toolbar -->
+
+            <div class="panel-toolbar">
+
+
+                <div class="panel-title">
+
+
+                    <div>
+
+                        <h3>
+                            Colaboradores
+                        </h3>
+
+
+                        <span id="employeesResultCount">
+                            0 colaboradores
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="employees-toolbar">
+
+
+                    <!-- Pesquisa -->
+
+                    <div class="table-search">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+
+                        <input
+                            type="search"
+                            id="employeesSearch"
+                            placeholder="Buscar colaborador..."
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                    <!-- Setor -->
+
+                    <select
+                        id="departmentFilter"
+                        class="filter-select"
+                    >
+
+                        <option value="">
+                            Todos os setores
+                        </option>
+
+                    </select>
+
+
+                    <!-- Status -->
+
+                    <select
+                        id="employeeStatusFilter"
+                        class="filter-select"
+                    >
+
+                        <option value="">
+                            Todos os status
+                        </option>
+
+                        <option value="Ativo">
+                            Ativos
+                        </option>
+
+                        <option value="Férias">
+                            Férias
+                        </option>
+
+                        <option value="Afastado">
+                            Afastados
+                        </option>
+
+                        <option value="Inativo">
+                            Inativos
+                        </option>
+
+                    </select>
+
+
+                    <!-- Limpar filtros -->
+
+                    <button
+                        type="button"
+                        class="clear-filters-button"
+                        id="clearEmployeeFilters"
+                        title="Limpar filtros"
+                    >
+
+                        <i class="fa-solid fa-filter-circle-xmark"></i>
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- Tabela -->
+
+            <div class="table-wrapper">
+
+
+                <table class="data-table">
+
+
+                    <thead>
+
+                        <tr>
+
+
+                            <th>
+                                Colaborador
+                            </th>
+
+
+                            <th>
+                                Cargo
+                            </th>
+
+
+                            <th>
+                                Setor
+                            </th>
+
+
+                            <th>
+                                Telefone
+                            </th>
+
+
+                            <th>
+                                E-mail
+                            </th>
+
+
+                            <th>
+                                Status
+                            </th>
+
+
+                            <th class="actions-column">
+                                Ações
+                            </th>
+
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody
+                        id="employeesTableBody"
+                    >
+                    </tbody>
+
+
+                </table>
+
+
+                <!-- Estado vazio -->
+
+                <div
+                    class="empty-state"
+                    id="employeesEmptyState"
+                    hidden
+                >
+
+
+                    <div class="empty-state-icon">
+
+                        <i class="fa-solid fa-users-slash"></i>
+
+                    </div>
+
+
+                    <h3>
+                        Nenhum colaborador encontrado
+                    </h3>
+
+
+                    <p>
+                        Cadastre o primeiro colaborador para começar a gerenciar sua equipe.
+                    </p>
+
+
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        id="emptyNewEmployeeButton"
+                    >
+
+                        <i class="fa-solid fa-user-plus"></i>
+
+                        Cadastrar colaborador
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- Paginação -->
+
+            <div class="pagination">
+
+
+                <span id="employeesPaginationInfo">
+                    Mostrando 0–0 de 0 colaboradores
+                </span>
+
+
+                <div class="pagination-controls">
+
+
+                    <button
+                        type="button"
+                        id="previousEmployeePage"
+                        class="pagination-button"
+                        disabled
+                        aria-label="Página anterior"
+                    >
+
+                        <i class="fa-solid fa-chevron-left"></i>
+
+                    </button>
+
+
+                    <span
+                        class="pagination-current"
+                        id="currentEmployeePage"
+                    >
+                        1
+                    </span>
+
+
+                    <button
+                        type="button"
+                        id="nextEmployeePage"
+                        class="pagination-button"
+                        disabled
+                        aria-label="Próxima página"
+                    >
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </section>
+
+
+</main>
+
+
+<!-- =====================================================
+     MODAL — CADASTRAR / EDITAR COLABORADOR
+     ===================================================== -->
+
+<div
+    class="modal-overlay"
+    id="employeeModal"
+    aria-hidden="true"
+>
+
+
+    <div
+        class="modal modal-large"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="employeeModalTitle"
+    >
+
+
+        <!-- Cabeçalho -->
+
+        <div class="modal-header">
+
+
+            <div>
+
+                <span class="modal-eyebrow">
+                    CADASTRO
+                </span>
+
+
+                <h2 id="employeeModalTitle">
+                    Novo colaborador
+                </h2>
+
+
+                <p>
+                    Preencha os dados do colaborador.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeEmployeeModal"
+                aria-label="Fechar"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+
+        </div>
+
+
+        <!-- Formulário -->
+
+        <form
+            id="employeeForm"
+            class="modal-form"
+        >
+
+
+            <input
+                type="hidden"
+                id="employeeId"
+            >
+
+
+            <!-- Erro -->
+
+            <div
+                class="form-error"
+                id="employeeFormError"
+                hidden
+            >
+
+                <i class="fa-solid fa-circle-exclamation"></i>
+
+                <span></span>
+
+            </div>
+
+
+            <!-- DADOS PESSOAIS -->
+
+            <div class="form-section">
+
+
+                <div class="form-section-title">
+
+
+                    <i class="fa-solid fa-user"></i>
+
+
+                    <div>
+
+                        <strong>
+                            Dados pessoais
+                        </strong>
+
+
+                        <span>
+                            Informações básicas do colaborador
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group form-group-wide">
+
+
+                        <label for="employeeName">
+                            Nome completo
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="employeeName"
+                            placeholder="Digite o nome completo"
+                            required
+                        >
+
+
+                    </div>
+
+
+                    <div class="form-group">
+
+
+                        <label for="employeePhone">
+                            Telefone
+                        </label>
+
+
+                        <input
+                            type="tel"
+                            id="employeePhone"
+                            placeholder="(00) 00000-0000"
+                        >
+
+
+                    </div>
+
+
+                    <div class="form-group">
+
+
+                        <label for="employeeEmail">
+                            E-mail
+                        </label>
+
+
+                        <input
+                            type="email"
+                            id="employeeEmail"
+                            placeholder="colaborador@empresa.com"
+                            required
+                        >
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- DADOS PROFISSIONAIS -->
+
+            <div class="form-section">
+
+
+                <div class="form-section-title">
+
+
+                    <i class="fa-solid fa-briefcase"></i>
+
+
+                    <div>
+
+                        <strong>
+                            Dados profissionais
+                        </strong>
+
+
+                        <span>
+                            Cargo, setor e situação
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+
+                        <label for="employeePosition">
+                            Cargo
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="employeePosition"
+                            placeholder="Ex.: Analista de Qualidade"
+                            required
+                        >
+
+
+                    </div>
+
+
+                    <div class="form-group">
+
+
+                        <label for="employeeDepartment">
+                            Setor
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="employeeDepartment"
+                            list="departmentOptions"
+                            placeholder="Ex.: Qualidade"
+                            required
+                        >
+
+
+                        <datalist id="departmentOptions">
+
+                            <option value="Qualidade">
+                            <option value="Produção">
+                            <option value="Financeiro">
+                            <option value="Recursos Humanos">
+                            <option value="Comercial">
+                            <option value="Logística">
+                            <option value="Administrativo">
+                            <option value="Tecnologia">
+
+                        </datalist>
+
+
+                    </div>
+
+
+                    <div class="form-group">
+
+
+                        <label for="employeeStatus">
+                            Status
+                        </label>
+
+
+                        <select
+                            id="employeeStatus"
+                            required
+                        >
+
+                            <option value="Ativo">
+                                Ativo
+                            </option>
+
+                            <option value="Férias">
+                                Férias
+                            </option>
+
+                            <option value="Afastado">
+                                Afastado
+                            </option>
+
+                            <option value="Inativo">
+                                Inativo
+                            </option>
+
+                        </select>
+
+
+                    </div>
+
+
+                    <div class="form-group">
+
+
+                        <label for="employeeAdmission">
+                            Data de admissão
+                        </label>
+
+
+                        <input
+                            type="date"
+                            id="employeeAdmission"
+                        >
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- OBSERVAÇÕES -->
+
+            <div class="form-section">
+
+
+                <div class="form-section-title">
+
+
+                    <i class="fa-solid fa-note-sticky"></i>
+
+
+                    <div>
+
+                        <strong>
+                            Informações adicionais
+                        </strong>
+
+
+                        <span>
+                            Observações internas
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="form-group">
+
+
+                    <label for="employeeNotes">
+                        Observações
+                    </label>
+
+
+                    <textarea
+                        id="employeeNotes"
+                        rows="4"
+                        placeholder="Digite observações sobre o colaborador..."
+                    ></textarea>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- BOTÕES -->
+
+            <div class="modal-footer">
+
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    id="cancelEmployee"
+                >
+
+                    Cancelar
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+
+                    <i class="fa-solid fa-check"></i>
+
+                    Salvar colaborador
+
+                </button>
+
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     MODAL — EXCLUSÃO
+     ===================================================== -->
+
+<div
+    class="modal-overlay"
+    id="deleteEmployeeModal"
+    aria-hidden="true"
+>
+
+
+    <div
+        class="modal modal-small"
+        role="dialog"
+        aria-modal="true"
+    >
+
+
+        <div class="delete-modal-content">
+
+
+            <div class="delete-icon">
+
+                <i class="fa-solid fa-trash"></i>
+
+            </div>
+
+
+            <h2>
+                Excluir colaborador?
+            </h2>
+
+
+            <p>
+                Essa ação não poderá ser desfeita.
+            </p>
+
+
+            <strong id="deleteEmployeeName">
+                Colaborador
+            </strong>
+
+
+            <div class="modal-footer">
+
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    id="cancelDeleteEmployee"
+                >
+
+                    Cancelar
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="btn btn-danger"
+                    id="confirmDeleteEmployee"
+                >
+
+                    <i class="fa-solid fa-trash"></i>
+
+                    Excluir
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     PAINEL DE NOTIFICAÇÕES
+     ===================================================== -->
+
+<div
+    class="notification-panel"
+    id="notificationPanel"
+>
+
+
+    <div class="notification-panel-header">
+
+
+        <div>
+
+            <strong>
+                Notificações
+            </strong>
+
+
+            <span id="notificationSubtitle">
+                0 pendentes
+            </span>
+
+        </div>
+
+
+        <button
+            type="button"
+            id="markNotificationsRead"
+        >
+
+            Marcar como lidas
+
+        </button>
+
+
+    </div>
+
+
+    <div
+        class="notification-list"
+        id="notificationList"
+    >
+    </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     MENU DE PERFIL
+     ===================================================== -->
+
+<div
+    class="profile-menu"
+    id="profileMenu"
+>
+
+
+    <div class="profile-menu-header">
+
+
+        <div
+            class="profile-menu-avatar"
+            id="profileMenuAvatar"
+        >
+            AD
+        </div>
+
+
+        <div>
+
+
+            <strong id="profileMenuName">
+                Administrador
+            </strong>
+
+
+            <span id="profileMenuEmail">
+                admin@atlasgestao.com
+            </span>
+
+
+        </div>
+
+
+    </div>
+
+
+    <div class="profile-menu-divider"></div>
+
+
+    <a href="configuracoes.html">
+
+        <i class="fa-solid fa-user"></i>
+
+        Meu perfil
+
+    </a>
+
+
+    <a href="configuracoes.html">
+
+        <i class="fa-solid fa-gear"></i>
+
+        Configurações
+
+    </a>
+
+
+    <div class="profile-menu-divider"></div>
+
+
+    <button
+        type="button"
+        id="logoutButton"
+    >
+
+        <i class="fa-solid fa-right-from-bracket"></i>
+
+        Sair
+
+    </button>
+
+
+</div>
+
+
+<!-- =====================================================
+     TOAST
+     ===================================================== -->
+
+<div
+    class="toast"
+    id="teamToast"
+    role="status"
+    aria-live="polite"
+>
+
+
+    <div class="toast-icon">
+
+        <i
+            class="fa-solid fa-circle-check"
+            id="teamToastIcon"
+        ></i>
+
+    </div>
+
+
+    <div class="toast-content">
+
+
+        <strong>
+            Atlas Gestão
+        </strong>
+
+
+        <span id="teamToastMessage">
+            Operação realizada com sucesso.
+        </span>
+
+
+    </div>
+
+
+    <button
+        type="button"
+        id="closeTeamToast"
+        aria-label="Fechar"
+    >
+
+        <i class="fa-solid fa-xmark"></i>
+
+    </button>
+
+
+</div>
+
+
+<!-- =====================================================
+     SCRIPTS
+     ===================================================== -->
+
+<script src="js/database.js"></script>
+
+<script src="js/equipe.js"></script>
+
+
+</body>
+
+</html>
+```
