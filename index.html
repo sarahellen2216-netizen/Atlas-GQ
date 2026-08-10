@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Atlas Gestão - Sistema de Gestão da Garantia da Qualidade"
+    >
+
+    <meta
+        name="author"
+        content="Atlas Gestão"
+    >
+
+    <title>Atlas Gestão | Login</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- CSS específico do login -->
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body class="login-page">
+
+    <!-- =====================================================
+         ÁREA PRINCIPAL DO LOGIN
+    ====================================================== -->
+
+    <main class="login-container">
+
+        <!-- =================================================
+             LADO ESQUERDO
+        ================================================== -->
+
+        <section class="login-brand">
+
+            <div class="brand-content">
+
+                <!-- Logo -->
+                <div class="brand-logo">
+
+                    <div class="logo-symbol">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+
+                    <div class="logo-text">
+                        <span class="logo-name">
+                            Atlas
+                        </span>
+
+                        <span class="logo-name logo-name-secondary">
+                            Gestão
+                        </span>
+                    </div>
+
+                </div>
+
+                <!-- Texto principal -->
+
+                <div class="brand-message">
+
+                    <span class="brand-label">
+                        SISTEMA DE GARANTIA DA QUALIDADE
+                    </span>
+
+                    <h1>
+                        Gestão inteligente
+                        <br>
+                        da qualidade.
+                    </h1>
+
+                    <p>
+                        Controle inspeções, auditorias,
+                        não conformidades e ações corretivas
+                        em uma única plataforma.
+                    </p>
+
+                </div>
+
+                <!-- Recursos -->
+
+                <div class="brand-features">
+
+                    <div class="brand-feature">
+
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+
+                        <div>
+                            <strong>
+                                Indicadores em tempo real
+                            </strong>
+
+                            <span>
+                                Acompanhe o desempenho da qualidade.
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="brand-feature">
+
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-clipboard-check"></i>
+                        </div>
+
+                        <div>
+                            <strong>
+                                Controle de inspeções
+                            </strong>
+
+                            <span>
+                                Registre e acompanhe seus resultados.
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="brand-feature">
+
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+
+                        <div>
+                            <strong>
+                                Gestão de não conformidades
+                            </strong>
+
+                            <span>
+                                Identifique problemas e acompanhe soluções.
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Rodapé esquerdo -->
+
+            <div class="brand-footer">
+
+                <span>
+                    © <span id="currentYear"></span> Atlas Gestão
+                </span>
+
+                <span>
+                    Sistema de Garantia da Qualidade
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             LADO DIREITO - FORMULÁRIO
+        ================================================== -->
+
+        <section class="login-form-section">
+
+            <div class="login-form-wrapper">
+
+                <!-- Cabeçalho -->
+
+                <div class="login-header">
+
+                    <div class="mobile-logo">
+
+                        <div class="mobile-logo-symbol">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+
+                        <span>
+                            Atlas Gestão
+                        </span>
+
+                    </div>
+
+                    <h2>
+                        Bem-vindo de volta
+                    </h2>
+
+                    <p>
+                        Entre na sua conta para acessar o sistema.
+                    </p>
+
+                </div>
+
+
+                <!-- =================================================
+                     MENSAGEM DE ERRO
+                ================================================== -->
+
+                <div
+                    id="loginError"
+                    class="form-alert form-alert-error hidden"
+                    role="alert"
+                    aria-live="polite"
+                >
+
+                    <i class="fa-solid fa-circle-exclamation"></i>
+
+                    <span id="loginErrorMessage">
+                        E-mail ou senha inválidos.
+                    </span>
+
+                </div>
+
+
+                <!-- =================================================
+                     MENSAGEM DE SUCESSO
+                ================================================== -->
+
+                <div
+                    id="loginSuccess"
+                    class="form-alert form-alert-success hidden"
+                    role="status"
+                    aria-live="polite"
+                >
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    <span id="loginSuccessMessage">
+                        Login realizado com sucesso.
+                    </span>
+
+                </div>
+
+
+                <!-- =================================================
+                     FORMULÁRIO
+                ================================================== -->
+
+                <form
+                    id="loginForm"
+                    class="login-form"
+                    novalidate
+                >
+
+                    <!-- E-mail -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            E-mail
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-regular fa-envelope input-icon"></i>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Digite seu e-mail"
+                                autocomplete="email"
+                                required
+                            >
+
+                        </div>
+
+                        <small
+                            id="emailError"
+                            class="field-error hidden"
+                        >
+                            Informe um e-mail válido.
+                        </small>
+
+                    </div>
+
+
+                    <!-- Senha -->
+
+                    <div class="form-group">
+
+                        <div class="label-row">
+
+                            <label for="password">
+                                Senha
+                            </label>
+
+                            <button
+                                type="button"
+                                id="forgotPasswordButton"
+                                class="forgot-password"
+                            >
+                                Esqueci minha senha
+                            </button>
+
+                        </div>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock input-icon"></i>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Digite sua senha"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                id="togglePassword"
+                                class="password-toggle"
+                                aria-label="Mostrar senha"
+                                title="Mostrar senha"
+                            >
+                                <i
+                                    id="passwordIcon"
+                                    class="fa-regular fa-eye"
+                                ></i>
+                            </button>
+
+                        </div>
+
+                        <small
+                            id="passwordError"
+                            class="field-error hidden"
+                        >
+                            Informe sua senha.
+                        </small>
+
+                    </div>
+
+
+                    <!-- Lembrar login -->
+
+                    <div class="login-options">
+
+                        <label class="checkbox-label">
+
+                            <input
+                                type="checkbox"
+                                id="rememberMe"
+                                name="rememberMe"
+                            >
+
+                            <span class="custom-checkbox">
+                                <i class="fa-solid fa-check"></i>
+                            </span>
+
+                            <span>
+                                Lembrar de mim
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- Botão -->
+
+                    <button
+                        type="submit"
+                        id="loginButton"
+                        class="login-button"
+                    >
+
+                        <span
+                            id="loginButtonText"
+                            class="button-content"
+                        >
+
+                            <i class="fa-solid fa-right-to-bracket"></i>
+
+                            Entrar
+
+                        </span>
+
+                        <span
+                            id="loginLoading"
+                            class="button-loading hidden"
+                        >
+
+                            <i class="fa-solid fa-spinner fa-spin"></i>
+
+                            Entrando...
+
+                        </span>
+
+                    </button>
+
+                </form>
+
+
+                <!-- =================================================
+                     INFORMAÇÕES DE ACESSO DEMONSTRATIVO
+                ================================================== -->
+
+                <div class="demo-access">
+
+                    <div class="demo-access-header">
+
+                        <i class="fa-solid fa-circle-info"></i>
+
+                        <span>
+                            Acesso demonstrativo
+                        </span>
+
+                    </div>
+
+                    <div class="demo-access-data">
+
+                        <div>
+
+                            <span>
+                                E-mail
+                            </span>
+
+                            <strong>
+                                admin@atlasgestao.com
+                            </strong>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Senha
+                            </span>
+
+                            <strong>
+                                123456
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     RODAPÉ
+                ================================================== -->
+
+                <div class="login-footer">
+
+                    <span>
+                        Atlas Gestão
+                    </span>
+
+                    <span class="footer-separator">
+                        •
+                    </span>
+
+                    <span>
+                        Garantia da Qualidade
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         MODAL - RECUPERAR SENHA
+    ====================================================== -->
+
+    <div
+        id="forgotPasswordModal"
+        class="modal-overlay hidden"
+        aria-hidden="true"
+    >
+
+        <div
+            class="modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="forgotPasswordTitle"
+        >
+
+            <div class="modal-header">
+
+                <div class="modal-title-wrapper">
+
+                    <div class="modal-icon">
+                        <i class="fa-solid fa-key"></i>
+                    </div>
+
+                    <div>
+
+                        <h3 id="forgotPasswordTitle">
+                            Recuperar senha
+                        </h3>
+
+                        <p>
+                            Informe seu e-mail para continuar.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <button
+                    type="button"
+                    id="closeForgotPassword"
+                    class="modal-close"
+                    aria-label="Fechar"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <form id="forgotPasswordForm">
+
+                <div class="modal-body">
+
+                    <div class="form-group">
+
+                        <label for="recoveryEmail">
+                            E-mail
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-regular fa-envelope input-icon"></i>
+
+                            <input
+                                type="email"
+                                id="recoveryEmail"
+                                placeholder="Digite seu e-mail"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="recoveryMessage"
+                        class="form-alert hidden"
+                    >
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        id="cancelRecovery"
+                        class="button button-secondary"
+                    >
+                        Cancelar
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="button button-primary"
+                    >
+
+                        <i class="fa-solid fa-paper-plane"></i>
+
+                        Continuar
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+        /*
+         * Atualiza o ano automaticamente.
+         */
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const yearElement =
+                document.getElementById("currentYear");
+
+            if (yearElement) {
+                yearElement.textContent =
+                    new Date().getFullYear();
+            }
+
+        });
+    </script>
+
+    <!-- Sistema de autenticação -->
+    <script src="js/auth.js"></script>
+
+</body>
+</html>
