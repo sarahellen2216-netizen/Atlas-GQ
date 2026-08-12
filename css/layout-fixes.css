@@ -1,0 +1,75 @@
+/* Patch: add layout adjustments at end of main stylesheet to fix sidebar, badges, scrolling and responsive spacing */
+
+/* === LAYOUT FIXES (added by Copilot) === */
+
+:root {
+  /* ensure variable consistency */
+  --copilot-sidebar-width: 260px;
+}
+
+/* Make sure sidebar height/scroll doesn't overlap content */
+.sidebar {
+  box-sizing: border-box;
+  padding-bottom: 80px; /* allow space for footer/status */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Standardize nav item layout and badge position */
+.nav-item, .menu-item, .nav-link, .navigation-link {
+  position: relative;
+  align-items: center;
+  min-height: 48px;
+  padding: 10px 14px;
+}
+
+.nav-badge {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 0;
+  border-radius: 9999px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+}
+
+/* Active item: smaller rounded pill and clear padding */
+.nav-item.active, .menu-item.active, .nav-link.active, .navigation-link.active {
+  border-radius: 10px;
+  padding-left: 12px;
+  padding-right: 44px; /* space for badge */
+}
+
+/* Make main content start after sidebar reliably */
+.main, .main-area, .main-content {
+  margin-left: var(--copilot-sidebar-width);
+}
+
+/* Ensure header/search has room and not overlapped */
+.header, .topbar {
+  padding-left: calc(var(--copilot-sidebar-width) + 20px);
+}
+
+/* Forms spacing */
+.form-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.form-row .form-group {
+  flex: 1 1 240px;
+  min-width: 210px;
+}
+
+/* Tables: avoid content jump and ensure readable */
+.table-container { padding: 8px; }
+.table { min-width: 600px; }
+
+/* Small screens adjust */
+@media (max-width: 900px) {
+  .main, .main-area, .main-content { margin-left: 0; }
+  .header, .topbar { padding-left: 16px; }
+  .sidebar { position: relative; width: 100%; height: auto; }
+}
