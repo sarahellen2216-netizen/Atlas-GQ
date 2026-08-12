@@ -998,691 +998,94 @@ select {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    border-radius: var(--radius-md);
-
-    background: var(--primary-light);
-    color: var(--primary);
 }
-
-.modal-header h3 {
-    font-size: 1rem;
-}
-
-.modal-header p {
-    margin-top: 2px;
-    font-size: 0.78rem;
-}
-
-.modal-close {
-    width: 36px;
-    height: 36px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: var(--radius-sm);
-
-    background: transparent;
-
-    color: var(--gray-400);
-
-    transition: var(--transition);
-}
-
-.modal-close:hover {
-    background: var(--danger-light);
-    color: var(--danger);
-}
-
-.modal-body {
-    padding: 22px;
-
-    max-height: calc(90vh - 150px);
-
-    overflow-y: auto;
-}
-
-.modal-footer {
-    padding: 16px 22px;
-
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-
-    border-top:
-        1px solid var(--gray-100);
-}
-
 
 /* =========================================================
-   15. ALERTAS
+   === COPILOT LAYOUT FIXES (appended)
+   These rules override specific layout issues: sidebar/nav badges,
+   main/content offset, header padding, form spacing and table sizing.
    ========================================================= */
 
-.form-alert {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-
-    padding: 12px 14px;
-
-    border-radius: var(--radius-sm);
-
-    font-size: 0.82rem;
+:root {
+  --copilot-sidebar-width: 260px;
 }
 
-.form-alert-error {
-    background: var(--danger-soft);
-    color: var(--danger-dark);
-
-    border:
-        1px solid var(--danger-light);
+/* Ensure the sidebar has safe padding and smooth scrolling */
+.sidebar {
+  box-sizing: border-box;
+  padding-bottom: 80px; /* prevent footer overlap */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-.form-alert-success {
-    background: var(--success-soft);
-    color: var(--success-dark);
-
-    border:
-        1px solid var(--success-light);
+/* More specific nav item rules to override previous conflicts */
+.sidebar .nav-item,
+.sidebar .menu-item,
+.sidebar .nav-link,
+.sidebar .navigation-link {
+  position: relative;
+  align-items: center;
+  min-height: 48px;
+  padding: 10px 14px;
 }
 
-.form-alert-warning {
-    background: var(--warning-soft);
-    color: var(--warning-dark);
-
-    border:
-        1px solid var(--warning-light);
+/* Position badges consistently to the right */
+.sidebar .nav-badge,
+.sidebar .nav-item .nav-badge {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 0;
+  border-radius: 9999px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.form-alert-info {
-    background: var(--primary-soft);
-    color: var(--primary-dark);
-
-    border:
-        1px solid var(--primary-light);
+/* Active item: keep pill smaller and reserve space for badge */
+.sidebar .nav-item.active,
+.sidebar .menu-item.active,
+.sidebar .nav-link.active,
+.sidebar .navigation-link.active {
+  border-radius: 10px;
+  padding-left: 12px;
+  padding-right: 44px; /* make room for badge */
 }
 
-
-/* =========================================================
-   16. NOTIFICAÇÕES
-   ========================================================= */
-
-.notification-container {
-    position: fixed;
-
-    right: 24px;
-    bottom: 24px;
-
-    z-index: 10000;
-
-    width: min(380px, calc(100% - 32px));
-
-    display: flex;
-    flex-direction: column;
-
-    gap: 10px;
+/* Ensure main content respects sidebar width (force high specificity) */
+.main, .main-area, .main-content {
+  margin-left: var(--copilot-sidebar-width) !important;
 }
 
-.notification {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-
-    padding: 14px;
-
-    background: var(--white);
-
-    border:
-        1px solid var(--gray-200);
-
-    border-left:
-        4px solid var(--primary);
-
-    border-radius: var(--radius-md);
-
-    box-shadow: var(--shadow-lg);
-
-    animation: notificationIn 300ms ease;
+/* Header should visually clear the sidebar on wide screens */
+.header, .topbar {
+  padding-left: calc(var(--copilot-sidebar-width) + 20px) !important;
 }
 
-.notification.success {
-    border-left-color: var(--success);
+/* Form rows - responsive & consistent spacing */
+.form-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.form-row .form-group {
+  flex: 1 1 240px;
+  min-width: 210px;
 }
 
-.notification.error {
-    border-left-color: var(--danger);
-}
-
-.notification.warning {
-    border-left-color: var(--warning);
-}
-
-.notification-icon {
-    width: 30px;
-    height: 30px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background: var(--primary-light);
-
-    color: var(--primary);
-
-    flex-shrink: 0;
-}
-
-.notification.success .notification-icon {
-    background: var(--success-light);
-    color: var(--success);
-}
-
-.notification.error .notification-icon {
-    background: var(--danger-light);
-    color: var(--danger);
-}
-
-.notification.warning .notification-icon {
-    background: var(--warning-light);
-    color: var(--warning);
-}
-
-.notification-content {
-    flex: 1;
-}
-
-.notification-title {
-    color: var(--gray-800);
-
-    font-size: 0.82rem;
-    font-weight: 600;
-}
-
-.notification-message {
-    margin-top: 2px;
-
-    color: var(--gray-500);
-
-    font-size: 0.75rem;
-}
-
-
-/* =========================================================
-   17. EMPTY STATE
-   ========================================================= */
-
-.empty-state {
-    padding: 60px 20px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-}
-
-.empty-state-icon {
-    width: 64px;
-    height: 64px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    margin-bottom: 16px;
-
-    border-radius: 50%;
-
-    background: var(--gray-100);
-
-    color: var(--gray-400);
-
-    font-size: 1.5rem;
-}
-
-.empty-state h3 {
-    font-size: 1rem;
-}
-
-.empty-state p {
-    max-width: 420px;
-
-    margin-top: 5px;
-
-    font-size: 0.82rem;
-}
-
-
-/* =========================================================
-   18. PAGINAÇÃO
-   ========================================================= */
-
-.pagination {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 16px;
-
-    padding: 16px 20px;
-
-    border-top:
-        1px solid var(--gray-100);
-}
-
-.pagination-info {
-    color: var(--gray-500);
-    font-size: 0.75rem;
-}
-
-.pagination-buttons {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.pagination-button {
-    width: 34px;
-    height: 34px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border:
-        1px solid var(--gray-200);
-
-    border-radius: var(--radius-sm);
-
-    background: var(--white);
-
-    color: var(--gray-600);
-
-    font-size: 0.78rem;
-
-    transition: var(--transition);
-}
-
-.pagination-button:hover {
-    background: var(--gray-50);
-}
-
-.pagination-button.active {
-    background: var(--primary);
-    color: var(--white);
-    border-color: var(--primary);
-}
-
-
-/* =========================================================
-   19. TOOLBAR
-   ========================================================= */
-
-.page-toolbar {
-    margin-bottom: 20px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 12px;
-
-    flex-wrap: wrap;
-}
-
-.toolbar-left,
-.toolbar-right {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-
-/* =========================================================
-   20. CAMPO DE PESQUISA
-   ========================================================= */
-
-.search-box {
-    position: relative;
-
-    width: min(320px, 100%);
-}
-
-.search-box i {
-    position: absolute;
-
-    left: 12px;
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    color: var(--gray-400);
-
-    pointer-events: none;
-}
-
-.search-box input {
-    padding-left: 38px;
-}
-
-
-/* =========================================================
-   21. GRID
-   ========================================================= */
-
-.grid {
-    display: grid;
-}
-
-.grid-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.grid-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.grid-4 {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.grid-gap {
-    gap: 20px;
-}
-
-
-/* =========================================================
-   22. LOADING
-   ========================================================= */
-
-.loading-overlay {
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 20000;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background:
-        rgba(255, 255, 255, 0.75);
-
-    backdrop-filter: blur(2px);
-}
-
-.loading-spinner {
-    width: 42px;
-    height: 42px;
-
-    border:
-        3px solid var(--gray-200);
-
-    border-top-color:
-        var(--primary);
-
-    border-radius: 50%;
-
-    animation:
-        spin 700ms linear infinite;
-}
-
-
-/* =========================================================
-   23. DIVISOR
-   ========================================================= */
-
-.divider {
-    width: 100%;
-    height: 1px;
-
-    background: var(--gray-200);
-
-    margin: 20px 0;
-}
-
-
-/* =========================================================
-   24. TOOLTIP
-   ========================================================= */
-
-[data-tooltip] {
-    position: relative;
-}
-
-[data-tooltip]::after {
-    content: attr(data-tooltip);
-
-    position: absolute;
-
-    bottom: calc(100% + 8px);
-    left: 50%;
-
-    transform:
-        translateX(-50%)
-        translateY(4px);
-
-    padding: 6px 9px;
-
-    background: var(--gray-900);
-    color: var(--white);
-
-    border-radius: 6px;
-
-    font-size: 0.7rem;
-
-    white-space: nowrap;
-
-    opacity: 0;
-    visibility: hidden;
-
-    pointer-events: none;
-
-    transition: var(--transition);
-}
-
-[data-tooltip]:hover::after {
-    opacity: 1;
-    visibility: visible;
-
-    transform:
-        translateX(-50%)
-        translateY(0);
-}
-
-
-/* =========================================================
-   25. ANIMAÇÕES
-   ========================================================= */
-
-@keyframes fadeIn {
-
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-
-}
-
-
-@keyframes modalIn {
-
-    from {
-        opacity: 0;
-        transform: translateY(15px) scale(0.98);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-
-}
-
-
-@keyframes notificationIn {
-
-    from {
-        opacity: 0;
-        transform: translateX(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-}
-
-
-@keyframes spin {
-
-    to {
-        transform: rotate(360deg);
-    }
-
-}
-
-
-/* =========================================================
-   26. RESPONSIVIDADE GLOBAL
-   ========================================================= */
-
-@media (max-width: 1200px) {
-
-    .grid-4 {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
-
-}
-
-
+/* Table container padding to avoid controls touching edges */
+.table-container { padding: 8px; }
+.table { min-width: 600px; }
+
+/* Small screens: stack sidebar and remove left margin */
 @media (max-width: 900px) {
-
-    .grid-3 {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
-
-    .grid-2 {
-        grid-template-columns:
-            1fr;
-    }
-
+  .main, .main-area, .main-content { margin-left: 0 !important; }
+  .header, .topbar { padding-left: 16px !important; }
+  .sidebar { position: relative; width: 100%; height: auto; }
 }
 
-
-@media (max-width: 640px) {
-
-    html {
-        font-size: 15px;
-    }
-
-    h1 {
-        font-size: 1.6rem;
-    }
-
-    h2 {
-        font-size: 1.35rem;
-    }
-
-    .grid-4,
-    .grid-3,
-    .grid-2 {
-        grid-template-columns: 1fr;
-    }
-
-    .page-toolbar {
-        align-items: stretch;
-        flex-direction: column;
-    }
-
-    .toolbar-left,
-    .toolbar-right {
-        width: 100%;
-    }
-
-    .search-box {
-        width: 100%;
-    }
-
-    .button {
-        min-height: 40px;
-    }
-
-    .modal-overlay {
-        padding: 10px;
-    }
-
-    .modal {
-        max-height: 95vh;
-        border-radius: var(--radius-lg);
-    }
-
-    .modal-header,
-    .modal-body,
-    .modal-footer {
-        padding: 16px;
-    }
-
-    .pagination {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .pagination-buttons {
-        justify-content: center;
-    }
-
-    .notification-container {
-        right: 16px;
-        bottom: 16px;
-        width: calc(100% - 32px);
-    }
-
-}
-
-
-/* =========================================================
-   27. ACESSIBILIDADE
-   ========================================================= */
-
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-    outline:
-        3px solid rgba(37, 99, 235, 0.30);
-
-    outline-offset: 2px;
-}
-
-
-/* =========================================================
-   28. REDUÇÃO DE MOVIMENTO
-   ========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-        scroll-behavior: auto !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-
-}
+/* End of appended fixes */
