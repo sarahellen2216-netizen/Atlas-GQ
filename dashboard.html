@@ -12,14 +12,14 @@
 
     <meta
         name="description"
-        content="Atlas Gestão - Dashboard de Gestão da Qualidade"
+        content="Atlas Gestão - Sistema de Gestão da Qualidade"
     >
 
     <title>Dashboard | Atlas Gestão</title>
 
 
     <!-- =====================================================
-         GOOGLE FONTS
+         FONTES
          ===================================================== -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,13 +47,18 @@
 
 
     <!-- =====================================================
-         CSS DO SISTEMA
+         CSS GERAL
          ===================================================== -->
 
     <link
         rel="stylesheet"
         href="css/style.css"
     >
+
+
+    <!-- =====================================================
+         CSS DO DASHBOARD
+         ===================================================== -->
 
     <link
         rel="stylesheet"
@@ -62,51 +67,83 @@
 
 
     <!-- =====================================================
-         ESTILO EXTRA DA SIDEBAR
+         CORREÇÃO DA SIDEBAR
          ===================================================== -->
 
     <style>
 
         /* =================================================
-           SIDEBAR
+           ESTRUTURA
            ================================================= */
 
-        .sidebar {
+        html,
+        body {
 
-            position: fixed;
+            margin: 0;
+            padding: 0;
 
-            top: 0;
-            left: 0;
-
-            width: 250px;
-            height: 100vh;
-
-            background: #ffffff;
-
-            border-right: 1px solid #e5e7eb;
-
-            display: flex;
-            flex-direction: column;
-
-            z-index: 9999;
-
-            overflow: hidden;
+            min-height: 100%;
 
         }
 
 
-        /* LOGO */
+        body {
 
-        .sidebar-logo {
+            font-family: "Inter", sans-serif;
+
+        }
+
+
+        /* =================================================
+           SIDEBAR
+           ================================================= */
+
+        .atlas-sidebar {
+
+            position: fixed !important;
+
+            top: 0 !important;
+            left: 0 !important;
+
+            width: 250px !important;
+            height: 100vh !important;
+
+            background: #ffffff !important;
+
+            border-right: 1px solid #e5e7eb !important;
+
+            display: flex !important;
+
+            flex-direction: column !important;
+
+            z-index: 10000 !important;
+
+            overflow: hidden !important;
+
+            box-sizing: border-box !important;
+
+        }
+
+
+        /* =================================================
+           LOGO
+           ================================================= */
+
+        .atlas-sidebar-logo {
+
+            width: 100%;
 
             height: 76px;
 
             padding: 0 20px;
 
             display: flex;
+
             align-items: center;
 
             gap: 12px;
+
+            box-sizing: border-box;
 
             border-bottom: 1px solid #f1f5f9;
 
@@ -115,10 +152,12 @@
         }
 
 
-        .logo-icon {
+        .atlas-logo-icon {
 
             width: 40px;
             height: 40px;
+
+            min-width: 40px;
 
             border-radius: 10px;
 
@@ -137,7 +176,7 @@
         }
 
 
-        .logo-text {
+        .atlas-logo-text {
 
             display: flex;
 
@@ -148,9 +187,7 @@
         }
 
 
-        .logo-text strong {
-
-            color: #1f2937;
+        .atlas-logo-text strong {
 
             font-family: "Poppins", sans-serif;
 
@@ -158,48 +195,49 @@
 
             font-weight: 700;
 
+            color: #1f2937;
+
         }
 
 
-        .logo-text span {
+        .atlas-logo-text span {
+
+            margin-top: 3px;
 
             color: #64748b;
 
             font-size: 11px;
 
-            margin-top: 3px;
-
         }
 
 
-        /* MENU */
+        /* =================================================
+           MENU
+           ================================================= */
 
-        .sidebar-menu {
+        .atlas-sidebar-menu {
 
             flex: 1;
 
-            overflow-y: auto;
+            width: 100%;
 
             padding: 18px 12px;
+
+            overflow-y: auto;
+
+            box-sizing: border-box;
 
         }
 
 
-        .sidebar-menu::-webkit-scrollbar {
+        .atlas-sidebar-menu::-webkit-scrollbar {
 
             width: 5px;
 
         }
 
 
-        .sidebar-menu::-webkit-scrollbar-track {
-
-            background: transparent;
-
-        }
-
-
-        .sidebar-menu::-webkit-scrollbar-thumb {
+        .atlas-sidebar-menu::-webkit-scrollbar-thumb {
 
             background: #cbd5e1;
 
@@ -208,22 +246,26 @@
         }
 
 
-        /* SEÇÕES */
+        .atlas-menu-section {
 
-        .menu-section {
+            width: 100%;
 
-            margin-bottom: 25px;
+            margin-bottom: 24px;
 
         }
 
 
-        .menu-section-title {
+        .atlas-menu-title {
 
             display: block;
+
+            width: 100%;
 
             padding: 0 12px;
 
             margin-bottom: 8px;
+
+            box-sizing: border-box;
 
             color: #94a3b8;
 
@@ -236,93 +278,118 @@
         }
 
 
-        /* LINKS */
+        /* =================================================
+           LINKS
+           ================================================= */
 
-        .menu-item {
+        .atlas-menu-link {
 
-            position: relative;
+            display: flex !important;
 
-            display: flex;
+            align-items: center !important;
 
-            align-items: center;
+            width: 100% !important;
 
-            width: 100%;
+            height: 44px !important;
 
-            min-height: 44px;
+            min-height: 44px !important;
 
-            padding: 0 12px;
+            padding: 0 12px !important;
 
-            margin-bottom: 3px;
+            margin: 3px 0 !important;
 
-            box-sizing: border-box;
+            box-sizing: border-box !important;
 
-            border-radius: 8px;
+            border-radius: 8px !important;
 
-            text-decoration: none;
+            text-decoration: none !important;
 
-            color: #475569;
+            color: #475569 !important;
 
-            font-size: 14px;
+            background: transparent !important;
 
-            transition: all 0.2s ease;
+            font-family: "Inter", sans-serif !important;
 
-        }
+            font-size: 14px !important;
 
+            font-weight: 500 !important;
 
-        .menu-item i {
+            visibility: visible !important;
 
-            width: 24px;
-
-            margin-right: 12px;
-
-            text-align: center;
-
-            color: #64748b;
-
-            font-size: 15px;
+            opacity: 1 !important;
 
         }
 
 
-        .menu-item:hover {
+        .atlas-menu-link i {
 
-            background: #eff6ff;
+            display: flex !important;
 
-            color: #2563eb;
+            align-items: center !important;
 
-        }
+            justify-content: center !important;
 
+            width: 24px !important;
 
-        .menu-item:hover i {
+            min-width: 24px !important;
 
-            color: #2563eb;
+            margin-right: 12px !important;
 
-        }
-
-
-        /* ITEM ATIVO */
-
-        .menu-item.active {
-
-            background: #eff6ff;
-
-            color: #2563eb;
-
-            font-weight: 600;
+            color: #64748b !important;
 
         }
 
 
-        .menu-item.active i {
+        .atlas-menu-link span {
 
-            color: #2563eb;
+            display: block !important;
+
+            visibility: visible !important;
+
+            opacity: 1 !important;
 
         }
 
 
-        /* BADGE */
+        .atlas-menu-link:hover {
 
-        .menu-badge {
+            background: #eff6ff !important;
+
+            color: #2563eb !important;
+
+        }
+
+
+        .atlas-menu-link:hover i {
+
+            color: #2563eb !important;
+
+        }
+
+
+        .atlas-menu-link.active {
+
+            background: #eff6ff !important;
+
+            color: #2563eb !important;
+
+            font-weight: 600 !important;
+
+        }
+
+
+        .atlas-menu-link.active i {
+
+            color: #2563eb !important;
+
+        }
+
+
+        /* =================================================
+           BADGE
+           ================================================= */
+
+        .atlas-menu-badge {
 
             margin-left: auto;
 
@@ -334,15 +401,15 @@
 
             border-radius: 50px;
 
-            background: #fee2e2;
-
-            color: #ef4444;
-
-            display: flex;
+            display: flex !important;
 
             align-items: center;
 
             justify-content: center;
+
+            background: #fee2e2;
+
+            color: #ef4444;
 
             font-size: 11px;
 
@@ -351,15 +418,17 @@
         }
 
 
-        /* USUÁRIO */
+        /* =================================================
+           USUÁRIO
+           ================================================= */
 
-        .sidebar-user {
+        .atlas-sidebar-user {
+
+            width: 100%;
 
             min-height: 68px;
 
             padding: 12px 14px;
-
-            box-sizing: border-box;
 
             display: flex;
 
@@ -367,25 +436,23 @@
 
             gap: 9px;
 
-            border-top: 1px solid #e5e7eb;
+            box-sizing: border-box;
 
-            background: #ffffff;
+            border-top: 1px solid #e5e7eb;
 
             flex-shrink: 0;
 
         }
 
 
-        .user-avatar {
+        .atlas-user-avatar {
 
             width: 36px;
             height: 36px;
 
+            min-width: 36px;
+
             border-radius: 50%;
-
-            background: #dbeafe;
-
-            color: #2563eb;
 
             display: flex;
 
@@ -393,12 +460,14 @@
 
             justify-content: center;
 
-            flex-shrink: 0;
+            background: #dbeafe;
+
+            color: #2563eb;
 
         }
 
 
-        .user-info {
+        .atlas-user-info {
 
             flex: 1;
 
@@ -411,7 +480,7 @@
         }
 
 
-        .user-info strong {
+        .atlas-user-info strong {
 
             color: #1f2937;
 
@@ -426,7 +495,7 @@
         }
 
 
-        .user-info span {
+        .atlas-user-info span {
 
             color: #94a3b8;
 
@@ -441,7 +510,7 @@
         }
 
 
-        .logout-button {
+        .atlas-logout {
 
             width: 32px;
             height: 32px;
@@ -459,7 +528,7 @@
         }
 
 
-        .logout-button:hover {
+        .atlas-logout:hover {
 
             background: #fee2e2;
 
@@ -469,10 +538,10 @@
 
 
         /* =================================================
-           ÁREA PRINCIPAL
+           CONTEÚDO PRINCIPAL
            ================================================= */
 
-        .main-content {
+        .atlas-main {
 
             margin-left: 250px;
 
@@ -480,55 +549,79 @@
 
             min-height: 100vh;
 
+            box-sizing: border-box;
+
         }
 
 
         /* =================================================
-           RESPONSIVIDADE
+           MOBILE
            ================================================= */
 
-        @media (max-width: 900px) {
+        .atlas-mobile-button {
 
-            .sidebar {
+            display: none;
 
-                width: 220px;
+            position: fixed;
 
-            }
+            top: 15px;
 
-            .main-content {
+            left: 15px;
 
-                margin-left: 220px;
+            width: 42px;
 
-                width: calc(100% - 220px);
+            height: 42px;
 
-            }
+            border: none;
+
+            border-radius: 9px;
+
+            background: #2563eb;
+
+            color: #ffffff;
+
+            z-index: 10001;
+
+            cursor: pointer;
+
+            align-items: center;
+
+            justify-content: center;
 
         }
 
 
         @media (max-width: 768px) {
 
-            .sidebar {
+            .atlas-sidebar {
 
-                transform: translateX(-100%);
+                transform: translateX(-100%) !important;
 
-                transition: transform 0.25s ease;
-
-            }
-
-
-            .sidebar.mobile-open {
-
-                transform: translateX(0);
+                transition:
+                    transform 0.25s ease;
 
             }
 
 
-            .main-content {
+            .atlas-sidebar.open {
+
+                transform: translateX(0) !important;
+
+            }
+
+
+            .atlas-main {
 
                 margin-left: 0;
 
                 width: 100%;
+
+            }
+
+
+            .atlas-mobile-button {
+
+                display: flex;
 
             }
 
@@ -543,24 +636,40 @@
 
 
     <!-- =====================================================
-         SIDEBAR COMPLETA
+         BOTÃO MOBILE
          ===================================================== -->
 
-    <aside class="sidebar">
+    <button
+        type="button"
+        id="atlasMobileButton"
+        class="atlas-mobile-button"
+        aria-label="Abrir menu"
+    >
+
+        <i class="fas fa-bars"></i>
+
+    </button>
+
+
+    <!-- =====================================================
+         SIDEBAR
+         ===================================================== -->
+
+    <aside class="atlas-sidebar">
 
 
         <!-- LOGO -->
 
-        <div class="sidebar-logo">
+        <div class="atlas-sidebar-logo">
 
-            <div class="logo-icon">
+            <div class="atlas-logo-icon">
 
                 <i class="fas fa-layer-group"></i>
 
             </div>
 
 
-            <div class="logo-text">
+            <div class="atlas-logo-text">
 
                 <strong>Atlas</strong>
 
@@ -571,26 +680,25 @@
         </div>
 
 
+        <!-- MENU -->
 
-        <!-- =================================================
-             MENU
-             ================================================= -->
-
-        <nav class="sidebar-menu">
+        <nav class="atlas-sidebar-menu">
 
 
-            <!-- PRINCIPAL -->
+            <!-- ================================
+                 PRINCIPAL
+                 ================================ -->
 
-            <div class="menu-section">
+            <div class="atlas-menu-section">
 
-                <span class="menu-section-title">
+                <span class="atlas-menu-title">
                     PRINCIPAL
                 </span>
 
 
                 <a
                     href="dashboard.html"
-                    class="menu-item active"
+                    class="atlas-menu-link active"
                 >
 
                     <i class="fas fa-chart-pie"></i>
@@ -602,7 +710,7 @@
 
                 <a
                     href="produtos.html"
-                    class="menu-item"
+                    class="atlas-menu-link"
                 >
 
                     <i class="fas fa-box"></i>
@@ -614,7 +722,7 @@
 
                 <a
                     href="financeiro.html"
-                    class="menu-item"
+                    class="atlas-menu-link"
                 >
 
                     <i class="fas fa-wallet"></i>
@@ -626,7 +734,7 @@
 
                 <a
                     href="vendas.html"
-                    class="menu-item"
+                    class="atlas-menu-link"
                 >
 
                     <i class="fas fa-shopping-cart"></i>
@@ -638,7 +746,7 @@
 
                 <a
                     href="equipe.html"
-                    class="menu-item"
+                    class="atlas-menu-link"
                 >
 
                     <i class="fas fa-users"></i>
@@ -650,21 +758,20 @@
             </div>
 
 
-
-            <!-- =================================================
+            <!-- ================================
                  QUALIDADE
-                 ================================================= -->
+                 ================================ -->
 
-            <div class="menu-section">
+            <div class="atlas-menu-section">
 
-                <span class="menu-section-title">
+                <span class="atlas-menu-title">
                     QUALIDADE
                 </span>
 
 
                 <a
                     href="qualidade.html"
-                    class="menu-item"
+                    class="atlas-menu-link"
                 >
 
                     <i class="fas fa-shield-alt"></i>
@@ -673,7 +780,8 @@
 
                     <span
                         id="menuBadgeQualidade"
-                        class="menu-badge"
+                        class="atlas-menu-badge"
+                        style="display:none;"
                     >
                         0
                     </span>
@@ -681,11 +789,9 @@
                 </a>
 
 
-                <!-- AUDITORIAS -->
-
                 <a
                     href="auditorias.html"
-                    class="menu-item"
+                    class="atlas-menu-link"
                 >
 
                     <i class="fas fa-clipboard-check"></i>
@@ -695,11 +801,9 @@
                 </a>
 
 
-                <!-- DOCUMENTOS -->
-
                 <a
                     href="documentos.html"
-                    class="menu-item"
+                    class="atlas-menu-link"
                 >
 
                     <i class="fas fa-file-alt"></i>
@@ -711,21 +815,20 @@
             </div>
 
 
-
-            <!-- =================================================
+            <!-- ================================
                  SISTEMA
-                 ================================================= -->
+                 ================================ -->
 
-            <div class="menu-section">
+            <div class="atlas-menu-section">
 
-                <span class="menu-section-title">
+                <span class="atlas-menu-title">
                     SISTEMA
                 </span>
 
 
                 <a
                     href="contato.html"
-                    class="menu-item"
+                    class="atlas-menu-link"
                 >
 
                     <i class="fas fa-envelope"></i>
@@ -737,7 +840,7 @@
 
                 <a
                     href="configuracoes.html"
-                    class="menu-item"
+                    class="atlas-menu-link"
                 >
 
                     <i class="fas fa-cog"></i>
@@ -752,22 +855,18 @@
         </nav>
 
 
+        <!-- USUÁRIO -->
 
-        <!-- =================================================
-             USUÁRIO
-             ================================================= -->
+        <div class="atlas-sidebar-user">
 
-        <div class="sidebar-user">
-
-
-            <div class="user-avatar">
+            <div class="atlas-user-avatar">
 
                 <i class="fas fa-user"></i>
 
             </div>
 
 
-            <div class="user-info">
+            <div class="atlas-user-info">
 
                 <strong id="sidebarUserName">
                     Administrador
@@ -782,8 +881,8 @@
 
             <button
                 type="button"
-                id="btnLogout"
-                class="logout-button"
+                id="atlasLogout"
+                class="atlas-logout"
                 title="Sair"
             >
 
@@ -791,19 +890,17 @@
 
             </button>
 
-
         </div>
 
 
     </aside>
 
 
-
     <!-- =====================================================
          CONTEÚDO PRINCIPAL
          ===================================================== -->
 
-    <main class="main-content">
+    <main class="atlas-main">
 
 
         <!-- =================================================
@@ -833,8 +930,6 @@
             <div class="topbar-right">
 
 
-                <!-- PESQUISA -->
-
                 <button
                     type="button"
                     class="topbar-button"
@@ -846,8 +941,6 @@
 
                 </button>
 
-
-                <!-- NOTIFICAÇÕES -->
 
                 <button
                     type="button"
@@ -867,8 +960,6 @@
 
                 </button>
 
-
-                <!-- PERFIL -->
 
                 <div class="topbar-profile">
 
@@ -897,19 +988,17 @@
 
             </div>
 
-
         </header>
 
 
-
         <!-- =================================================
-             CONTEÚDO
+             DASHBOARD
              ================================================= -->
 
         <section class="dashboard-container">
 
 
-            <!-- SAUDAÇÃO -->
+            <!-- CABEÇALHO -->
 
             <div class="dashboard-header">
 
@@ -921,10 +1010,12 @@
 
 
                     <h2>
+
                         Olá,
                         <span id="welcomeUserName">
                             Administrador
                         </span>!
+
                     </h2>
 
 
@@ -947,7 +1038,6 @@
                 </div>
 
             </div>
-
 
 
             <!-- =================================================
@@ -987,7 +1077,6 @@
                 </div>
 
 
-
                 <!-- CONFORMIDADE -->
 
                 <div class="stat-card">
@@ -1016,7 +1105,6 @@
                     </div>
 
                 </div>
-
 
 
                 <!-- NÃO CONFORMIDADES -->
@@ -1049,7 +1137,6 @@
                 </div>
 
 
-
                 <!-- AÇÕES -->
 
                 <div class="stat-card">
@@ -1072,10 +1159,7 @@
                         </strong>
 
                         <small>
-                            <span id="acoesAtrasadas">
-                                0
-                            </span>
-                            atrasadas
+                            Ações pendentes
                         </small>
 
                     </div>
@@ -1086,9 +1170,8 @@
             </div>
 
 
-
             <!-- =================================================
-                 GRÁFICO + RESUMO
+                 GRÁFICOS
                  ================================================= -->
 
             <div class="dashboard-grid">
@@ -1097,7 +1180,6 @@
                 <!-- GRÁFICO -->
 
                 <section class="dashboard-card chart-card">
-
 
                     <div class="card-header">
 
@@ -1113,28 +1195,6 @@
 
                         </div>
 
-
-                        <div class="chart-actions">
-
-                            <button
-                                type="button"
-                                class="chart-filter active"
-                                data-period="all"
-                            >
-                                Geral
-                            </button>
-
-
-                            <button
-                                type="button"
-                                class="chart-filter"
-                                data-period="month"
-                            >
-                                Mês
-                            </button>
-
-                        </div>
-
                     </div>
 
 
@@ -1146,51 +1206,12 @@
 
                     </div>
 
-
-                    <div class="chart-legend">
-
-
-                        <div class="legend-item">
-
-                            <span class="legend-dot conform"></span>
-
-                            <span>
-                                Conforme
-                            </span>
-
-                            <strong id="chartConforme">
-                                0
-                            </strong>
-
-                        </div>
-
-
-                        <div class="legend-item">
-
-                            <span class="legend-dot nonconform"></span>
-
-                            <span>
-                                Não conforme
-                            </span>
-
-                            <strong id="chartNaoConforme">
-                                0
-                            </strong>
-
-                        </div>
-
-
-                    </div>
-
-
                 </section>
-
 
 
                 <!-- RESUMO -->
 
                 <section class="dashboard-card summary-card">
-
 
                     <div class="card-header">
 
@@ -1219,10 +1240,7 @@
 
                     <div class="quality-score">
 
-                        <div
-                            class="score-circle"
-                            id="qualityScoreCircle"
-                        >
+                        <div class="score-circle">
 
                             <span id="qualityScore">
                                 0%
@@ -1252,8 +1270,11 @@
                         <div class="summary-item">
 
                             <span>
+
                                 <i class="fas fa-check-circle"></i>
+
                                 Conforme
+
                             </span>
 
                             <strong id="summaryConforme">
@@ -1266,8 +1287,11 @@
                         <div class="summary-item">
 
                             <span>
+
                                 <i class="fas fa-times-circle"></i>
+
                                 Não conforme
+
                             </span>
 
                             <strong id="summaryNaoConforme">
@@ -1280,8 +1304,11 @@
                         <div class="summary-item">
 
                             <span>
+
                                 <i class="fas fa-clipboard-check"></i>
+
                                 Auditorias
+
                             </span>
 
                             <strong id="totalAuditorias">
@@ -1290,175 +1317,18 @@
 
                         </div>
 
-
                     </div>
 
-
                 </section>
-
 
             </div>
 
 
-
             <!-- =================================================
-                 INSPEÇÕES + AÇÕES
+                 INSPEÇÕES RECENTES
                  ================================================= -->
 
-            <div class="dashboard-grid">
-
-
-                <!-- INSPEÇÕES RECENTES -->
-
-                <section class="dashboard-card table-card">
-
-
-                    <div class="card-header">
-
-                        <div>
-
-                            <span class="section-label">
-                                ACOMPANHAMENTO
-                            </span>
-
-                            <h3>
-                                Inspeções recentes
-                            </h3>
-
-                        </div>
-
-
-                        <a
-                            href="qualidade.html"
-                            class="card-link"
-                        >
-                            Ver todas
-                        </a>
-
-                    </div>
-
-
-                    <div class="table-wrapper">
-
-                        <table>
-
-                            <thead>
-
-                                <tr>
-
-                                    <th>
-                                        Produto
-                                    </th>
-
-                                    <th>
-                                        Responsável
-                                    </th>
-
-                                    <th>
-                                        Data
-                                    </th>
-
-                                    <th>
-                                        Resultado
-                                    </th>
-
-                                </tr>
-
-                            </thead>
-
-
-                            <tbody id="inspecoesRecentesBody">
-
-                                <tr>
-
-                                    <td
-                                        colspan="4"
-                                        class="loading-cell"
-                                    >
-                                        Carregando...
-                                    </td>
-
-                                </tr>
-
-                            </tbody>
-
-                        </table>
-
-                    </div>
-
-
-                </section>
-
-
-
-                <!-- AÇÕES PENDENTES -->
-
-                <section class="dashboard-card actions-card">
-
-
-                    <div class="card-header">
-
-                        <div>
-
-                            <span class="section-label">
-                                ATENÇÃO
-                            </span>
-
-                            <h3>
-                                Ações pendentes
-                            </h3>
-
-                        </div>
-
-
-                        <a
-                            href="qualidade.html"
-                            class="card-link"
-                        >
-                            Ver todas
-                        </a>
-
-                    </div>
-
-
-                    <div
-                        id="acoesPendentesList"
-                        class="pending-list"
-                    >
-
-                        <div class="empty-state">
-
-                            <div class="empty-icon">
-
-                                <i class="fas fa-check"></i>
-
-                            </div>
-
-                            <strong>
-                                Tudo em dia!
-                            </strong>
-
-                            <p>
-                                Nenhuma ação pendente.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                </section>
-
-
-            </div>
-
-
-
-            <!-- =================================================
-                 NÃO CONFORMIDADES
-                 ================================================= -->
-
-            <section class="dashboard-card nonconformity-card">
+            <section class="dashboard-card table-card">
 
 
                 <div class="card-header">
@@ -1466,11 +1336,11 @@
                     <div>
 
                         <span class="section-label">
-                            QUALIDADE
+                            ACOMPANHAMENTO
                         </span>
 
                         <h3>
-                            Não conformidades
+                            Inspeções recentes
                         </h3>
 
                     </div>
@@ -1480,79 +1350,65 @@
                         href="qualidade.html"
                         class="card-link"
                     >
-                        Gerenciar
+                        Ver todas
                     </a>
 
                 </div>
 
 
-                <div class="nc-grid">
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Produto
+                                </th>
+
+                                <th>
+                                    Responsável
+                                </th>
+
+                                <th>
+                                    Data
+                                </th>
+
+                                <th>
+                                    Resultado
+                                </th>
+
+                            </tr>
+
+                        </thead>
 
 
-                    <div class="nc-total">
+                        <tbody id="inspecoesRecentesBody">
 
-                        <strong id="totalNC">
-                            0
-                        </strong>
+                            <tr>
 
-                        <span>
-                            total registradas
-                        </span>
+                                <td
+                                    colspan="4"
+                                    class="loading-cell"
+                                >
+                                    Carregando...
+                                </td>
 
-                    </div>
+                            </tr>
 
+                        </tbody>
 
-                    <div class="nc-status">
-
-                        <div>
-
-                            <span>
-                                Abertas
-                            </span>
-
-                            <strong id="ncAbertas">
-                                0
-                            </strong>
-
-                        </div>
-
-
-                        <div>
-
-                            <span>
-                                Em análise
-                            </span>
-
-                            <strong id="ncAnalise">
-                                0
-                            </strong>
-
-                        </div>
-
-
-                        <div>
-
-                            <span>
-                                Encerradas
-                            </span>
-
-                            <strong id="ncEncerradas">
-                                0
-                            </strong>
-
-                        </div>
-
-                    </div>
+                    </table>
 
                 </div>
-
 
             </section>
 
 
-
             <!-- =================================================
-                 ATALHOS
+                 ATALHOS RÁPIDOS
                  ================================================= -->
 
             <section class="quick-actions-section">
@@ -1578,10 +1434,10 @@
                 <div class="quick-actions-grid">
 
 
-                    <!-- NOVA INSPEÇÃO -->
+                    <!-- INSPEÇÃO -->
 
                     <a
-                        href="qualidade.html?acao=nova-inspecao"
+                        href="qualidade.html"
                         class="quick-action"
                     >
 
@@ -1590,6 +1446,7 @@
                             <i class="fas fa-clipboard-check"></i>
 
                         </div>
+
 
                         <div>
 
@@ -1606,11 +1463,10 @@
                     </a>
 
 
-
-                    <!-- NOVA NC -->
+                    <!-- NÃO CONFORMIDADE -->
 
                     <a
-                        href="qualidade.html?acao=nova-nc"
+                        href="qualidade.html"
                         class="quick-action"
                     >
 
@@ -1620,14 +1476,15 @@
 
                         </div>
 
+
                         <div>
 
                             <strong>
-                                Nova NC
+                                Nova não conformidade
                             </strong>
 
                             <span>
-                                Registrar não conformidade
+                                Registrar ocorrência
                             </span>
 
                         </div>
@@ -1635,37 +1492,7 @@
                     </a>
 
 
-
-                    <!-- NOVA AÇÃO -->
-
-                    <a
-                        href="qualidade.html?acao=nova-acao"
-                        class="quick-action"
-                    >
-
-                        <div class="quick-action-icon orange">
-
-                            <i class="fas fa-tasks"></i>
-
-                        </div>
-
-                        <div>
-
-                            <strong>
-                                Nova ação
-                            </strong>
-
-                            <span>
-                                Criar ação corretiva
-                            </span>
-
-                        </div>
-
-                    </a>
-
-
-
-                    <!-- NOVA AUDITORIA -->
+                    <!-- AUDITORIA -->
 
                     <a
                         href="auditorias.html"
@@ -1677,6 +1504,7 @@
                             <i class="fas fa-clipboard-check"></i>
 
                         </div>
+
 
                         <div>
 
@@ -1693,8 +1521,7 @@
                     </a>
 
 
-
-                    <!-- NOVO DOCUMENTO -->
+                    <!-- DOCUMENTO -->
 
                     <a
                         href="documentos.html"
@@ -1706,6 +1533,7 @@
                             <i class="fas fa-file-alt"></i>
 
                         </div>
+
 
                         <div>
 
@@ -1722,8 +1550,7 @@
                     </a>
 
 
-
-                    <!-- NOVO PRODUTO -->
+                    <!-- PRODUTO -->
 
                     <a
                         href="produtos.html"
@@ -1735,6 +1562,7 @@
                             <i class="fas fa-box"></i>
 
                         </div>
+
 
                         <div>
 
@@ -1751,14 +1579,41 @@
                     </a>
 
 
-                </div>
+                    <!-- RELATÓRIO -->
 
+                    <a
+                        href="qualidade.html"
+                        class="quick-action"
+                    >
+
+                        <div class="quick-action-icon orange">
+
+                            <i class="fas fa-chart-bar"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                Relatório
+                            </strong>
+
+                            <span>
+                                Consultar qualidade
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                </div>
 
             </section>
 
 
         </section>
-
 
 
         <!-- =================================================
@@ -1790,108 +1645,31 @@
     </main>
 
 
-
     <!-- =====================================================
-         PESQUISA GLOBAL
+         CHART.JS
          ===================================================== -->
-
-    <div
-        id="globalSearchModal"
-        class="modal-overlay"
-        style="display:none;"
-    >
-
-        <div class="search-modal">
-
-            <div class="search-modal-header">
-
-                <div>
-
-                    <span>
-                        PESQUISA GLOBAL
-                    </span>
-
-                    <h3>
-                        O que você procura?
-                    </h3>
-
-                </div>
-
-
-                <button
-                    type="button"
-                    id="closeSearchModal"
-                >
-                    ×
-                </button>
-
-            </div>
-
-
-            <div class="search-input-wrapper">
-
-                <i class="fas fa-search"></i>
-
-                <input
-                    type="text"
-                    id="globalSearchInput"
-                    placeholder="Pesquise produtos, inspeções, funcionários..."
-                    autocomplete="off"
-                >
-
-                <kbd>
-                    ESC
-                </kbd>
-
-            </div>
-
-
-            <div
-                id="globalSearchResults"
-                class="search-results"
-            >
-
-                <p>
-                    Digite para pesquisar no sistema.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- =====================================================
-         JAVASCRIPT
-         ===================================================== -->
-
-    <!-- Chart.js -->
 
     <script
         src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"
     ></script>
 
 
-    <!-- Banco de dados existente -->
+    <!-- =====================================================
+         BANCO DE DADOS
+         ===================================================== -->
 
     <script src="js/database.js"></script>
 
 
-    <!-- Dashboard existente -->
+    <!-- =====================================================
+         JAVASCRIPT DO DASHBOARD
+         ===================================================== -->
 
     <script src="js/dashboard.js"></script>
 
 
-    <!-- Sidebar global -->
-
-    <script src="js/sidebar.js"></script>
-
-
-
     <!-- =====================================================
-         SCRIPT DO DASHBOARD
+         SCRIPT EXCLUSIVO DO HTML
          ===================================================== -->
 
     <script>
@@ -1902,48 +1680,70 @@
 
 
                 /* =========================================
-                   DATA ATUAL
+                   DATA
                    ========================================= */
 
-                const dataElemento =
+                const data =
                     document.getElementById(
                         "dashboardDate"
                     );
 
 
-                if (dataElemento) {
+                if (data) {
 
-                    const hoje = new Date();
-
-
-                    dataElemento.textContent =
-                        hoje.toLocaleDateString(
+                    data.textContent =
+                        new Date().toLocaleDateString(
                             "pt-BR"
                         );
 
                 }
 
 
-
                 /* =========================================
-                   PERFIL
+                   USUÁRIO
                    ========================================= */
 
                 let usuario = null;
 
 
-                try {
+                const chaves = [
+                    "atlas_usuario",
+                    "usuario",
+                    "usuarioLogado"
+                ];
 
-                    usuario =
-                        JSON.parse(
+
+                for (
+                    let i = 0;
+                    i < chaves.length;
+                    i++
+                ) {
+
+                    try {
+
+                        const valor =
                             localStorage.getItem(
-                                "atlas_usuario"
-                            )
+                                chaves[i]
+                            );
+
+
+                        if (valor) {
+
+                            usuario =
+                                JSON.parse(valor);
+
+                            break;
+
+                        }
+
+                    } catch (erro) {
+
+                        console.warn(
+                            "Não foi possível carregar usuário.",
+                            erro
                         );
 
-                } catch (erro) {
-
-                    usuario = null;
+                    }
 
                 }
 
@@ -1961,71 +1761,71 @@
                         "admin@atlasgestao.com";
 
 
-                    const welcome =
-                        document.getElementById(
-                            "welcomeUserName"
-                        );
+                    const elementos = {
+
+                        welcome:
+                            document.getElementById(
+                                "welcomeUserName"
+                            ),
+
+                        profile:
+                            document.getElementById(
+                                "profileName"
+                            ),
+
+                        sidebarName:
+                            document.getElementById(
+                                "sidebarUserName"
+                            ),
+
+                        sidebarEmail:
+                            document.getElementById(
+                                "sidebarUserEmail"
+                            ),
+
+                        initial:
+                            document.getElementById(
+                                "profileInitial"
+                            )
+
+                    };
 
 
-                    const profile =
-                        document.getElementById(
-                            "profileName"
-                        );
+                    if (elementos.welcome) {
 
-
-                    const sidebarName =
-                        document.getElementById(
-                            "sidebarUserName"
-                        );
-
-
-                    const sidebarEmail =
-                        document.getElementById(
-                            "sidebarUserEmail"
-                        );
-
-
-                    const initial =
-                        document.getElementById(
-                            "profileInitial"
-                        );
-
-
-                    if (welcome) {
-
-                        welcome.textContent =
+                        elementos.welcome.textContent =
                             nome;
 
                     }
 
 
-                    if (profile) {
+                    if (elementos.profile) {
 
-                        profile.textContent =
+                        elementos.profile.textContent =
                             nome;
 
                     }
 
 
-                    if (sidebarName) {
+                    if (elementos.sidebarName) {
 
-                        sidebarName.textContent =
+                        elementos.sidebarName.textContent =
                             nome;
 
                     }
 
 
-                    if (sidebarEmail) {
+                    if (elementos.sidebarEmail) {
 
-                        sidebarEmail.textContent =
+                        elementos.sidebarEmail.textContent =
                             email;
 
                     }
 
 
-                    if (initial) {
+                    if (elementos.initial) {
 
-                        initial.textContent =
+                        elementos.initial.textContent =
                             nome
                                 .charAt(0)
                                 .toUpperCase();
@@ -2035,14 +1835,13 @@
                 }
 
 
-
                 /* =========================================
                    LOGOUT
                    ========================================= */
 
                 const logout =
                     document.getElementById(
-                        "btnLogout"
+                        "atlasLogout"
                     );
 
 
@@ -2052,29 +1851,32 @@
                         "click",
                         function () {
 
-                            if (
+                            const confirmar =
                                 confirm(
                                     "Deseja realmente sair do Atlas Gestão?"
-                                )
-                            ) {
-
-                                localStorage.removeItem(
-                                    "atlas_usuario"
-                                );
-
-                                localStorage.removeItem(
-                                    "usuario"
-                                );
-
-                                localStorage.removeItem(
-                                    "usuarioLogado"
                                 );
 
 
-                                window.location.href =
-                                    "index.html";
-
+                            if (!confirmar) {
+                                return;
                             }
+
+
+                            localStorage.removeItem(
+                                "atlas_usuario"
+                            );
+
+                            localStorage.removeItem(
+                                "usuario"
+                            );
+
+                            localStorage.removeItem(
+                                "usuarioLogado"
+                            );
+
+
+                            window.location.href =
+                                "index.html";
 
                         }
                     );
@@ -2082,58 +1884,33 @@
                 }
 
 
-
                 /* =========================================
-                   PESQUISA
+                   MOBILE
                    ========================================= */
 
-                const searchButton =
+                const mobileButton =
                     document.getElementById(
-                        "globalSearchButton"
+                        "atlasMobileButton"
                     );
 
 
-                const searchModal =
-                    document.getElementById(
-                        "globalSearchModal"
-                    );
-
-
-                const closeSearch =
-                    document.getElementById(
-                        "closeSearchModal"
-                    );
-
-
-                const searchInput =
-                    document.getElementById(
-                        "globalSearchInput"
+                const sidebar =
+                    document.querySelector(
+                        ".atlas-sidebar"
                     );
 
 
                 if (
-                    searchButton &&
-                    searchModal
+                    mobileButton &&
+                    sidebar
                 ) {
 
-                    searchButton.addEventListener(
+                    mobileButton.addEventListener(
                         "click",
                         function () {
 
-                            searchModal.style.display =
-                                "flex";
-
-                            setTimeout(
-                                function () {
-
-                                    if (searchInput) {
-
-                                        searchInput.focus();
-
-                                    }
-
-                                },
-                                100
+                            sidebar.classList.toggle(
+                                "open"
                             );
 
                         }
@@ -2141,135 +1918,8 @@
 
                 }
 
-
-                if (closeSearch) {
-
-                    closeSearch.addEventListener(
-                        "click",
-                        function () {
-
-                            searchModal.style.display =
-                                "none";
-
-                        }
-                    );
-
-                }
-
-
-                if (searchModal) {
-
-                    searchModal.addEventListener(
-                        "click",
-                        function (event) {
-
-                            if (
-                                event.target ===
-                                searchModal
-                            ) {
-
-                                searchModal.style.display =
-                                    "none";
-
-                            }
-
-                        }
-                    );
-
-                }
-
-
-                document.addEventListener(
-                    "keydown",
-                    function (event) {
-
-                        if (
-                            event.key ===
-                            "Escape"
-                        ) {
-
-                            if (searchModal) {
-
-                                searchModal.style.display =
-                                    "none";
-
-                            }
-
-                        }
-
-                    }
-                );
-
-
-
-                /* =========================================
-                   MENU MOBILE
-                   ========================================= */
-
-                if (
-                    window.innerWidth <=
-                    768
-                ) {
-
-                    const sidebar =
-                        document.querySelector(
-                            ".sidebar"
-                        );
-
-
-                    if (sidebar) {
-
-                        const button =
-                            document.createElement(
-                                "button"
-                            );
-
-
-                        button.className =
-                            "mobile-menu-button";
-
-
-                        button.innerHTML =
-                            '<i class="fas fa-bars"></i>';
-
-
-                        button.style.cssText = `
-                            position: fixed;
-                            top: 15px;
-                            left: 15px;
-                            width: 42px;
-                            height: 42px;
-                            border: none;
-                            border-radius: 9px;
-                            background: #2563eb;
-                            color: white;
-                            z-index: 10001;
-                            cursor: pointer;
-                        `;
-
-
-                        document.body.appendChild(
-                            button
-                        );
-
-
-                        button.addEventListener(
-                            "click",
-                            function () {
-
-                                sidebar.classList.toggle(
-                                    "mobile-open"
-                                );
-
-                            }
-                        );
-
-                    }
-
-                }
 
             }
-
         );
 
     </script>
