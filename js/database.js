@@ -1,189 +1,85 @@
-/* =====================================================
-   ATLAS GESTÃO
-   BANCO DE DADOS LOCAL
-===================================================== */
-
 const AtlasDB = {
 
-    prefix: "atlas_",
+    keys: {
+        produtos: "atlas_produtos",
+        vendas: "atlas_vendas",
+        financeiro: "atlas_financeiro",
+        equipe: "atlas_equipe",
+        inspeções: "atlas_inspecoes",
+        auditorias: "atlas_auditorias",
+        documentos: "atlas_documentos",
+        contatos: "atlas_contatos",
+        configuracoes: "atlas_configuracoes"
+    },
 
     get(key) {
-
         try {
-
-            const value =
-                localStorage.getItem(
-                    this.prefix + key
-                );
-
-            if (!value) {
-                return [];
-            }
-
-            return JSON.parse(value);
-
-        } catch (error) {
-
-            console.error(
-                "Erro ao ler banco:",
-                error
-            );
-
+            return JSON.parse(localStorage.getItem(key)) || [];
+        } catch {
             return [];
         }
     },
 
-
     set(key, data) {
-
-        try {
-
-            localStorage.setItem(
-                this.prefix + key,
-                JSON.stringify(data)
-            );
-
-            return true;
-
-        } catch (error) {
-
-            console.error(
-                "Erro ao salvar banco:",
-                error
-            );
-
-            return false;
-        }
+        localStorage.setItem(key, JSON.stringify(data));
     },
-
 
     add(key, item) {
-
         const data = this.get(key);
 
-        const newItem = {
+        item.id = item.id || Date.now();
 
-            id:
-                item.id ||
-                Date.now() +
-                Math.floor(
-                    Math.random() * 1000
-                ),
-
-            createdAt:
-                item.createdAt ||
-                new Date().toISOString(),
-
-            ...item
-        };
-
-        data.push(newItem);
+        data.push(item);
 
         this.set(key, data);
 
-        return newItem;
+        return item;
     },
-
 
     update(key, id, changes) {
-
         const data = this.get(key);
 
-        const index =
-            data.findIndex(
-                item =>
-                    String(item.id) ===
-                    String(id)
-            );
+        const index = data.findIndex(
+            item => String(item.id) === String(id)
+        );
 
-        if (index === -1) {
-            return false;
-        }
+        if (index === -1) return false;
 
         data[index] = {
-
             ...data[index],
-
-            ...changes,
-
-            updatedAt:
-                new Date().toISOString()
+            ...changes
         };
 
         this.set(key, data);
 
-        return data[index];
+        return true;
     },
 
-
     remove(key, id) {
-
         const data = this.get(key);
 
-        const filtered =
-            data.filter(
-                item =>
-                    String(item.id) !==
-                    String(id)
-            );
+        const filtered = data.filter(
+            item => String(item.id) !== String(id)
+        );
 
         this.set(key, filtered);
 
         return true;
     },
 
-
     clear(key) {
-
-        localStorage.removeItem(
-            this.prefix + key
-        );
+        localStorage.removeItem(key);
     },
 
-
     count(key) {
-
         return this.get(key).length;
     },
 
-
-    seed() {
-
-        const collections = [
-            "produtos",
-            "vendas",
-            "financeiro",
-            "equipe",
-            "inspecoes",
-            "auditorias",
-            "documentos",
-            "contatos"
-        ];
-
-        collections.forEach(key => {
-
-            if (
-                localStorage.getItem(
-                    this.prefix + key
-                ) === null
-            ) {
-
-                this.set(key, []);
-
-            }
-
-        });
-
+    find(key, id) {
+        return this.get(key).find(
+            item => String(item.id) === String(id)
+        );
     }
-
 };
-
-
-/* Inicialização */
-
-AtlasDB.seed();
-
-
-/* Compatibilidade */
 
 window.AtlasDB = AtlasDB;
