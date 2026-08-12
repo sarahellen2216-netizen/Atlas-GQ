@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contato | Atlas Gestão</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/contato.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- MENU LATERAL -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-logo">
+            <div class="logo-icon">
+                <i class="fa-solid fa-layer-group"></i>
+            </div>
+
+            <div>
+                <h2>Atlas Gestão</h2>
+                <span>Gestão inteligente</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <a href="dashboard.html">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="produtos.html">
+                <i class="fa-solid fa-box"></i>
+                <span>Produtos</span>
+            </a>
+
+            <a href="financeiro.html">
+                <i class="fa-solid fa-wallet"></i>
+                <span>Financeiro</span>
+            </a>
+
+            <a href="vendas.html">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Vendas</span>
+            </a>
+
+            <a href="equipe.html">
+                <i class="fa-solid fa-users"></i>
+                <span>Equipe</span>
+            </a>
+
+            <a href="qualidade.html">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Garantia da Qualidade</span>
+            </a>
+
+            <a href="contato.html" class="active">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Contato</span>
+            </a>
+
+            <a href="configuracoes.html">
+                <i class="fa-solid fa-gear"></i>
+                <span>Configurações</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="system-status">
+                <span class="status-dot"></span>
+                <span>Sistema operacional</span>
+            </div>
+
+            <button class="logout-button" id="logoutButton">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Sair
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main-content">
+
+        <!-- TOPO -->
+        <header class="topbar">
+
+            <button class="mobile-menu" id="mobileMenu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="topbar-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input
+                    type="text"
+                    id="globalSearch"
+                    placeholder="Pesquisar..."
+                >
+            </div>
+
+            <div class="topbar-actions">
+
+                <button class="notification-button">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="notification-badge">0</span>
+                </button>
+
+                <div class="user-profile">
+
+                    <div class="user-avatar">
+                        A
+                    </div>
+
+                    <div class="user-info">
+                        <strong id="userName">Administrador</strong>
+                        <span>Administrador</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PÁGINA -->
+        <section class="page-content">
+
+            <div class="page-header">
+
+                <div>
+                    <span class="page-label">ATENDIMENTO</span>
+
+                    <h1>Contato</h1>
+
+                    <p>
+                        Entre em contato com a equipe do Atlas Gestão.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- CARDS DE CONTATO -->
+            <div class="contact-cards">
+
+                <div class="contact-card">
+
+                    <div class="contact-icon blue">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+
+                    <div>
+                        <span>E-mail</span>
+                        <strong>contato@atlasgestao.com</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="contact-card">
+
+                    <div class="contact-icon green">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+
+                    <div>
+                        <span>Telefone</span>
+                        <strong>(11) 4000-0000</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="contact-card">
+
+                    <div class="contact-icon purple">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+
+                    <div>
+                        <span>Atendimento</span>
+                        <strong>Seg. a Sex. — 08h às 18h</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ÁREA DE CONTATO -->
+            <div class="contact-layout">
+
+                <!-- FORMULÁRIO -->
+                <div class="contact-form-card">
+
+                    <div class="card-title">
+
+                        <div>
+                            <span class="page-label">FALE CONOSCO</span>
+                            <h2>Envie uma mensagem</h2>
+                        </div>
+
+                    </div>
+
+
+                    <form id="contactForm">
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+                                <label for="contactName">
+                                    Nome
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="contactName"
+                                    placeholder="Digite seu nome"
+                                    required
+                                >
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="contactEmail">
+                                    E-mail
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="contactEmail"
+                                    placeholder="seu@email.com"
+                                    required
+                                >
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="contactSubject">
+                                Assunto
+                            </label>
+
+                            <select id="contactSubject" required>
+
+                                <option value="">
+                                    Selecione um assunto
+                                </option>
+
+                                <option value="duvida">
+                                    Dúvida
+                                </option>
+
+                                <option value="suporte">
+                                    Suporte
+                                </option>
+
+                                <option value="qualidade">
+                                    Garantia da Qualidade
+                                </option>
+
+                                <option value="financeiro">
+                                    Financeiro
+                                </option>
+
+                                <option value="sugestao">
+                                    Sugestão
+                                </option>
+
+                                <option value="outro">
+                                    Outro
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="contactMessage">
+                                Mensagem
+                            </label>
+
+                            <textarea
+                                id="contactMessage"
+                                rows="6"
+                                placeholder="Digite sua mensagem..."
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <div class="form-actions">
+
+                            <button
+                                type="reset"
+                                class="btn-secondary"
+                            >
+                                Limpar
+                            </button>
+
+                            <button
+                                type="submit"
+                                class="btn-primary"
+                            >
+                                <i class="fa-solid fa-paper-plane"></i>
+                                Enviar mensagem
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+                <!-- INFORMAÇÕES -->
+                <div class="company-card">
+
+                    <div class="company-card-header">
+
+                        <div class="company-icon">
+                            <i class="fa-solid fa-building"></i>
+                        </div>
+
+                        <div>
+                            <span class="page-label">ATLAS GESTÃO</span>
+                            <h2>Informações da empresa</h2>
+                        </div>
+
+                    </div>
+
+
+                    <div class="company-info">
+
+                        <div>
+                            <i class="fa-solid fa-location-dot"></i>
+
+                            <div>
+                                <span>Endereço</span>
+                                <strong>
+                                    São Paulo - SP
+                                </strong>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <i class="fa-solid fa-envelope"></i>
+
+                            <div>
+                                <span>E-mail</span>
+                                <strong>
+                                    contato@atlasgestao.com
+                                </strong>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <i class="fa-solid fa-phone"></i>
+
+                            <div>
+                                <span>Telefone</span>
+                                <strong>
+                                    (11) 4000-0000
+                                </strong>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <i class="fa-solid fa-clock"></i>
+
+                            <div>
+                                <span>Horário</span>
+                                <strong>
+                                    Segunda a sexta-feira
+                                </strong>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="support-box">
+
+                        <i class="fa-solid fa-circle-info"></i>
+
+                        <div>
+                            <strong>Precisa de ajuda?</strong>
+
+                            <p>
+                                Nossa equipe está disponível para
+                                ajudar com dúvidas sobre o sistema.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="js/contato.js"></script>
+
+</body>
+</html>
