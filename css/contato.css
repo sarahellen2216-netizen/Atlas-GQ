@@ -1,0 +1,357 @@
+/* ==========================================
+   ATLAS GESTÃO
+   CONTATO
+   ========================================== */
+
+.page-content {
+    padding: 30px;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 28px;
+}
+
+.page-label {
+    display: block;
+    color: #2563EB;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 5px;
+}
+
+.page-header h1 {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    font-size: 30px;
+    color: #1F2937;
+}
+
+.page-header p {
+    margin: 6px 0 0;
+    color: #6B7280;
+    font-size: 14px;
+}
+
+
+/* ==========================================
+   CARDS DE CONTATO
+   ========================================== */
+
+.contact-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.contact-card {
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
+}
+
+.contact-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.contact-icon.blue {
+    background: #EFF6FF;
+    color: #2563EB;
+}
+
+.contact-icon.green {
+    background: #ECFDF5;
+    color: #22C55E;
+}
+
+.contact-icon.purple {
+    background: #F5F3FF;
+    color: #7C3AED;
+}
+
+.contact-card span {
+    display: block;
+    color: #6B7280;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.contact-card strong {
+    display: block;
+    color: #1F2937;
+    font-size: 14px;
+}
+
+
+/* ==========================================
+   LAYOUT
+   ========================================== */
+
+.contact-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(300px, 0.8fr);
+    gap: 24px;
+}
+
+
+/* ==========================================
+   FORMULÁRIO
+   ========================================== */
+
+.contact-form-card,
+.company-card {
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 16px;
+    padding: 26px;
+    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+}
+
+.card-title {
+    margin-bottom: 25px;
+}
+
+.card-title h2,
+.company-card h2 {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+    color: #1F2937;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    color: #374151;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #D1D5DB;
+    border-radius: 9px;
+    background: #FFFFFF;
+    color: #1F2937;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    padding: 12px 13px;
+    outline: none;
+    transition: 0.2s;
+}
+
+.form-group input,
+.form-group select {
+    height: 44px;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 130px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #2563EB;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-primary,
+.btn-secondary {
+    height: 42px;
+    padding: 0 18px;
+    border-radius: 9px;
+    border: none;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-primary {
+    background: #2563EB;
+    color: #FFFFFF;
+}
+
+.btn-primary:hover {
+    background: #1D4ED8;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: #F3F4F6;
+    color: #374151;
+}
+
+.btn-secondary:hover {
+    background: #E5E7EB;
+}
+
+
+/* ==========================================
+   EMPRESA
+   ========================================== */
+
+.company-card-header {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 28px;
+}
+
+.company-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: #EFF6FF;
+    color: #2563EB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.company-info {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.company-info > div {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+}
+
+.company-info > div > i {
+    width: 20px;
+    color: #2563EB;
+    margin-top: 2px;
+}
+
+.company-info span {
+    display: block;
+    font-size: 11px;
+    color: #6B7280;
+    margin-bottom: 4px;
+}
+
+.company-info strong {
+    display: block;
+    font-size: 13px;
+    color: #1F2937;
+    font-weight: 600;
+}
+
+.support-box {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+    padding: 16px;
+    border-radius: 10px;
+    background: #EFF6FF;
+    color: #1E40AF;
+}
+
+.support-box > i {
+    margin-top: 2px;
+}
+
+.support-box strong {
+    display: block;
+    font-size: 13px;
+}
+
+.support-box p {
+    margin: 5px 0 0;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #3B82F6;
+}
+
+
+/* ==========================================
+   RESPONSIVIDADE
+   ========================================== */
+
+@media (max-width: 1000px) {
+
+    .contact-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-layout {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .page-content {
+        padding: 20px 15px;
+    }
+
+    .page-header h1 {
+        font-size: 25px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .contact-form-card,
+    .company-card {
+        padding: 20px;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+    }
+
+}
