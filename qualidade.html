@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Atlas Gestão | Qualidade</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="css/qualidade.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- MENU LATERAL -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                A
+            </div>
+
+            <div class="brand-text">
+                <strong>Atlas</strong>
+                <span>Gestão</span>
+            </div>
+
+        </div>
+
+        <nav class="menu">
+
+            <a href="dashboard.html">
+                <i class="fa-solid fa-chart-pie"></i>
+                Dashboard
+            </a>
+
+            <a href="produtos.html">
+                <i class="fa-solid fa-box"></i>
+                Produtos
+            </a>
+
+            <a href="financeiro.html">
+                <i class="fa-solid fa-wallet"></i>
+                Financeiro
+            </a>
+
+            <a href="vendas.html">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Vendas
+            </a>
+
+            <a href="equipe.html">
+                <i class="fa-solid fa-users"></i>
+                Equipe
+            </a>
+
+            <a href="qualidade.html" class="active">
+                <i class="fa-solid fa-shield-halved"></i>
+                Qualidade
+            </a>
+
+            <a href="contato.html">
+                <i class="fa-solid fa-envelope"></i>
+                Contato
+            </a>
+
+            <a href="configuracoes.html">
+                <i class="fa-solid fa-gear"></i>
+                Configurações
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <strong>Atlas Gestão</strong>
+
+            <p>
+                Gestão inteligente para empresas modernas.
+            </p>
+
+        </div>
+
+    </aside>
+
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main">
+
+        <!-- TOPO -->
+        <header class="topbar">
+
+            <button
+                class="mobile-menu"
+                id="sidebarToggle"
+            >
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="page-title">
+
+                <span>GARANTIA DA QUALIDADE</span>
+
+                <h1>
+                    Controle de Qualidade
+                </h1>
+
+            </div>
+
+            <div class="top-actions">
+
+                <button
+                    class="notification-btn"
+                    id="notificationButton"
+                >
+
+                    <i class="fa-regular fa-bell"></i>
+
+                    <small id="notificationCount">
+                        0
+                    </small>
+
+                </button>
+
+
+                <div class="profile">
+
+                    <div class="profile-avatar">
+                        AD
+                    </div>
+
+                    <div class="profile-info">
+
+                        <strong>
+                            Administrador
+                        </strong>
+
+                        <span>
+                            Gestor
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- CONTEÚDO -->
+        <section class="content">
+
+            <!-- CABEÇALHO -->
+            <div class="content-header">
+
+                <div>
+
+                    <span class="section-label">
+                        QUALIDADE
+                    </span>
+
+                    <h2>
+                        Garantia da Qualidade
+                    </h2>
+
+                    <p>
+                        Controle inspeções, não conformidades e ações corretivas.
+                    </p>
+
+                </div>
+
+                <button
+                    class="btn-primary"
+                    id="newInspection"
+                >
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Nova inspeção
+
+                </button>
+
+            </div>
+
+
+            <!-- INDICADORES -->
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        <i class="fa-solid fa-clipboard-check"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Inspeções realizadas
+                        </span>
+
+                        <strong id="totalInspections">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Inspeções conformes
+                        </span>
+
+                        <strong id="totalConforme">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon red">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Não conformidades
+                        </span>
+
+                        <strong id="totalNC">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        <i class="fa-solid fa-percent"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Taxa de conformidade
+                        </span>
+
+                        <strong id="complianceRate">
+                            0%
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- GRÁFICOS / INDICADORES -->
+            <div class="dashboard-grid">
+
+                <section class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>
+                                Desempenho da qualidade
+                            </h3>
+
+                            <span>
+                                Distribuição das inspeções
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="quality-chart">
+
+                        <div
+                            class="donut"
+                            id="donut"
+                        >
+
+                            <div>
+
+                                <strong id="donutPercent">
+                                    0%
+                                </strong>
+
+                                <span>
+                                    conforme
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="chart-legend">
+
+                            <div>
+
+                                <span class="legend-dot green"></span>
+
+                                Conforme
+
+                                <strong id="legendConforme">
+                                    0
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span class="legend-dot red"></span>
+
+                                Não conforme
+
+                                <strong id="legendNC">
+                                    0
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <section class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>
+                                Indicadores
+                            </h3>
+
+                            <span>
+                                Acompanhamento operacional
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="indicator-list">
+
+                        <div>
+
+                            <span>
+                                Inspeções pendentes
+                            </span>
+
+                            <strong id="pendingCount">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                NC em aberto
+                            </span>
+
+                            <strong id="openNC">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Ações corretivas concluídas
+                            </span>
+
+                            <strong id="closedActions">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- TABELA -->
+            <section class="panel table-panel">
+
+                <div class="table-header">
+
+                    <div>
+
+                        <h3>
+                            Inspeções
+                        </h3>
+
+                        <span id="resultCount">
+                            0 registros
+                        </span>
+
+                    </div>
+
+
+                    <div class="table-tools">
+
+                        <div class="search-box">
+
+                            <i class="fa-solid fa-magnifying-glass"></i>
+
+                            <input
+                                type="text"
+                                id="searchInspection"
+                                placeholder="Pesquisar inspeção..."
+                            >
+
+                        </div>
+
+
+                        <select id="resultFilter">
+
+                            <option value="">
+                                Todos os resultados
+                            </option>
+
+                            <option value="Conforme">
+                                Conforme
+                            </option>
+
+                            <option value="Não Conforme">
+                                Não Conforme
+                            </option>
+
+                            <option value="Pendente">
+                                Pendente
+                            </option>
+
+                        </select>
+
+
+                        <select id="statusFilter">
+
+                            <option value="">
+                                Todos os status
+                            </option>
+
+                            <option value="Concluída">
+                                Concluída
+                            </option>
+
+                            <option value="Em andamento">
+                                Em andamento
+                            </option>
+
+                            <option value="Pendente">
+                                Pendente
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Produto
+                                </th>
+
+                                <th>
+                                    Responsável
+                                </th>
+
+                                <th>
+                                    Data
+                                </th>
+
+                                <th>
+                                    Resultado
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Ação corretiva
+                                </th>
+
+                                <th>
+                                    Ações
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="inspectionTable"></tbody>
+
+                    </table>
+
+
+                    <div
+                        class="empty-state"
+                        id="emptyState"
+                    >
+
+                        <i class="fa-solid fa-clipboard-list"></i>
+
+                        <h3>
+                            Nenhuma inspeção encontrada
+                        </h3>
+
+                        <p>
+                            Cadastre uma inspeção para começar.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- MODAL -->
+<div
+    class="modal"
+    id="inspectionModal"
+>
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <div>
+
+                <span>
+                    GARANTIA DA QUALIDADE
+                </span>
+
+                <h2 id="modalTitle">
+                    Nova inspeção
+                </h2>
+
+            </div>
+
+            <button id="closeModal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <form id="inspectionForm">
+
+            <input
+                type="hidden"
+                id="inspectionId"
+            >
+
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        Produto
+                    </label>
+
+                    <input
+                        type="text"
+                        id="product"
+                        placeholder="Nome do produto"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Responsável
+                    </label>
+
+                    <input
+                        type="text"
+                        id="responsible"
+                        placeholder="Responsável pela inspeção"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Data
+                    </label>
+
+                    <input
+                        type="date"
+                        id="inspectionDate"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Resultado
+                    </label>
+
+                    <select id="result">
+
+                        <option value="Conforme">
+                            Conforme
+                        </option>
+
+                        <option value="Não Conforme">
+                            Não Conforme
+                        </option>
+
+                        <option value="Pendente">
+                            Pendente
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Status
+                    </label>
+
+                    <select id="inspectionStatus">
+
+                        <option value="Concluída">
+                            Concluída
+                        </option>
+
+                        <option value="Em andamento">
+                            Em andamento
+                        </option>
+
+                        <option value="Pendente">
+                            Pendente
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>
+                        Descrição
+                    </label>
+
+                    <textarea
+                        id="description"
+                        placeholder="Descreva os resultados encontrados..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>
+                        Ação corretiva
+                    </label>
+
+                    <textarea
+                        id="correctiveAction"
+                        placeholder="Informe a ação corretiva..."
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="form-error"
+                id="formError"
+            ></div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="btn-secondary"
+                    id="cancelModal"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                >
+                    Salvar inspeção
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+<div
+    class="toast"
+    id="toast"
+>
+
+    <i class="fa-solid fa-circle-check"></i>
+
+    <span id="toastText"></span>
+
+</div>
+
+
+<script src="js/database.js"></script>
+<script src="js/qualidade.js"></script>
+
+</body>
+
+</html>
