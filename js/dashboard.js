@@ -1,2878 +1,1395 @@
-```javascript
-/* =========================================================
+/* ==========================================================
    ATLAS GESTÃO
    DASHBOARD.JS
-   Dashboard + Garantia da Qualidade
-   Armazenamento: LocalStorage
-   ========================================================= */
+========================================================== */
 
-"use strict";
+document.addEventListener("DOMContentLoaded", function () {
 
-/* =========================================================
-   CONFIGURAÇÕES
-   ========================================================= */
+    /* ======================================================
+       UTILIDADES
+    ====================================================== */
 
-const STORAGE_KEYS = {
-    produtos: "atlas_produtos",
-    vendas: "atlas_vendas",
-    funcionarios: "atlas_funcionarios",
-    receitas: "atlas_receitas",
-    despesas: "atlas_despesas",
-    inspecoes: "atlas_inspecoes",
-    naoConformidades: "atlas_nao_conformidades",
-    usuario: "atlas_usuario",
-    notificacoes: "atlas_notificacoes"
-};
+    function getArrayFromStorage(keys) {
 
-let receitaChart = null;
-let produtosChart = null;
-let qualidadeChart = null;
+        for (const key of keys) {
 
+            try {
 
-/* =========================================================
-   UTILITÁRIOS
-   ========================================================= */
+                const value =
+                    JSON.parse(localStorage.getItem(key));
 
-function getData(key) {
-    try {
-        const data = localStorage.getItem(key);
+                if (Array.isArray(value)) {
+                    return value;
+                }
 
-        if (!data) {
-            return [];
+            } catch (error) {
+
+                console.warn(
+                    "Erro ao ler:",
+                    key,
+                    error
+                );
+
+            }
+
         }
-
-        const parsed = JSON.parse(data);
-
-        return Array.isArray(parsed) ? parsed : [];
-
-    } catch (error) {
-        console.error(
-            `Erro ao carregar ${key}:`,
-            error
-        );
 
         return [];
+
     }
-}
 
 
-function saveData(key, data) {
+    function setText(id, value) {
 
-    localStorage.setItem(
-        key,
-        JSON.stringify(data)
-    );
+        const element =
+            document.getElementById(id);
 
-}
-
-
-function formatCurrency(value) {
-
-    return new Intl.NumberFormat(
-        "pt-BR",
-        {
-            style: "currency",
-            currency: "BRL"
+        if (element) {
+            element.textContent = value;
         }
-    ).format(
-        Number(value) || 0
-    );
 
-}
-
-
-function formatNumber(value) {
-
-    return new Intl.NumberFormat(
-        "pt-BR"
-    ).format(
-        Number(value) || 0
-    );
-
-}
-
-
-function formatDate(date) {
-
-    if (!date) {
-        return "-";
     }
 
-    const parsed = new Date(date);
 
-    if (Number.isNaN(parsed.getTime())) {
-        return "-";
+    function formatDate(date) {
+
+        const d = new Date(date);
+
+        if (isNaN(d.getTime())) {
+            return "--/--/----";
+        }
+
+        return d.toLocaleDateString(
+            "pt-BR"
+        );
+
     }
 
-    return parsed.toLocaleDateString(
-        "pt-BR"
-    );
 
-}
+    function normalize(value) {
 
+        return String(value || "")
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .trim();
 
-function getCurrentMonth() {
-
-    const now = new Date();
-
-    return {
-        month: now.getMonth(),
-        year: now.getFullYear()
-    };
-
-}
-
-
-function isCurrentMonth(date) {
-
-    if (!date) {
-        return false;
     }
 
-    const parsed = new Date(date);
-    const current = getCurrentMonth();
 
-    return (
-        parsed.getMonth() === current.month &&
-        parsed.getFullYear() === current.year
+    /* ======================================================
+       DATA ATUAL
+    ====================================================== */
+
+    setText(
+        "currentDate",
+        new Date().toLocaleDateString("pt-BR")
     );
 
-}
+
+    /* ======================================================
+       PERFIL
+    ====================================================== */
+
+    function loadUser() {
+
+        let user = null;
 
 
-/* =========================================================
-   USUÁRIO
-   ========================================================= */
+        const possibleKeys = [
 
-function loadUser() {
+            "atlasPerfil",
+            "atlasUsuario",
+            "usuario",
+            "user",
+            "currentUser"
 
-    const defaultUser = {
-        nome: "Administrador",
-        email: "admin@atlasgestao.com.br",
-        cargo: "Administrador"
-    };
+        ];
 
-    try {
 
-        const saved =
-            localStorage.getItem(
-                STORAGE_KEYS.usuario
+        for (const key of possibleKeys) {
+
+            try {
+
+                const value =
+                    JSON.parse(
+                        localStorage.getItem(key)
+                    );
+
+                if (value) {
+
+                    user = value;
+
+                    break;
+
+                }
+
+            } catch (error) {}
+
+        }
+
+
+        const name =
+            user?.nome ||
+            user?.name ||
+            "Administrador";
+
+
+        setText(
+            "welcomeName",
+            name
+        );
+
+        setText(
+            "topUserName",
+            name
+        );
+
+
+        const initial =
+            name
+                .charAt(0)
+                .toUpperCase();
+
+
+        setText(
+            "userInitial",
+            initial
+        );
+
+    }
+
+
+    loadUser();
+
+
+    /* ======================================================
+       INSPEÇÕES
+    ====================================================== */
+
+    const inspections =
+        getArrayFromStorage([
+
+            "atlasInspecoes",
+            "inspecoes",
+            "inspections",
+            "qualidadeInspecoes"
+
+        ]);
+
+
+    /* ======================================================
+       CLASSIFICAÇÃO
+    ====================================================== */
+
+    function isConform(item) {
+
+        const result =
+            normalize(
+                item.resultado ||
+                item.status ||
+                item.result ||
+                item.conformidade
             );
 
-        if (!saved) {
-            return defaultUser;
-        }
 
-        return {
-            ...defaultUser,
-            ...JSON.parse(saved)
-        };
+        return (
 
-    } catch {
+            result === "conforme" ||
 
-        return defaultUser;
+            result === "aprovado" ||
+
+            result === "aprovada" ||
+
+            result === "ok"
+
+        );
 
     }
 
-}
+
+    function isNonConform(item) {
+
+        const result =
+            normalize(
+                item.resultado ||
+                item.status ||
+                item.result ||
+                item.conformidade
+            );
 
 
-function updateUserInterface() {
+        return (
 
-    const user = loadUser();
+            result === "nao conforme" ||
 
-    const userNameElements =
-        document.querySelectorAll(
-            "[data-user-name]"
+            result === "nao_conforme" ||
+
+            result === "reprovado" ||
+
+            result === "reprovada" ||
+
+            result === "nc"
+
         );
-
-    userNameElements.forEach(
-        element => {
-            element.textContent =
-                user.nome;
-        }
-    );
-
-
-    const userEmailElements =
-        document.querySelectorAll(
-            "[data-user-email]"
-        );
-
-    userEmailElements.forEach(
-        element => {
-            element.textContent =
-                user.email;
-        }
-    );
-
-
-    const userRoleElements =
-        document.querySelectorAll(
-            "[data-user-role]"
-        );
-
-    userRoleElements.forEach(
-        element => {
-            element.textContent =
-                user.cargo;
-        }
-    );
-
-
-    const initials =
-        getInitials(user.nome);
-
-
-    document
-        .querySelectorAll(
-            "[data-user-avatar]"
-        )
-        .forEach(
-            element => {
-                element.textContent =
-                    initials;
-            }
-        );
-
-}
-
-
-function getInitials(name) {
-
-    if (!name) {
-        return "AG";
-    }
-
-    const parts =
-        name
-            .trim()
-            .split(/\s+/)
-            .filter(Boolean);
-
-    if (parts.length === 1) {
-
-        return parts[0]
-            .substring(0, 2)
-            .toUpperCase();
 
     }
 
-    return (
-        parts[0][0] +
-        parts[parts.length - 1][0]
-    ).toUpperCase();
 
-}
-
-
-/* =========================================================
-   DATA E HORA
-   ========================================================= */
-
-function updateDate() {
-
-    const element =
-        document.querySelector(
-            "[data-current-date]"
-        );
-
-    if (!element) {
-        return;
-    }
-
-    const now = new Date();
-
-    element.textContent =
-        now.toLocaleDateString(
-            "pt-BR",
-            {
-                day: "2-digit",
-                month: "short",
-                year: "numeric"
-            }
-        );
-
-}
-
-
-/* =========================================================
-   MÉTRICAS DO DASHBOARD
-   ========================================================= */
-
-function updateMetrics() {
-
-    const produtos =
-        getData(
-            STORAGE_KEYS.produtos
-        );
-
-    const vendas =
-        getData(
-            STORAGE_KEYS.vendas
-        );
-
-    const funcionarios =
-        getData(
-            STORAGE_KEYS.funcionarios
-        );
-
-    const receitas =
-        getData(
-            STORAGE_KEYS.receitas
-        );
-
-    const inspecoes =
-        getData(
-            STORAGE_KEYS.inspecoes
-        );
-
-
-    const totalProdutos =
-        produtos.length;
-
-
-    const totalFuncionarios =
-        funcionarios.filter(
-            funcionario =>
-                funcionario.status !==
-                "Inativo"
+    const conform =
+        inspections.filter(
+            isConform
         ).length;
 
 
-    const receitaVendas =
-        vendas
-            .filter(venda =>
-                isCurrentMonth(
-                    venda.data ||
-                    venda.createdAt
-                )
+    const nonConform =
+        inspections.filter(
+            isNonConform
+        ).length;
+
+
+    const totalInspections =
+        inspections.length;
+
+
+    const compliance =
+        totalInspections > 0
+            ? Math.round(
+                (conform / totalInspections) * 100
             )
-            .reduce(
-                (
-                    total,
-                    venda
-                ) =>
-                    total +
-                    Number(
-                        venda.valor ||
-                        venda.total ||
-                        0
-                    ),
-                0
-            );
-
-
-    const receitaLancada =
-        receitas
-            .filter(receita =>
-                isCurrentMonth(
-                    receita.data
-                )
-            )
-            .reduce(
-                (
-                    total,
-                    receita
-                ) =>
-                    total +
-                    Number(
-                        receita.valor || 0
-                    ),
-                0
-            );
-
-
-    const receitaMensal =
-        receitaVendas +
-        receitaLancada;
-
-
-    const vendasMes =
-        vendas.filter(
-            venda =>
-                isCurrentMonth(
-                    venda.data ||
-                    venda.createdAt
-                )
-        ).length;
-
-
-    const ocorrencias =
-        inspecoes.filter(
-            inspeção =>
-                String(
-                    inspeção.resultado || ""
-                ).toLowerCase()
-                .includes("não")
-        ).length;
-
-
-    setElementText(
-        "[data-total-produtos]",
-        formatNumber(
-            totalProdutos
-        )
-    );
-
-
-    setElementText(
-        "[data-total-funcionarios]",
-        formatNumber(
-            totalFuncionarios
-        )
-    );
-
-
-    setElementText(
-        "[data-receita-mensal]",
-        formatCurrency(
-            receitaMensal
-        )
-    );
-
-
-    setElementText(
-        "[data-total-vendas]",
-        formatNumber(
-            vendasMes
-        )
-    );
-
-
-    setElementText(
-        "[data-ocorrencias]",
-        formatNumber(
-            ocorrencias
-        )
-    );
-
-}
-
-
-function setElementText(
-    selector,
-    value
-) {
-
-    const element =
-        document.querySelector(
-            selector
-        );
-
-    if (element) {
-        element.textContent = value;
-    }
-
-}
-
-
-/* =========================================================
-   INDICADORES DA QUALIDADE
-   ========================================================= */
-
-function calculateQuality() {
-
-    const inspecoes =
-        getData(
-            STORAGE_KEYS.inspecoes
-        );
-
-
-    const total =
-        inspecoes.length;
-
-
-    const conformes =
-        inspecoes.filter(
-            item =>
-                normalize(
-                    item.resultado
-                ) === "conforme"
-        ).length;
-
-
-    const naoConformes =
-        inspecoes.filter(
-            item =>
-                normalize(
-                    item.resultado
-                ) === "nao conforme"
-        ).length;
-
-
-    const taxa =
-        total > 0
-            ? (conformes / total) * 100
             : 0;
 
 
-    return {
-        total,
-        conformes,
-        naoConformes,
-        taxa
-    };
+    /* ======================================================
+       CARDS
+    ====================================================== */
 
-}
-
-
-function normalize(value) {
-
-    return String(
-        value || ""
-    )
-        .normalize("NFD")
-        .replace(
-            /[\u0300-\u036f]/g,
-            ""
-        )
-        .trim()
-        .toLowerCase();
-
-}
-
-
-function updateQualityIndicators() {
-
-    const quality =
-        calculateQuality();
-
-
-    setElementText(
-        "[data-inspecoes-total]",
-        formatNumber(
-            quality.total
-        )
+    setText(
+        "totalInspections",
+        totalInspections
     );
 
 
-    setElementText(
-        "[data-nao-conformidades]",
-        formatNumber(
-            quality.naoConformes
-        )
+    setText(
+        "complianceRate",
+        compliance + "%"
     );
 
 
-    setElementText(
-        "[data-taxa-conformidade]",
-        `${quality.taxa.toFixed(1)}%`
+    setText(
+        "summaryCompliance",
+        compliance + "%"
     );
 
 
-    setElementText(
-        "[data-conformes]",
-        formatNumber(
-            quality.conformes
-        )
+    setText(
+        "summaryConform",
+        conform
     );
 
 
-    const circle =
-        document.querySelector(
-            "[data-quality-circle]"
-        );
-
-
-    if (circle) {
-
-        const angle =
-            Math.round(
-                quality.taxa * 3.6
-            );
-
-        circle.style.background =
-            `conic-gradient(
-                #22C55E 0deg,
-                #22C55E ${angle}deg,
-                #E5E7EB ${angle}deg,
-                #E5E7EB 360deg
-            )`;
-
-    }
-
-}
-
-
-/* =========================================================
-   GRÁFICO DE RECEITA
-   ========================================================= */
-
-function getLastMonths(number = 6) {
-
-    const result = [];
-
-    const now = new Date();
-
-    for (
-        let i = number - 1;
-        i >= 0;
-        i--
-    ) {
-
-        const date =
-            new Date(
-                now.getFullYear(),
-                now.getMonth() - i,
-                1
-            );
-
-        result.push({
-            month:
-                date.getMonth(),
-            year:
-                date.getFullYear(),
-            label:
-                date.toLocaleDateString(
-                    "pt-BR",
-                    {
-                        month: "short"
-                    }
-                )
-        });
-
-    }
-
-    return result;
-
-}
-
-
-function calculateMonthlyRevenue() {
-
-    const months =
-        getLastMonths(6);
-
-
-    const vendas =
-        getData(
-            STORAGE_KEYS.vendas
-        );
-
-
-    const receitas =
-        getData(
-            STORAGE_KEYS.receitas
-        );
-
-
-    return months.map(
-        item => {
-
-            const salesValue =
-                vendas
-                    .filter(venda => {
-
-                        const date =
-                            new Date(
-                                venda.data ||
-                                venda.createdAt
-                            );
-
-                        return (
-                            date.getMonth() ===
-                                item.month &&
-                            date.getFullYear() ===
-                                item.year
-                        );
-
-                    })
-                    .reduce(
-                        (
-                            total,
-                            venda
-                        ) =>
-                            total +
-                            Number(
-                                venda.valor ||
-                                venda.total ||
-                                0
-                            ),
-                        0
-                    );
-
-
-            const revenueValue =
-                receitas
-                    .filter(receita => {
-
-                        const date =
-                            new Date(
-                                receita.data
-                            );
-
-                        return (
-                            date.getMonth() ===
-                                item.month &&
-                            date.getFullYear() ===
-                                item.year
-                        );
-
-                    })
-                    .reduce(
-                        (
-                            total,
-                            receita
-                        ) =>
-                            total +
-                            Number(
-                                receita.valor || 0
-                            ),
-                        0
-                    );
-
-
-            return (
-                salesValue +
-                revenueValue
-            );
-
-        }
-    );
-
-}
-
-
-function createRevenueChart() {
-
-    const canvas =
-        document.querySelector(
-            "#revenueChart"
-        );
-
-
-    if (!canvas) {
-        return;
-    }
-
-
-    if (
-        typeof Chart ===
-        "undefined"
-    ) {
-
-        console.warn(
-            "Chart.js não foi carregado."
-        );
-
-        return;
-
-    }
-
-
-    const months =
-        getLastMonths(6);
-
-
-    const values =
-        calculateMonthlyRevenue();
-
-
-    if (receitaChart) {
-        receitaChart.destroy();
-    }
-
-
-    receitaChart =
-        new Chart(
-            canvas,
-            {
-                type: "line",
-
-                data: {
-
-                    labels:
-                        months.map(
-                            item =>
-                                item.label
-                        ),
-
-                    datasets: [
-
-                        {
-
-                            label:
-                                "Receita",
-
-                            data:
-                                values,
-
-                            borderColor:
-                                "#2563EB",
-
-                            backgroundColor:
-                                "rgba(37,99,235,0.08)",
-
-                            borderWidth:
-                                2,
-
-                            fill:
-                                true,
-
-                            tension:
-                                0.4,
-
-                            pointRadius:
-                                3,
-
-                            pointHoverRadius:
-                                5
-
-                        }
-
-                    ]
-
-                },
-
-                options: {
-
-                    responsive:
-                        true,
-
-                    maintainAspectRatio:
-                        false,
-
-                    interaction: {
-
-                        intersect:
-                            false,
-
-                        mode:
-                            "index"
-
-                    },
-
-                    plugins: {
-
-                        legend: {
-                            display:
-                                false
-                        },
-
-                        tooltip: {
-
-                            callbacks: {
-
-                                label:
-                                    context =>
-                                        ` Receita: ${formatCurrency(
-                                            context.raw
-                                        )}`
-
-                            }
-
-                        }
-
-                    },
-
-                    scales: {
-
-                        y: {
-
-                            beginAtZero:
-                                true,
-
-                            ticks: {
-
-                                callback:
-                                    value =>
-                                        formatCurrency(
-                                            value
-                                        )
-
-                            },
-
-                            grid: {
-
-                                color:
-                                    "#F1F5F9"
-
-                            }
-
-                        },
-
-                        x: {
-
-                            grid: {
-                                display:
-                                    false
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-        );
-
-}
-
-
-/* =========================================================
-   PRODUTOS MAIS VENDIDOS
-   ========================================================= */
-
-function calculateTopProducts() {
-
-    const vendas =
-        getData(
-            STORAGE_KEYS.vendas
-        );
-
-
-    const products =
-        {};
-
-
-    vendas.forEach(
-        venda => {
-
-            const name =
-                venda.produtoNome ||
-                venda.produto ||
-                "Produto";
-
-
-            const quantity =
-                Number(
-                    venda.quantidade ||
-                    1
-                );
-
-
-            if (!products[name]) {
-
-                products[name] = 0;
-
-            }
-
-
-            products[name] +=
-                quantity;
-
-        }
+    setText(
+        "summaryNonConform",
+        nonConform
     );
 
 
-    return Object.entries(
-        products
-    )
-        .sort(
-            (
-                a,
-                b
-            ) =>
-                b[1] - a[1]
-        )
-        .slice(
-            0,
-            5
-        );
-
-}
-
-
-function createProductsChart() {
-
-    const canvas =
-        document.querySelector(
-            "#productsChart"
-        );
-
-
-    if (
-        !canvas ||
-        typeof Chart ===
-        "undefined"
-    ) {
-        return;
-    }
-
-
-    const topProducts =
-        calculateTopProducts();
-
-
-    if (produtosChart) {
-        produtosChart.destroy();
-    }
-
-
-    produtosChart =
-        new Chart(
-            canvas,
-            {
-                type: "bar",
-
-                data: {
-
-                    labels:
-                        topProducts.map(
-                            item =>
-                                item[0]
-                        ),
-
-                    datasets: [
-
-                        {
-
-                            label:
-                                "Quantidade",
-
-                            data:
-                                topProducts.map(
-                                    item =>
-                                        item[1]
-                                ),
-
-                            backgroundColor:
-                                "#2563EB",
-
-                            borderRadius:
-                                6,
-
-                            maxBarThickness:
-                                35
-
-                        }
-
-                    ]
-
-                },
-
-                options: {
-
-                    responsive:
-                        true,
-
-                    maintainAspectRatio:
-                        false,
-
-                    plugins: {
-
-                        legend: {
-                            display:
-                                false
-                        }
-
-                    },
-
-                    scales: {
-
-                        y: {
-
-                            beginAtZero:
-                                true,
-
-                            ticks: {
-
-                                precision:
-                                    0
-
-                            },
-
-                            grid: {
-
-                                color:
-                                    "#F1F5F9"
-
-                            }
-
-                        },
-
-                        x: {
-
-                            grid: {
-                                display:
-                                    false
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-        );
-
-}
-
-
-/* =========================================================
-   GRÁFICO DE QUALIDADE
-   ========================================================= */
-
-function createQualityChart() {
-
-    const canvas =
-        document.querySelector(
-            "#qualityChart"
-        );
-
-
-    if (
-        !canvas ||
-        typeof Chart ===
-        "undefined"
-    ) {
-        return;
-    }
-
-
-    const quality =
-        calculateQuality();
-
-
-    if (qualidadeChart) {
-        qualidadeChart.destroy();
-    }
-
-
-    qualidadeChart =
-        new Chart(
-            canvas,
-            {
-                type: "doughnut",
-
-                data: {
-
-                    labels: [
-                        "Conforme",
-                        "Não Conforme"
-                    ],
-
-                    datasets: [
-
-                        {
-
-                            data: [
-                                quality.conformes,
-                                quality.naoConformes
-                            ],
-
-                            backgroundColor: [
-                                "#22C55E",
-                                "#EF4444"
-                            ],
-
-                            borderWidth:
-                                0
-
-                        }
-
-                    ]
-
-                },
-
-                options: {
-
-                    responsive:
-                        true,
-
-                    maintainAspectRatio:
-                        false,
-
-                    cutout:
-                        "72%",
-
-                    plugins: {
-
-                        legend: {
-
-                            position:
-                                "bottom",
-
-                            labels: {
-
-                                usePointStyle:
-                                    true,
-
-                                boxWidth:
-                                    8,
-
-                                font: {
-                                    size:
-                                        10
-                                }
-
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-        );
-
-}
-
-
-/* =========================================================
-   ESTOQUE
-   ========================================================= */
-
-function getLowStockProducts() {
-
-    const produtos =
-        getData(
-            STORAGE_KEYS.produtos
-        );
-
-
-    return produtos.filter(
-        produto => {
-
-            const estoque =
-                Number(
-                    produto.estoque || 0
-                );
-
-
-            const minimo =
-                Number(
-                    produto.estoqueMinimo ||
-                    produto.minimo ||
-                    5
-                );
-
-
-            return estoque <= minimo;
-
-        }
+    setText(
+        "chartTotal",
+        totalInspections
     );
 
-}
+
+    setText(
+        "conformCount",
+        conform
+    );
 
 
-/* =========================================================
-   AÇÕES PENDENTES
-   ========================================================= */
-
-function getPendingActions() {
-
-    const actions = [];
+    setText(
+        "nonConformCount",
+        nonConform
+    );
 
 
-    const produtos =
-        getData(
-            STORAGE_KEYS.produtos
+    /* ======================================================
+       GRÁFICO DONUT
+    ====================================================== */
+
+    const donut =
+        document.getElementById(
+            "donutChart"
         );
 
 
-    const inspecoes =
-        getData(
-            STORAGE_KEYS.inspecoes
+    if (donut) {
+
+        donut.style.setProperty(
+            "--conforme",
+            compliance + "%"
         );
 
-
-    const naoConformidades =
-        getData(
-            STORAGE_KEYS.naoConformidades
-        );
+    }
 
 
-    const lowStock =
-        getLowStockProducts();
+    /* ======================================================
+       NÃO CONFORMIDADES
+    ====================================================== */
+
+    const nonConformities =
+        getArrayFromStorage([
+
+            "atlasNaoConformidades",
+            "naoConformidades",
+            "nao_conformidades",
+            "ncs"
+
+        ]);
 
 
-    lowStock
-        .slice(0, 3)
-        .forEach(
-            produto => {
-
-                actions.push({
-
-                    icon:
-                        "fa-box-open",
-
-                    color:
-                        "orange",
-
-                    title:
-                        `Estoque baixo: ${produto.nome}`,
-
-                    description:
-                        `Restam ${produto.estoque || 0} unidades`,
-
-                    priority:
-                        "Média",
-
-                    priorityClass:
-                        "medium"
-
-                });
-
-            }
-        );
+    const totalNC =
+        nonConformities.length;
 
 
-    naoConformidades
-        .filter(
-            item =>
-                normalize(
-                    item.status
-                ) !== "concluida" &&
-                normalize(
-                    item.status
-                ) !== "concluido"
-        )
-        .slice(0, 3)
-        .forEach(
+    const openNC =
+        nonConformities.filter(
             item => {
 
-                actions.push({
+                const status =
+                    normalize(
+                        item.status
+                    );
 
-                    icon:
-                        "fa-triangle-exclamation",
+                return (
 
-                    color:
-                        "red",
+                    status === "aberta" ||
 
-                    title:
-                        item.titulo ||
-                        "Não conformidade pendente",
+                    status === "aberto" ||
 
-                    description:
-                        item.descricao ||
-                        "Ação corretiva pendente",
+                    status === "pendente" ||
 
-                    priority:
-                        "Alta",
+                    status === "em aberto"
 
-                    priorityClass:
-                        "high"
-
-                });
+                );
 
             }
-        );
+        ).length;
 
 
-    inspecoes
-        .filter(
-            item =>
-                !item.resultado
-        )
-        .slice(0, 2)
-        .forEach(
+    const analysisNC =
+        nonConformities.filter(
             item => {
 
-                actions.push({
+                const status =
+                    normalize(
+                        item.status
+                    );
 
-                    icon:
-                        "fa-clipboard-check",
+                return (
 
-                    color:
-                        "blue",
+                    status === "em analise" ||
 
-                    title:
-                        "Inspeção pendente",
+                    status === "analise"
 
-                    description:
-                        item.produto ||
-                        "Inspeção sem resultado",
-
-                    priority:
-                        "Baixa",
-
-                    priorityClass:
-                        "low"
-
-                });
+                );
 
             }
-        );
+        ).length;
 
 
-    return actions.slice(
-        0,
-        5
+    const closedNC =
+        nonConformities.filter(
+            item => {
+
+                const status =
+                    normalize(
+                        item.status
+                    );
+
+                return (
+
+                    status === "encerrada" ||
+
+                    status === "encerrado" ||
+
+                    status === "concluida" ||
+
+                    status === "fechada"
+
+                );
+
+            }
+        ).length;
+
+
+    setText(
+        "totalNC",
+        totalNC
     );
 
-}
+
+    setText(
+        "openNC",
+        openNC
+    );
 
 
-function renderPendingActions() {
-
-    const container =
-        document.querySelector(
-            "[data-pending-list]"
-        );
+    setText(
+        "analysisNC",
+        analysisNC
+    );
 
 
-    if (!container) {
-        return;
-    }
+    setText(
+        "closedNC",
+        closedNC
+    );
 
+
+    setText(
+        "openNonConformities",
+        openNC
+    );
+
+
+    /* ======================================================
+       AÇÕES CORRETIVAS
+    ====================================================== */
 
     const actions =
-        getPendingActions();
+        getArrayFromStorage([
+
+            "atlasAcoes",
+            "acoesCorretivas",
+            "acoes",
+            "acoesCorretivasQualidade"
+
+        ]);
 
 
-    if (!actions.length) {
+    const pendingActions =
+        actions.filter(
+            item => {
 
-        container.innerHTML = `
+                const status =
+                    normalize(
+                        item.status
+                    );
 
-            <div class="list-empty">
+                return (
 
-                <i class="fa-solid fa-circle-check"></i>
+                    status !== "concluida" &&
 
-                <strong>
-                    Tudo em ordem
-                </strong>
+                    status !== "concluido" &&
 
-                <span>
-                    Não existem tarefas pendentes.
-                </span>
+                    status !== "encerrada" &&
 
-            </div>
+                    status !== "encerrado"
 
-        `;
+                );
 
-        return;
+            }
+        );
+
+
+    const today =
+        new Date();
+
+
+    const lateActions =
+        pendingActions.filter(
+            item => {
+
+                const date =
+                    item.prazo ||
+                    item.dataLimite ||
+                    item.dataVencimento ||
+                    item.deadline;
+
+
+                if (!date) {
+                    return false;
+                }
+
+
+                const due =
+                    new Date(date);
+
+
+                return (
+                    !isNaN(due.getTime()) &&
+                    due < today
+                );
+
+            }
+        );
+
+
+    setText(
+        "pendingActions",
+        pendingActions.length
+    );
+
+
+    setText(
+        "lateActions",
+        lateActions.length +
+        " atrasadas"
+    );
+
+
+    /* ======================================================
+       AUDITORIAS
+    ====================================================== */
+
+    const audits =
+        getArrayFromStorage([
+
+            "atlasAuditorias",
+            "auditorias",
+            "audits"
+
+        ]);
+
+
+    setText(
+        "summaryAudits",
+        audits.length
+    );
+
+
+    /* ======================================================
+       INSPEÇÕES RECENTES
+    ====================================================== */
+
+    const table =
+        document.getElementById(
+            "recentInspections"
+        );
+
+
+    if (table) {
+
+        if (inspections.length === 0) {
+
+            table.innerHTML = `
+
+                <tr>
+
+                    <td colspan="4">
+
+                        <div class="empty-table">
+
+                            Nenhuma inspeção cadastrada.
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        } else {
+
+            const recent =
+                [...inspections]
+                    .sort(
+                        (a, b) => {
+
+                            const dateA =
+                                new Date(
+                                    a.data ||
+                                    a.date ||
+                                    a.dataInspecao ||
+                                    0
+                                );
+
+                            const dateB =
+                                new Date(
+                                    b.data ||
+                                    b.date ||
+                                    b.dataInspecao ||
+                                    0
+                                );
+
+                            return dateB - dateA;
+
+                        }
+                    )
+                    .slice(0, 5);
+
+
+            table.innerHTML =
+                recent.map(
+                    item => {
+
+                        const product =
+                            item.produto ||
+                            item.product ||
+                            item.nomeProduto ||
+                            "-";
+
+
+                        const responsible =
+                            item.responsavel ||
+                            item.responsible ||
+                            item.usuario ||
+                            "-";
+
+
+                        const date =
+                            item.data ||
+                            item.date ||
+                            item.dataInspecao;
+
+
+                        const result =
+                            item.resultado ||
+                            item.result ||
+                            item.status ||
+                            "-";
+
+
+                        const resultClass =
+                            isConform(item)
+                                ? "result-conform"
+                                : isNonConform(item)
+                                    ? "result-nonconform"
+                                    : "result-neutral";
+
+
+                        return `
+
+                            <tr>
+
+                                <td>
+                                    ${escapeHtml(product)}
+                                </td>
+
+                                <td>
+                                    ${escapeHtml(responsible)}
+                                </td>
+
+                                <td>
+                                    ${formatDate(date)}
+                                </td>
+
+                                <td>
+
+                                    <span
+                                        class="result-badge ${resultClass}"
+                                    >
+
+                                        ${escapeHtml(result)}
+
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                        `;
+
+                    }
+                ).join("");
+
+        }
 
     }
 
 
-    container.innerHTML =
-        actions
-            .map(
-                action => `
+    /* ======================================================
+       AÇÕES PENDENTES
+    ====================================================== */
 
-                    <div class="pending-item">
+    const actionsList =
+        document.getElementById(
+            "pendingActionsList"
+        );
 
-                        <div class="
-                            pending-icon
-                            ${action.color}
-                        ">
 
-                            <i class="
-                                fa-solid
-                                ${action.icon}
-                            "></i>
+    if (actionsList) {
 
-                        </div>
+        if (pendingActions.length === 0) {
 
-                        <div class="pending-content">
+            actionsList.innerHTML = `
 
-                            <strong>
-                                ${escapeHTML(
-                                    action.title
-                                )}
-                            </strong>
+                <div class="empty-state">
 
-                            <span>
-                                ${escapeHTML(
-                                    action.description
-                                )}
-                            </span>
+                    <div class="empty-icon">
 
-                        </div>
-
-                        <span class="
-                            pending-priority
-                            ${action.priorityClass}
-                        ">
-
-                            ${action.priority}
-
-                        </span>
+                        <i class="fa-solid fa-circle-check"></i>
 
                     </div>
 
-                `
-            )
-            .join("");
+                    <strong>
+                        Tudo em dia!
+                    </strong>
 
-}
+                    <span>
+                        Nenhuma ação pendente.
+                    </span>
 
+                </div>
 
-/* =========================================================
-   NÃO CONFORMIDADES
-   ========================================================= */
+            `;
 
-function renderNCStatus() {
+        } else {
 
-    const inspecoes =
-        getData(
-            STORAGE_KEYS.inspecoes
-        );
+            actionsList.innerHTML =
+                pendingActions
+                    .slice(0, 4)
+                    .map(
+                        item => {
 
-
-    const abertas =
-        inspecoes.filter(
-            item =>
-                normalize(
-                    item.resultado
-                ) === "nao conforme" &&
-                normalize(
-                    item.status
-                ) !== "concluida" &&
-                normalize(
-                    item.status
-                ) !== "concluido"
-        ).length;
+                            const title =
+                                item.titulo ||
+                                item.descricao ||
+                                item.acao ||
+                                "Ação corretiva";
 
 
-    const andamento =
-        inspecoes.filter(
-            item =>
-                normalize(
-                    item.status
-                ) === "em andamento"
-        ).length;
+                            const due =
+                                item.prazo ||
+                                item.dataLimite ||
+                                item.dataVencimento;
 
 
-    const resolvidas =
-        inspecoes.filter(
-            item =>
-                normalize(
-                    item.resultado
-                ) === "nao conforme" &&
-                (
-                    normalize(
-                        item.status
-                    ) === "concluida" ||
-                    normalize(
-                        item.status
-                    ) === "concluido"
-                )
-        ).length;
+                            return `
 
+                                <div class="pending-action-item">
 
-    setElementText(
-        "[data-nc-abertas]",
-        formatNumber(
-            abertas
-        )
-    );
+                                    <div class="pending-action-icon">
 
-
-    setElementText(
-        "[data-nc-andamento]",
-        formatNumber(
-            andamento
-        )
-    );
-
-
-    setElementText(
-        "[data-nc-resolvidas]",
-        formatNumber(
-            resolvidas
-        )
-    );
-
-
-    setElementText(
-        "[data-nc-total]",
-        formatNumber(
-            abertas +
-            andamento +
-            resolvidas
-        )
-    );
-
-}
-
-
-/* =========================================================
-   ÚLTIMAS INSPEÇÕES
-   ========================================================= */
-
-function renderRecentInspections() {
-
-    const container =
-        document.querySelector(
-            "[data-recent-inspections]"
-        );
-
-
-    if (!container) {
-        return;
-    }
-
-
-    const inspecoes =
-        getData(
-            STORAGE_KEYS.inspecoes
-        );
-
-
-    const sorted =
-        [...inspecoes]
-            .sort(
-                (
-                    a,
-                    b
-                ) =>
-                    new Date(
-                        b.data ||
-                        b.createdAt ||
-                        0
-                    ) -
-                    new Date(
-                        a.data ||
-                        a.createdAt ||
-                        0
-                    )
-            )
-            .slice(
-                0,
-                5
-            );
-
-
-    if (!sorted.length) {
-
-        container.innerHTML = `
-
-            <tr>
-
-                <td
-                    colspan="4"
-                    class="table-empty"
-                >
-
-                    Nenhuma inspeção cadastrada.
-
-                </td>
-
-            </tr>
-
-        `;
-
-        return;
-
-    }
-
-
-    container.innerHTML =
-        sorted
-            .map(
-                item => {
-
-                    const resultado =
-                        normalize(
-                            item.resultado
-                        );
-
-
-                    const conforme =
-                        resultado ===
-                        "conforme";
-
-
-                    return `
-
-                        <tr>
-
-                            <td>
-
-                                <div class="
-                                    table-product
-                                ">
-
-                                    <div class="
-                                        table-product-icon
-                                    ">
-
-                                        <i class="
-                                            fa-solid
-                                            fa-box
-                                        "></i>
+                                        <i class="fa-solid fa-list-check"></i>
 
                                     </div>
 
-                                    <div class="
-                                        table-product-info
-                                    ">
+                                    <div>
 
                                         <strong>
-                                            ${escapeHTML(
-                                                item.produto ||
-                                                "Produto"
-                                            )}
+                                            ${escapeHtml(title)}
                                         </strong>
 
                                         <span>
-                                            ${escapeHTML(
-                                                item.responsavel ||
-                                                "Responsável não informado"
-                                            )}
+                                            Prazo:
+                                            ${formatDate(due)}
                                         </span>
 
                                     </div>
 
                                 </div>
 
-                            </td>
+                            `;
 
-                            <td>
-                                ${formatDate(
-                                    item.data
-                                )}
-                            </td>
+                        }
+                    )
+                    .join("");
 
-                            <td>
+        }
 
-                                <span class="
-                                    status-badge
-                                    ${
-                                        conforme
-                                            ? "success"
-                                            : "danger"
-                                    }
-                                ">
-
-                                    ${
-                                        conforme
-                                            ? "Conforme"
-                                            : "Não Conforme"
-                                    }
-
-                                </span>
-
-                            </td>
-
-                            <td>
-
-                                <span class="
-                                    status-badge
-                                    ${
-                                        normalize(
-                                            item.status
-                                        ) === "concluida"
-                                            ? "success"
-                                            : "warning"
-                                    }
-                                ">
-
-                                    ${escapeHTML(
-                                        item.status ||
-                                        "Pendente"
-                                    )}
-
-                                </span>
-
-                            </td>
-
-                        </tr>
-
-                    `;
-
-                }
-            )
-            .join("");
-
-}
+    }
 
 
-/* =========================================================
-   SEGURANÇA HTML
-   ========================================================= */
+    /* ======================================================
+       ESCAPE HTML
+    ====================================================== */
 
-function escapeHTML(value) {
+    function escapeHtml(value) {
 
-    return String(
-        value ?? ""
-    )
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
+        return String(value ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    /* ======================================================
+       MENU MOBILE
+    ====================================================== */
+
+    const mobileMenu =
+        document.getElementById(
+            "mobileMenu"
         );
 
-}
+
+    const sidebar =
+        document.getElementById(
+            "sidebar"
+        );
 
 
-/* =========================================================
-   NOTIFICAÇÕES
-   ========================================================= */
+    if (mobileMenu && sidebar) {
 
-function generateNotifications() {
+        mobileMenu.addEventListener(
+            "click",
+            function () {
 
-    const notifications = [];
+                sidebar.classList.toggle(
+                    "open"
+                );
+
+            }
+        );
+
+    }
 
 
-    const lowStock =
-        getLowStockProducts();
+    /* ======================================================
+       LOGOUT
+    ====================================================== */
+
+    const logout =
+        document.getElementById(
+            "logoutButton"
+        );
 
 
-    lowStock.forEach(
-        produto => {
+    if (logout) {
 
-            notifications.push({
+        logout.addEventListener(
+            "click",
+            function () {
 
-                id:
-                    `stock-${produto.id}`,
+                const confirmLogout =
+                    confirm(
+                        "Deseja realmente sair do Atlas Gestão?"
+                    );
 
-                type:
-                    "warning",
 
-                icon:
-                    "fa-box-open",
+                if (!confirmLogout) {
+                    return;
+                }
 
-                title:
-                    "Estoque baixo",
 
-                message:
-                    `${produto.nome} está com estoque baixo.`,
+                localStorage.removeItem(
+                    "atlasUsuario"
+                );
 
-                date:
-                    new Date().toISOString()
 
-            });
+                localStorage.removeItem(
+                    "usuarioLogado"
+                );
+
+
+                window.location.href =
+                    "index.html";
+
+            }
+        );
+
+    }
+
+
+    /* ======================================================
+       NOTIFICAÇÕES
+    ====================================================== */
+
+    const notificationCount =
+        document.getElementById(
+            "notificationCount"
+        );
+
+
+    const notificationButton =
+        document.getElementById(
+            "notificationButton"
+        );
+
+
+    const notificationTotal =
+        openNC +
+        pendingActions.length;
+
+
+    if (notificationCount) {
+
+        notificationCount.textContent =
+            notificationTotal;
+
+    }
+
+
+    if (notificationButton) {
+
+        notificationButton.addEventListener(
+            "click",
+            function () {
+
+                if (notificationTotal === 0) {
+
+                    alert(
+                        "Nenhuma notificação pendente."
+                    );
+
+                } else {
+
+                    alert(
+                        "Você possui " +
+                        notificationTotal +
+                        " item(ns) pendente(s)."
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* ======================================================
+       FILTRO DO GRÁFICO
+    ====================================================== */
+
+    const filters =
+        document.querySelectorAll(
+            ".chart-filter"
+        );
+
+
+    filters.forEach(
+        filter => {
+
+            filter.addEventListener(
+                "click",
+                function () {
+
+                    filters.forEach(
+                        item =>
+                            item.classList.remove(
+                                "active"
+                            )
+                    );
+
+
+                    filter.classList.add(
+                        "active"
+                    );
+
+
+                    if (
+                        filter.dataset.period ===
+                        "month"
+                    ) {
+
+                        updateMonthlyChart();
+
+                    } else {
+
+                        updateGeneralChart();
+
+                    }
+
+                }
+            );
 
         }
     );
 
 
-    const inspecoes =
-        getData(
-            STORAGE_KEYS.inspecoes
+    function updateGeneralChart() {
+
+        const total =
+            inspections.length;
+
+
+        const conformGeneral =
+            inspections.filter(
+                isConform
+            ).length;
+
+
+        const rate =
+            total > 0
+                ? Math.round(
+                    (conformGeneral / total) *
+                    100
+                )
+                : 0;
+
+
+        setText(
+            "chartTotal",
+            total
         );
 
 
-    inspecoes
-        .filter(
-            item =>
-                normalize(
-                    item.resultado
-                ) === "nao conforme"
-        )
-        .slice(0, 5)
-        .forEach(
-            item => {
-
-                notifications.push({
-
-                    id:
-                        `quality-${item.id}`,
-
-                    type:
-                        "danger",
-
-                    icon:
-                        "fa-triangle-exclamation",
-
-                    title:
-                        "Não conformidade",
-
-                    message:
-                        `${item.produto || "Produto"} apresentou não conformidade.`,
-
-                    date:
-                        new Date().toISOString()
-
-                });
-
-            }
+        setText(
+            "conformCount",
+            conformGeneral
         );
 
 
-    saveData(
-        STORAGE_KEYS.notificacoes,
-        notifications
-    );
-
-
-    return notifications;
-
-}
-
-
-function renderNotifications() {
-
-    const container =
-        document.querySelector(
-            "[data-notification-list]"
+        setText(
+            "nonConformCount",
+            total - conformGeneral
         );
 
 
-    if (!container) {
-        return;
-    }
+        if (donut) {
 
+            donut.style.setProperty(
+                "--conforme",
+                rate + "%"
+            );
 
-    const notifications =
-        generateNotifications();
-
-
-    if (!notifications.length) {
-
-        container.innerHTML = `
-
-            <div class="empty-notifications">
-
-                <i class="
-                    fa-regular
-                    fa-bell-slash
-                "></i>
-
-                <span>
-                    Nenhuma notificação.
-                </span>
-
-            </div>
-
-        `;
-
-        updateNotificationBadge(
-            0
-        );
-
-        return;
+        }
 
     }
 
 
-    container.innerHTML =
-        notifications
-            .slice(
-                0,
-                8
-            )
-            .map(
-                notification => `
+    function updateMonthlyChart() {
 
-                    <div class="
-                        notification-item
-                    ">
-
-                        <div class="
-                            notification-icon
-                            ${notification.type}
-                        ">
-
-                            <i class="
-                                fa-solid
-                                ${notification.icon}
-                            "></i>
-
-                        </div>
-
-                        <div>
-
-                            <strong>
-                                ${escapeHTML(
-                                    notification.title
-                                )}
-                            </strong>
-
-                            <span>
-                                ${escapeHTML(
-                                    notification.message
-                                )}
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                `
-            )
-            .join("");
+        const now =
+            new Date();
 
 
-    updateNotificationBadge(
-        notifications.length
-    );
-
-}
+        const currentMonth =
+            now.getMonth();
 
 
-function updateNotificationBadge(
-    count
-) {
+        const currentYear =
+            now.getFullYear();
 
-    const badge =
-        document.querySelector(
-            "[data-notification-count]"
+
+        const monthInspections =
+            inspections.filter(
+                item => {
+
+                    const date =
+                        new Date(
+                            item.data ||
+                            item.date ||
+                            item.dataInspecao
+                        );
+
+
+                    return (
+
+                        !isNaN(date.getTime()) &&
+
+                        date.getMonth() ===
+                            currentMonth &&
+
+                        date.getFullYear() ===
+                            currentYear
+
+                    );
+
+                }
+            );
+
+
+        const monthlyConform =
+            monthInspections.filter(
+                isConform
+            ).length;
+
+
+        const monthlyTotal =
+            monthInspections.length;
+
+
+        const monthlyRate =
+            monthlyTotal > 0
+                ? Math.round(
+                    (
+                        monthlyConform /
+                        monthlyTotal
+                    ) * 100
+                )
+                : 0;
+
+
+        setText(
+            "chartTotal",
+            monthlyTotal
         );
 
 
-    if (!badge) {
-        return;
-    }
-
-
-    if (count <= 0) {
-
-        badge.classList.add(
-            "hidden"
+        setText(
+            "conformCount",
+            monthlyConform
         );
 
-        return;
+
+        setText(
+            "nonConformCount",
+            monthlyTotal -
+            monthlyConform
+        );
+
+
+        if (donut) {
+
+            donut.style.setProperty(
+                "--conforme",
+                monthlyRate + "%"
+            );
+
+        }
 
     }
 
 
-    badge.classList.remove(
-        "hidden"
-    );
+    /* ======================================================
+       PESQUISA GLOBAL
+    ====================================================== */
 
-
-    badge.textContent =
-        count > 9
-            ? "9+"
-            : count;
-
-}
-
-
-/* =========================================================
-   MENU LATERAL
-   ========================================================= */
-
-function setupSidebar() {
-
-    const sidebar =
-        document.querySelector(
-            ".sidebar"
+    const globalSearch =
+        document.getElementById(
+            "globalSearch"
         );
 
 
     const overlay =
-        document.querySelector(
-            ".sidebar-overlay"
+        document.getElementById(
+            "searchOverlay"
         );
 
 
-    const openButton =
-        document.querySelector(
-            ".mobile-menu-button"
+    const searchInput =
+        document.getElementById(
+            "searchInput"
         );
 
 
-    const closeButton =
-        document.querySelector(
-            ".sidebar-close"
-        );
-
-
-    if (
-        !sidebar ||
-        !overlay
-    ) {
-        return;
-    }
-
-
-    function openSidebar() {
-
-        sidebar.classList.add(
-            "open"
-        );
-
-        overlay.classList.add(
-            "active"
-        );
-
-        document.body.style.overflow =
-            "hidden";
-
-    }
-
-
-    function closeSidebar() {
-
-        sidebar.classList.remove(
-            "open"
-        );
-
-        overlay.classList.remove(
-            "active"
-        );
-
-        document.body.style.overflow =
-            "";
-
-    }
-
-
-    openButton?.addEventListener(
-        "click",
-        openSidebar
-    );
-
-
-    closeButton?.addEventListener(
-        "click",
-        closeSidebar
-    );
-
-
-    overlay.addEventListener(
-        "click",
-        closeSidebar
-    );
-
-
-    document
-        .querySelectorAll(
-            ".nav-item"
-        )
-        .forEach(
-            item => {
-
-                item.addEventListener(
-                    "click",
-                    closeSidebar
-                );
-
-            }
-        );
-
-}
-
-
-/* =========================================================
-   NOTIFICAÇÕES
-   ========================================================= */
-
-function setupNotifications() {
-
-    const button =
-        document.querySelector(
-            "[data-notification-button]"
-        );
-
-
-    const dropdown =
-        document.querySelector(
-            "[data-notification-dropdown]"
-        );
-
-
-    const closeAllButton =
-        document.querySelector(
-            "[data-clear-notifications]"
-        );
-
-
-    if (
-        !button ||
-        !dropdown
-    ) {
-        return;
-    }
-
-
-    button.addEventListener(
-        "click",
-        event => {
-
-            event.stopPropagation();
-
-            dropdown.classList.toggle(
-                "hidden"
-            );
-
-        }
-    );
-
-
-    dropdown.addEventListener(
-        "click",
-        event => {
-            event.stopPropagation();
-        }
-    );
-
-
-    closeAllButton?.addEventListener(
-        "click",
-        () => {
-
-            saveData(
-                STORAGE_KEYS.notificacoes,
-                []
-            );
-
-            dropdown.classList.add(
-                "hidden"
-            );
-
-            updateNotificationBadge(
-                0
-            );
-
-        }
-    );
-
-
-    document.addEventListener(
-        "click",
-        () => {
-
-            dropdown.classList.add(
-                "hidden"
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   PERFIL
-   ========================================================= */
-
-function setupProfile() {
-
-    const button =
-        document.querySelector(
-            "[data-profile-button]"
-        );
-
-
-    const dropdown =
-        document.querySelector(
-            "[data-profile-dropdown]"
-        );
-
-
-    if (
-        !button ||
-        !dropdown
-    ) {
-        return;
-    }
-
-
-    button.addEventListener(
-        "click",
-        event => {
-
-            event.stopPropagation();
-
-            dropdown.classList.toggle(
-                "hidden"
-            );
-
-        }
-    );
-
-
-    dropdown.addEventListener(
-        "click",
-        event => {
-            event.stopPropagation();
-        }
-    );
-
-
-    document.addEventListener(
-        "click",
-        () => {
-
-            dropdown.classList.add(
-                "hidden"
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   PESQUISA GLOBAL
-   ========================================================= */
-
-function setupGlobalSearch() {
-
-    const openButton =
-        document.querySelector(
-            "[data-open-search]"
-        );
-
-
-    const modal =
-        document.querySelector(
-            "[data-search-modal]"
-        );
-
-
-    const closeButton =
-        document.querySelector(
-            "[data-close-search]"
-        );
-
-
-    const input =
-        document.querySelector(
-            "[data-global-search]"
+    const closeSearch =
+        document.getElementById(
+            "closeSearch"
         );
 
 
     const results =
-        document.querySelector(
-            "[data-search-results]"
+        document.getElementById(
+            "searchResults"
         );
 
 
-    if (!modal) {
-        return;
-    }
+    if (globalSearch && overlay) {
+
+        globalSearch.addEventListener(
+            "focus",
+            function () {
+
+                overlay.classList.add(
+                    "open"
+                );
 
 
-    function openSearch() {
+                if (searchInput) {
 
-        modal.classList.remove(
-            "hidden"
+                    searchInput.focus();
+
+                }
+
+            }
         );
-
-        setTimeout(
-            () =>
-                input?.focus(),
-            100
-        );
-
-    }
-
-
-    function closeSearch() {
-
-        modal.classList.add(
-            "hidden"
-        );
-
-        if (input) {
-            input.value = "";
-        }
-
-        if (results) {
-            results.innerHTML = "";
-        }
 
     }
 
 
-    openButton?.addEventListener(
-        "click",
-        openSearch
-    );
+    if (closeSearch && overlay) {
 
+        closeSearch.addEventListener(
+            "click",
+            function () {
 
-    closeButton?.addEventListener(
-        "click",
-        closeSearch
-    );
-
-
-    modal.addEventListener(
-        "click",
-        event => {
-
-            if (
-                event.target ===
-                modal
-            ) {
-
-                closeSearch();
-
-            }
-
-        }
-    );
-
-
-    document.addEventListener(
-        "keydown",
-        event => {
-
-            if (
-                event.key === "/" &&
-                document.activeElement !==
-                    input
-            ) {
-
-                event.preventDefault();
-
-                openSearch();
-
-            }
-
-
-            if (
-                event.key === "Escape"
-            ) {
-
-                closeSearch();
-
-            }
-
-        }
-    );
-
-
-    input?.addEventListener(
-        "input",
-        () => {
-
-            searchDashboard(
-                input.value,
-                results
-            );
-
-        }
-    );
-
-}
-
-
-function searchDashboard(
-    query,
-    container
-) {
-
-    if (!container) {
-        return;
-    }
-
-
-    const term =
-        normalize(query);
-
-
-    if (!term) {
-
-        container.innerHTML = `
-
-            <div class="search-hint">
-
-                <i class="
-                    fa-solid
-                    fa-magnifying-glass
-                "></i>
-
-                <span>
-                    Digite para pesquisar no sistema.
-                </span>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    const results = [];
-
-
-    const produtos =
-        getData(
-            STORAGE_KEYS.produtos
-        );
-
-
-    produtos.forEach(
-        produto => {
-
-            if (
-                normalize(
-                    produto.nome
-                ).includes(term) ||
-                normalize(
-                    produto.codigo
-                ).includes(term)
-            ) {
-
-                results.push({
-
-                    icon:
-                        "fa-box",
-
-                    title:
-                        produto.nome,
-
-                    description:
-                        `Produto • ${produto.codigo || "Sem código"}`,
-
-                    url:
-                        "produtos.html"
-
-                });
-
-            }
-
-        }
-    );
-
-
-    const funcionarios =
-        getData(
-            STORAGE_KEYS.funcionarios
-        );
-
-
-    funcionarios.forEach(
-        funcionario => {
-
-            if (
-                normalize(
-                    funcionario.nome
-                ).includes(term) ||
-                normalize(
-                    funcionario.cargo
-                ).includes(term)
-            ) {
-
-                results.push({
-
-                    icon:
-                        "fa-user",
-
-                    title:
-                        funcionario.nome,
-
-                    description:
-                        `Colaborador • ${funcionario.cargo || "Sem cargo"}`,
-
-                    url:
-                        "equipe.html"
-
-                });
-
-            }
-
-        }
-    );
-
-
-    const inspecoes =
-        getData(
-            STORAGE_KEYS.inspecoes
-        );
-
-
-    inspecoes.forEach(
-        item => {
-
-            if (
-                normalize(
-                    item.produto
-                ).includes(term) ||
-                normalize(
-                    item.responsavel
-                ).includes(term)
-            ) {
-
-                results.push({
-
-                    icon:
-                        "fa-clipboard-check",
-
-                    title:
-                        item.produto ||
-                        "Inspeção",
-
-                    description:
-                        `Inspeção • ${item.resultado || "Pendente"}`,
-
-                    url:
-                        "qualidade.html"
-
-                });
-
-            }
-
-        }
-    );
-
-
-    if (!results.length) {
-
-        container.innerHTML = `
-
-            <div class="search-hint">
-
-                <i class="
-                    fa-regular
-                    fa-face-frown
-                "></i>
-
-                <span>
-                    Nenhum resultado encontrado.
-                </span>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    container.innerHTML =
-        results
-            .slice(
-                0,
-                10
-            )
-            .map(
-                result => `
-
-                    <a
-                        href="${result.url}"
-                        class="search-result"
-                    >
-
-                        <div class="
-                            search-result-icon
-                        ">
-
-                            <i class="
-                                fa-solid
-                                ${result.icon}
-                            "></i>
-
-                        </div>
-
-                        <div class="
-                            search-result-content
-                        ">
-
-                            <strong>
-                                ${escapeHTML(
-                                    result.title
-                                )}
-                            </strong>
-
-                            <span>
-                                ${escapeHTML(
-                                    result.description
-                                )}
-                            </span>
-
-                        </div>
-
-                    </a>
-
-                `
-            )
-            .join("");
-
-}
-
-
-/* =========================================================
-   ATALHOS
-   ========================================================= */
-
-function setupShortcuts() {
-
-    document
-        .querySelectorAll(
-            "[data-shortcut]"
-        )
-        .forEach(
-            button => {
-
-                button.addEventListener(
-                    "click",
-                    () => {
-
-                        const url =
-                            button.dataset
-                                .shortcut;
-
-                        if (url) {
-                            window.location.href =
-                                url;
-                        }
-
-                    }
+                overlay.classList.remove(
+                    "open"
                 );
 
             }
         );
 
-}
+    }
 
 
-/* =========================================================
-   ATUALIZAÇÃO AUTOMÁTICA
-   ========================================================= */
+    if (overlay) {
 
-function refreshDashboard() {
+        overlay.addEventListener(
+            "click",
+            function (event) {
 
-    updateMetrics();
+                if (
+                    event.target ===
+                    overlay
+                ) {
 
-    updateQualityIndicators();
+                    overlay.classList.remove(
+                        "open"
+                    );
 
-    renderPendingActions();
-
-    renderNCStatus();
-
-    renderRecentInspections();
-
-    renderNotifications();
-
-    createRevenueChart();
-
-    createProductsChart();
-
-    createQualityChart();
-
-}
-
-
-/* =========================================================
-   LOGOUT
-   ========================================================= */
-
-function setupLogout() {
-
-    document
-        .querySelectorAll(
-            "[data-logout]"
-        )
-        .forEach(
-            button => {
-
-                button.addEventListener(
-                    "click",
-                    event => {
-
-                        event.preventDefault();
-
-
-                        const confirmed =
-                            window.confirm(
-                                "Deseja realmente sair do Atlas Gestão?"
-                            );
-
-
-                        if (!confirmed) {
-                            return;
-                        }
-
-
-                        localStorage.removeItem(
-                            "atlas_auth"
-                        );
-
-
-                        window.location.href =
-                            "index.html";
-
-                    }
-                );
+                }
 
             }
         );
 
-}
+    }
 
 
-/* =========================================================
-   DETECTAR MUDANÇAS NO LOCALSTORAGE
-   ========================================================= */
+    if (searchInput && results) {
 
-window.addEventListener(
-    "storage",
-    event => {
+        searchInput.addEventListener(
+            "input",
+            function () {
 
-        if (
-            Object.values(
-                STORAGE_KEYS
-            ).includes(
-                event.key
-            )
-        ) {
+                const query =
+                    normalize(
+                        searchInput.value
+                    );
 
-            refreshDashboard();
 
-        }
+                if (!query) {
+
+                    results.innerHTML = `
+
+                        <p>
+                            Digite para pesquisar no sistema.
+                        </p>
+
+                    `;
+
+                    return;
+
+                }
+
+
+                const products =
+                    getArrayFromStorage([
+                        "atlasProdutos",
+                        "produtos"
+                    ]);
+
+
+                const employees =
+                    getArrayFromStorage([
+                        "atlasFuncionarios",
+                        "funcionarios",
+                        "equipe"
+                    ]);
+
+
+                const allResults = [];
+
+
+                products.forEach(
+                    item => {
+
+                        const name =
+                            item.nome ||
+                            item.name ||
+                            item.produto ||
+                            "";
+
+
+                        if (
+                            normalize(name)
+                                .includes(query)
+                        ) {
+
+                            allResults.push({
+
+                                title: name,
+
+                                type: "Produto",
+
+                                link: "produtos.html"
+
+                            });
+
+                        }
+
+                    }
+                );
+
+
+                employees.forEach(
+                    item => {
+
+                        const name =
+                            item.nome ||
+                            item.name ||
+                            "";
+
+
+                        if (
+                            normalize(name)
+                                .includes(query)
+                        ) {
+
+                            allResults.push({
+
+                                title: name,
+
+                                type: "Funcionário",
+
+                                link: "equipe.html"
+
+                            });
+
+                        }
+
+                    }
+                );
+
+
+                if (allResults.length === 0) {
+
+                    results.innerHTML = `
+
+                        <p>
+                            Nenhum resultado encontrado.
+                        </p>
+
+                    `;
+
+                    return;
+
+                }
+
+
+                results.innerHTML =
+                    allResults
+                        .slice(0, 10)
+                        .map(
+                            result => `
+
+                                <a
+                                    href="${result.link}"
+                                    class="search-result-item"
+                                >
+
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                                    <div>
+
+                                        <strong>
+                                            ${escapeHtml(result.title)}
+                                        </strong>
+
+                                        <span>
+                                            ${result.type}
+                                        </span>
+
+                                    </div>
+
+                                </a>
+
+                            `
+                        )
+                        .join("");
+
+            }
+        );
 
     }
-);
 
 
-/* =========================================================
-   INICIALIZAÇÃO
-   ========================================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-        updateUserInterface();
-
-        updateDate();
-
-        updateMetrics();
-
-        updateQualityIndicators();
-
-        renderPendingActions();
-
-        renderNCStatus();
-
-        renderRecentInspections();
-
-        renderNotifications();
-
-        setupSidebar();
-
-        setupNotifications();
-
-        setupProfile();
-
-        setupGlobalSearch();
-
-        setupShortcuts();
-
-        setupLogout();
-
-        createRevenueChart();
-
-        createProductsChart();
-
-        createQualityChart();
-
-    }
-);
-
-
-/* =========================================================
-   ATUALIZAÇÃO A CADA 30 SEGUNDOS
-   ========================================================= */
-
-setInterval(
-    () => {
-
-        refreshDashboard();
-
-    },
-    30000
-);
-```
+});
