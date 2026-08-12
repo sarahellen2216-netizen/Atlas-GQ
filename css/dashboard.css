@@ -2001,7 +2001,200 @@ tbody tr:last-child td {
         grid-template-columns: 1fr;
 
     }
+/* ==========================================================
+   RESULTADOS DE PESQUISA
+========================================================== */
 
+.search-result-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    color: #374151;
+
+    transition: .2s;
+
+}
+
+
+.search-result-item:hover {
+
+    background: #F3F4F6;
+
+}
+
+
+.search-result-item > i {
+
+    width: 32px;
+    height: 32px;
+
+    border-radius: 8px;
+
+    background: #EFF6FF;
+
+    color: #2563EB;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+.search-result-item strong {
+
+    display: block;
+
+    font-size: 12px;
+
+    color: #1F2937;
+
+}
+
+
+.search-result-item span {
+
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 10px;
+
+    color: #9CA3AF;
+
+}
+
+
+/* ==========================================================
+   RESULTADOS DAS INSPEÇÕES
+========================================================== */
+
+.result-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 5px 8px;
+
+    border-radius: 20px;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+}
+
+
+.result-conform {
+
+    background: #ECFDF5;
+
+    color: #15803D;
+
+}
+
+
+.result-nonconform {
+
+    background: #FEF2F2;
+
+    color: #B91C1C;
+
+}
+
+
+.result-neutral {
+
+    background: #F3F4F6;
+
+    color: #6B7280;
+
+}
+
+
+/* ==========================================================
+   AÇÕES PENDENTES
+========================================================== */
+
+.pending-action-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    width: 100%;
+
+    padding: 11px 0;
+
+    border-bottom: 1px solid #F1F5F9;
+
+}
+
+
+.pending-action-item:last-child {
+
+    border-bottom: none;
+
+}
+
+
+.pending-action-icon {
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 8px;
+
+    background: #FFF7ED;
+
+    color: #EA580C;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+}
+
+
+.pending-action-item strong {
+
+    display: block;
+
+    color: #374151;
+
+    font-size: 11px;
+
+}
+
+
+.pending-action-item span {
+
+    display: block;
+
+    color: #9CA3AF;
+
+    font-size: 9px;
+
+    margin-top: 3px;
+
+}
 
     .summary-item:nth-child(odd) {
 
