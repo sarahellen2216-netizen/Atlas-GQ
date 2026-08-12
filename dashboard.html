@@ -10,213 +10,771 @@
         content="width=device-width, initial-scale=1.0"
     >
 
+    <meta
+        name="description"
+        content="Atlas Gestão - Dashboard de Gestão da Qualidade"
+    >
+
     <title>Dashboard | Atlas Gestão</title>
 
-    <!-- FONTES -->
+
+    <!-- =====================================================
+         GOOGLE FONTS
+         ===================================================== -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
         rel="stylesheet"
     >
 
-    <!-- ÍCONES -->
+
+    <!-- =====================================================
+         FONT AWESOME
+         ===================================================== -->
+
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
 
-    <!-- CSS GLOBAL -->
-    <link rel="stylesheet" href="css/style.css">
 
-    <!-- CSS DO DASHBOARD -->
-    <link rel="stylesheet" href="css/dashboard.css">
+    <!-- =====================================================
+         CSS DO SISTEMA
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/dashboard.css"
+    >
+
+
+    <!-- =====================================================
+         ESTILO EXTRA DA SIDEBAR
+         ===================================================== -->
+
+    <style>
+
+        /* =================================================
+           SIDEBAR
+           ================================================= */
+
+        .sidebar {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 250px;
+            height: 100vh;
+
+            background: #ffffff;
+
+            border-right: 1px solid #e5e7eb;
+
+            display: flex;
+            flex-direction: column;
+
+            z-index: 9999;
+
+            overflow: hidden;
+
+        }
+
+
+        /* LOGO */
+
+        .sidebar-logo {
+
+            height: 76px;
+
+            padding: 0 20px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            border-bottom: 1px solid #f1f5f9;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .logo-icon {
+
+            width: 40px;
+            height: 40px;
+
+            border-radius: 10px;
+
+            background: #2563eb;
+
+            color: #ffffff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 18px;
+
+        }
+
+
+        .logo-text {
+
+            display: flex;
+
+            flex-direction: column;
+
+            line-height: 1.1;
+
+        }
+
+
+        .logo-text strong {
+
+            color: #1f2937;
+
+            font-family: "Poppins", sans-serif;
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+        }
+
+
+        .logo-text span {
+
+            color: #64748b;
+
+            font-size: 11px;
+
+            margin-top: 3px;
+
+        }
+
+
+        /* MENU */
+
+        .sidebar-menu {
+
+            flex: 1;
+
+            overflow-y: auto;
+
+            padding: 18px 12px;
+
+        }
+
+
+        .sidebar-menu::-webkit-scrollbar {
+
+            width: 5px;
+
+        }
+
+
+        .sidebar-menu::-webkit-scrollbar-track {
+
+            background: transparent;
+
+        }
+
+
+        .sidebar-menu::-webkit-scrollbar-thumb {
+
+            background: #cbd5e1;
+
+            border-radius: 10px;
+
+        }
+
+
+        /* SEÇÕES */
+
+        .menu-section {
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .menu-section-title {
+
+            display: block;
+
+            padding: 0 12px;
+
+            margin-bottom: 8px;
+
+            color: #94a3b8;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            letter-spacing: 1.2px;
+
+        }
+
+
+        /* LINKS */
+
+        .menu-item {
+
+            position: relative;
+
+            display: flex;
+
+            align-items: center;
+
+            width: 100%;
+
+            min-height: 44px;
+
+            padding: 0 12px;
+
+            margin-bottom: 3px;
+
+            box-sizing: border-box;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            color: #475569;
+
+            font-size: 14px;
+
+            transition: all 0.2s ease;
+
+        }
+
+
+        .menu-item i {
+
+            width: 24px;
+
+            margin-right: 12px;
+
+            text-align: center;
+
+            color: #64748b;
+
+            font-size: 15px;
+
+        }
+
+
+        .menu-item:hover {
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+        }
+
+
+        .menu-item:hover i {
+
+            color: #2563eb;
+
+        }
+
+
+        /* ITEM ATIVO */
+
+        .menu-item.active {
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            font-weight: 600;
+
+        }
+
+
+        .menu-item.active i {
+
+            color: #2563eb;
+
+        }
+
+
+        /* BADGE */
+
+        .menu-badge {
+
+            margin-left: auto;
+
+            min-width: 21px;
+
+            height: 21px;
+
+            padding: 0 6px;
+
+            border-radius: 50px;
+
+            background: #fee2e2;
+
+            color: #ef4444;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+        }
+
+
+        /* USUÁRIO */
+
+        .sidebar-user {
+
+            min-height: 68px;
+
+            padding: 12px 14px;
+
+            box-sizing: border-box;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            border-top: 1px solid #e5e7eb;
+
+            background: #ffffff;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .user-avatar {
+
+            width: 36px;
+            height: 36px;
+
+            border-radius: 50%;
+
+            background: #dbeafe;
+
+            color: #2563eb;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .user-info {
+
+            flex: 1;
+
+            min-width: 0;
+
+            display: flex;
+
+            flex-direction: column;
+
+        }
+
+
+        .user-info strong {
+
+            color: #1f2937;
+
+            font-size: 12px;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+
+        }
+
+
+        .user-info span {
+
+            color: #94a3b8;
+
+            font-size: 10px;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+
+        }
+
+
+        .logout-button {
+
+            width: 32px;
+            height: 32px;
+
+            border: none;
+
+            background: transparent;
+
+            color: #94a3b8;
+
+            border-radius: 7px;
+
+            cursor: pointer;
+
+        }
+
+
+        .logout-button:hover {
+
+            background: #fee2e2;
+
+            color: #ef4444;
+
+        }
+
+
+        /* =================================================
+           ÁREA PRINCIPAL
+           ================================================= */
+
+        .main-content {
+
+            margin-left: 250px;
+
+            width: calc(100% - 250px);
+
+            min-height: 100vh;
+
+        }
+
+
+        /* =================================================
+           RESPONSIVIDADE
+           ================================================= */
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+
+                width: 220px;
+
+            }
+
+            .main-content {
+
+                margin-left: 220px;
+
+                width: calc(100% - 220px);
+
+            }
+
+        }
+
+
+        @media (max-width: 768px) {
+
+            .sidebar {
+
+                transform: translateX(-100%);
+
+                transition: transform 0.25s ease;
+
+            }
+
+
+            .sidebar.mobile-open {
+
+                transform: translateX(0);
+
+            }
+
+
+            .main-content {
+
+                margin-left: 0;
+
+                width: 100%;
+
+            }
+
+        }
+
+    </style>
 
 </head>
 
 
 <body>
 
-<div class="atlas-app">
-
 
     <!-- =====================================================
-         SIDEBAR
-    ====================================================== -->
+         SIDEBAR COMPLETA
+         ===================================================== -->
 
-    <aside class="atlas-sidebar" id="sidebar">
+    <aside class="sidebar">
 
-        <div class="atlas-logo">
 
-            <div class="atlas-logo-icon">
-                <i class="fa-solid fa-layer-group"></i>
+        <!-- LOGO -->
+
+        <div class="sidebar-logo">
+
+            <div class="logo-icon">
+
+                <i class="fas fa-layer-group"></i>
+
             </div>
 
-            <div class="atlas-logo-text">
 
-                <strong>Atlas Gestão</strong>
+            <div class="logo-text">
 
-                <span>
-                    Gestão inteligente
-                </span>
+                <strong>Atlas</strong>
+
+                <span>Gestão</span>
 
             </div>
 
         </div>
 
 
-        <nav class="atlas-navigation">
 
-            <div class="nav-section">
+        <!-- =================================================
+             MENU
+             ================================================= -->
 
-                <span class="nav-title">
+        <nav class="sidebar-menu">
+
+
+            <!-- PRINCIPAL -->
+
+            <div class="menu-section">
+
+                <span class="menu-section-title">
                     PRINCIPAL
                 </span>
 
 
                 <a
                     href="dashboard.html"
-                    class="nav-link active"
+                    class="menu-item active"
                 >
 
-                    <i class="fa-solid fa-chart-pie"></i>
+                    <i class="fas fa-chart-pie"></i>
 
-                    <span>
-                        Dashboard
-                    </span>
+                    <span>Dashboard</span>
 
                 </a>
 
 
                 <a
                     href="produtos.html"
-                    class="nav-link"
+                    class="menu-item"
                 >
 
-                    <i class="fa-solid fa-box"></i>
+                    <i class="fas fa-box"></i>
 
-                    <span>
-                        Produtos
-                    </span>
+                    <span>Produtos</span>
 
                 </a>
 
 
                 <a
                     href="financeiro.html"
-                    class="nav-link"
+                    class="menu-item"
                 >
 
-                    <i class="fa-solid fa-wallet"></i>
+                    <i class="fas fa-wallet"></i>
 
-                    <span>
-                        Financeiro
-                    </span>
+                    <span>Financeiro</span>
 
                 </a>
 
 
                 <a
                     href="vendas.html"
-                    class="nav-link"
+                    class="menu-item"
                 >
 
-                    <i class="fa-solid fa-cart-shopping"></i>
+                    <i class="fas fa-shopping-cart"></i>
 
-                    <span>
-                        Vendas
-                    </span>
+                    <span>Vendas</span>
 
                 </a>
 
 
                 <a
                     href="equipe.html"
-                    class="nav-link"
+                    class="menu-item"
                 >
 
-                    <i class="fa-solid fa-users"></i>
+                    <i class="fas fa-users"></i>
 
-                    <span>
-                        Equipe
-                    </span>
+                    <span>Equipe</span>
 
                 </a>
 
             </div>
 
 
-            <div class="nav-section">
 
-                <span class="nav-title">
+            <!-- =================================================
+                 QUALIDADE
+                 ================================================= -->
+
+            <div class="menu-section">
+
+                <span class="menu-section-title">
                     QUALIDADE
                 </span>
 
 
                 <a
                     href="qualidade.html"
-                    class="nav-link"
+                    class="menu-item"
                 >
 
-                    <i class="fa-solid fa-shield-halved"></i>
+                    <i class="fas fa-shield-alt"></i>
 
-                    <span>
-                        Garantia da Qualidade
+                    <span>Qualidade</span>
+
+                    <span
+                        id="menuBadgeQualidade"
+                        class="menu-badge"
+                    >
+                        0
                     </span>
+
+                </a>
+
+
+                <!-- AUDITORIAS -->
+
+                <a
+                    href="auditorias.html"
+                    class="menu-item"
+                >
+
+                    <i class="fas fa-clipboard-check"></i>
+
+                    <span>Auditorias</span>
+
+                </a>
+
+
+                <!-- DOCUMENTOS -->
+
+                <a
+                    href="documentos.html"
+                    class="menu-item"
+                >
+
+                    <i class="fas fa-file-alt"></i>
+
+                    <span>Documentos</span>
 
                 </a>
 
             </div>
 
 
-            <div class="nav-section">
 
-                <span class="nav-title">
+            <!-- =================================================
+                 SISTEMA
+                 ================================================= -->
+
+            <div class="menu-section">
+
+                <span class="menu-section-title">
                     SISTEMA
                 </span>
 
 
                 <a
                     href="contato.html"
-                    class="nav-link"
+                    class="menu-item"
                 >
 
-                    <i class="fa-solid fa-envelope"></i>
+                    <i class="fas fa-envelope"></i>
 
-                    <span>
-                        Contato
-                    </span>
+                    <span>Contato</span>
 
                 </a>
 
 
                 <a
                     href="configuracoes.html"
-                    class="nav-link"
+                    class="menu-item"
                 >
 
-                    <i class="fa-solid fa-gear"></i>
+                    <i class="fas fa-cog"></i>
 
-                    <span>
-                        Configurações
-                    </span>
+                    <span>Configurações</span>
 
                 </a>
 
             </div>
 
+
         </nav>
 
 
-        <div class="sidebar-footer">
 
-            <div class="system-status">
+        <!-- =================================================
+             USUÁRIO
+             ================================================= -->
 
-                <span class="status-indicator"></span>
+        <div class="sidebar-user">
 
-                <span>
-                    Sistema operacional
+
+            <div class="user-avatar">
+
+                <i class="fas fa-user"></i>
+
+            </div>
+
+
+            <div class="user-info">
+
+                <strong id="sidebarUserName">
+                    Administrador
+                </strong>
+
+                <span id="sidebarUserEmail">
+                    admin@atlasgestao.com
                 </span>
 
             </div>
@@ -224,59 +782,50 @@
 
             <button
                 type="button"
-                class="logout-btn"
-                id="logoutButton"
+                id="btnLogout"
+                class="logout-button"
+                title="Sair"
             >
 
-                <i class="fa-solid fa-right-from-bracket"></i>
-
-                <span>
-                    Sair
-                </span>
+                <i class="fas fa-sign-out-alt"></i>
 
             </button>
 
+
         </div>
+
 
     </aside>
 
 
-    <!-- =====================================================
-         CONTEÚDO
-    ====================================================== -->
 
-    <main class="atlas-main">
+    <!-- =====================================================
+         CONTEÚDO PRINCIPAL
+         ===================================================== -->
+
+    <main class="main-content">
 
 
         <!-- =================================================
-             TOPBAR
-        ================================================== -->
+             TOPO
+             ================================================= -->
 
-        <header class="atlas-topbar">
-
-
-            <button
-                type="button"
-                class="mobile-menu-btn"
-                id="mobileMenu"
-                aria-label="Abrir menu"
-            >
-
-                <i class="fa-solid fa-bars"></i>
-
-            </button>
+        <header class="topbar">
 
 
-            <div class="topbar-search">
+            <div class="topbar-left">
 
-                <i class="fa-solid fa-magnifying-glass"></i>
+                <div>
 
-                <input
-                    type="search"
-                    id="globalSearch"
-                    placeholder="Pesquisar no sistema..."
-                    autocomplete="off"
-                >
+                    <span class="page-overline">
+                        VISÃO GERAL
+                    </span>
+
+                    <h1>
+                        Dashboard
+                    </h1>
+
+                </div>
 
             </div>
 
@@ -284,17 +833,34 @@
             <div class="topbar-right">
 
 
+                <!-- PESQUISA -->
+
                 <button
                     type="button"
-                    class="notification-btn"
-                    id="notificationButton"
+                    class="topbar-button"
+                    id="globalSearchButton"
+                    title="Pesquisar"
                 >
 
-                    <i class="fa-regular fa-bell"></i>
+                    <i class="fas fa-search"></i>
+
+                </button>
+
+
+                <!-- NOTIFICAÇÕES -->
+
+                <button
+                    type="button"
+                    class="topbar-button notification-button"
+                    id="notificationButton"
+                    title="Notificações"
+                >
+
+                    <i class="fas fa-bell"></i>
 
                     <span
-                        class="notification-count"
-                        id="notificationCount"
+                        id="notificationBadge"
+                        class="notification-badge"
                     >
                         0
                     </span>
@@ -302,18 +868,22 @@
                 </button>
 
 
-                <div class="user-menu">
+                <!-- PERFIL -->
 
-                    <div class="user-avatar">
-                        <span id="userInitial">
+                <div class="topbar-profile">
+
+                    <div class="profile-avatar">
+
+                        <span id="profileInitial">
                             A
                         </span>
+
                     </div>
 
 
-                    <div class="user-data">
+                    <div class="profile-data">
 
-                        <strong id="topUserName">
+                        <strong id="profileName">
                             Administrador
                         </strong>
 
@@ -327,29 +897,36 @@
 
             </div>
 
+
         </header>
 
 
+
         <!-- =================================================
-             DASHBOARD
-        ================================================== -->
+             CONTEÚDO
+             ================================================= -->
 
-        <div class="dashboard-content">
+        <section class="dashboard-container">
 
 
-            <!-- CABEÇALHO -->
+            <!-- SAUDAÇÃO -->
 
-            <section class="dashboard-header">
+            <div class="dashboard-header">
 
                 <div>
 
-                    <span class="dashboard-label">
+                    <span class="section-label">
                         VISÃO GERAL DA QUALIDADE
                     </span>
 
-                    <h1>
-                        Olá, <span id="welcomeName">Administrador</span>!
-                    </h1>
+
+                    <h2>
+                        Olá,
+                        <span id="welcomeUserName">
+                            Administrador
+                        </span>!
+                    </h2>
+
 
                     <p>
                         Acompanhe os principais indicadores
@@ -359,182 +936,185 @@
                 </div>
 
 
-                <div class="current-date">
+                <div class="dashboard-date">
 
-                    <i class="fa-regular fa-calendar"></i>
+                    <i class="far fa-calendar"></i>
 
-                    <span id="currentDate">
+                    <span id="dashboardDate">
                         --/--/----
                     </span>
 
                 </div>
 
-            </section>
+            </div>
+
 
 
             <!-- =================================================
-                 INDICADORES
-            ================================================== -->
+                 CARDS
+                 ================================================= -->
 
-            <section class="quality-stats">
+            <div class="stats-grid">
 
 
                 <!-- INSPEÇÕES -->
 
-                <article class="quality-card">
+                <div class="stat-card">
 
-                    <div class="quality-card-top">
+                    <div class="stat-icon blue">
 
-                        <div class="quality-icon blue">
-                            <i class="fa-solid fa-clipboard-check"></i>
-                        </div>
+                        <i class="fas fa-clipboard-check"></i>
 
-                        <span class="quality-card-title">
+                    </div>
+
+
+                    <div class="stat-content">
+
+                        <span>
                             INSPEÇÕES
                         </span>
 
-                    </div>
-
-
-                    <div class="quality-number">
-                        <span id="totalInspections">
+                        <strong id="totalInspecoes">
                             0
-                        </span>
+                        </strong>
+
+                        <small>
+                            Inspeções realizadas
+                        </small>
+
                     </div>
 
+                </div>
 
-                    <span class="quality-description">
-                        Inspeções realizadas
-                    </span>
-
-                </article>
 
 
                 <!-- CONFORMIDADE -->
 
-                <article class="quality-card">
+                <div class="stat-card">
 
-                    <div class="quality-card-top">
+                    <div class="stat-icon green">
 
-                        <div class="quality-icon green">
-                            <i class="fa-solid fa-circle-check"></i>
-                        </div>
+                        <i class="fas fa-check-circle"></i>
 
-                        <span class="quality-card-title">
+                    </div>
+
+
+                    <div class="stat-content">
+
+                        <span>
                             CONFORMIDADE
                         </span>
 
-                    </div>
-
-
-                    <div class="quality-number">
-                        <span id="complianceRate">
+                        <strong id="taxaConformidade">
                             0%
-                        </span>
+                        </strong>
+
+                        <small>
+                            Taxa de conformidade
+                        </small>
+
                     </div>
 
+                </div>
 
-                    <span class="quality-description">
-                        Taxa de conformidade
-                    </span>
-
-                </article>
 
 
                 <!-- NÃO CONFORMIDADES -->
 
-                <article class="quality-card">
+                <div class="stat-card">
 
-                    <div class="quality-card-top">
+                    <div class="stat-icon red">
 
-                        <div class="quality-icon red">
-                            <i class="fa-solid fa-triangle-exclamation"></i>
-                        </div>
+                        <i class="fas fa-exclamation-triangle"></i>
 
-                        <span class="quality-card-title">
+                    </div>
+
+
+                    <div class="stat-content">
+
+                        <span>
                             NÃO CONFORMIDADES
                         </span>
 
-                    </div>
-
-
-                    <div class="quality-number">
-                        <span id="openNonConformities">
+                        <strong id="totalNaoConformidades">
                             0
-                        </span>
+                        </strong>
+
+                        <small>
+                            Ocorrências em aberto
+                        </small>
+
                     </div>
 
+                </div>
 
-                    <span class="quality-description">
-                        Ocorrências em aberto
-                    </span>
-
-                </article>
 
 
                 <!-- AÇÕES -->
 
-                <article class="quality-card">
+                <div class="stat-card">
 
-                    <div class="quality-card-top">
+                    <div class="stat-icon orange">
 
-                        <div class="quality-icon orange">
-                            <i class="fa-solid fa-list-check"></i>
-                        </div>
+                        <i class="fas fa-tasks"></i>
 
-                        <span class="quality-card-title">
+                    </div>
+
+
+                    <div class="stat-content">
+
+                        <span>
                             AÇÕES CORRETIVAS
                         </span>
 
-                    </div>
-
-
-                    <div class="quality-number">
-                        <span id="pendingActions">
+                        <strong id="acoesPendentes">
                             0
-                        </span>
+                        </strong>
+
+                        <small>
+                            <span id="acoesAtrasadas">
+                                0
+                            </span>
+                            atrasadas
+                        </small>
+
                     </div>
 
+                </div>
 
-                    <span
-                        class="quality-description"
-                        id="lateActions"
-                    >
-                        0 atrasadas
-                    </span>
 
-                </article>
+            </div>
 
-            </section>
 
 
             <!-- =================================================
-                 GRÁFICOS / RESUMO
-            ================================================== -->
+                 GRÁFICO + RESUMO
+                 ================================================= -->
 
-            <section class="dashboard-grid">
+            <div class="dashboard-grid">
 
 
-                <!-- STATUS DAS INSPEÇÕES -->
+                <!-- GRÁFICO -->
 
-                <article class="dashboard-card chart-card">
+                <section class="dashboard-card chart-card">
 
-                    <div class="dashboard-card-header">
+
+                    <div class="card-header">
 
                         <div>
 
-                            <span class="dashboard-label">
+                            <span class="section-label">
                                 QUALIDADE
                             </span>
 
-                            <h2>
+                            <h3>
                                 Status das inspeções
-                            </h2>
+                            </h3>
 
                         </div>
 
 
-                        <div class="chart-filters">
+                        <div class="chart-actions">
 
                             <button
                                 type="button"
@@ -543,6 +1123,7 @@
                             >
                                 Geral
                             </button>
+
 
                             <button
                                 type="button"
@@ -557,225 +1138,201 @@
                     </div>
 
 
-                    <div class="inspection-chart">
+                    <div class="chart-container">
 
-                        <div
-                            class="donut-chart"
-                            id="donutChart"
-                        >
-
-                            <div class="donut-center">
-
-                                <strong id="chartTotal">
-                                    0
-                                </strong>
-
-                                <span>
-                                    inspeções
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="chart-legend">
-
-                            <div class="legend-item">
-
-                                <span class="legend-color conform"></span>
-
-                                <div>
-                                    <strong>
-                                        Conforme
-                                    </strong>
-
-                                    <span id="conformCount">
-                                        0
-                                    </span>
-                                </div>
-
-                            </div>
-
-
-                            <div class="legend-item">
-
-                                <span class="legend-color nonconform"></span>
-
-                                <div>
-                                    <strong>
-                                        Não conforme
-                                    </strong>
-
-                                    <span id="nonConformCount">
-                                        0
-                                    </span>
-                                </div>
-
-                            </div>
-
-                        </div>
+                        <canvas
+                            id="inspectionStatusChart"
+                        ></canvas>
 
                     </div>
 
-                </article>
+
+                    <div class="chart-legend">
+
+
+                        <div class="legend-item">
+
+                            <span class="legend-dot conform"></span>
+
+                            <span>
+                                Conforme
+                            </span>
+
+                            <strong id="chartConforme">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="legend-item">
+
+                            <span class="legend-dot nonconform"></span>
+
+                            <span>
+                                Não conforme
+                            </span>
+
+                            <strong id="chartNaoConforme">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
 
 
                 <!-- RESUMO -->
 
-                <article class="dashboard-card">
+                <section class="dashboard-card summary-card">
 
-                    <div class="dashboard-card-header">
+
+                    <div class="card-header">
 
                         <div>
 
-                            <span class="dashboard-label">
+                            <span class="section-label">
                                 INDICADORES
                             </span>
 
-                            <h2>
+                            <h3>
                                 Resumo da qualidade
-                            </h2>
+                            </h3>
 
                         </div>
 
 
                         <a
                             href="qualidade.html"
-                            class="details-link"
+                            class="card-link"
                         >
                             Ver detalhes
-                            <i class="fa-solid fa-arrow-right"></i>
                         </a>
 
                     </div>
 
 
-                    <div class="summary-grid">
+                    <div class="quality-score">
 
+                        <div
+                            class="score-circle"
+                            id="qualityScoreCircle"
+                        >
 
-                        <div class="summary-item">
-
-                            <div class="summary-icon green">
-                                <i class="fa-solid fa-percent"></i>
-                            </div>
-
-                            <div>
-
-                                <strong id="summaryCompliance">
-                                    0%
-                                </strong>
-
-                                <span>
-                                    conformidade
-                                </span>
-
-                            </div>
+                            <span id="qualityScore">
+                                0%
+                            </span>
 
                         </div>
 
 
-                        <div class="summary-item">
+                        <div>
 
-                            <div class="summary-icon blue">
-                                <i class="fa-solid fa-circle-check"></i>
-                            </div>
+                            <strong>
+                                Taxa de conformidade
+                            </strong>
 
-                            <div>
-
-                                <strong id="summaryConform">
-                                    0
-                                </strong>
-
-                                <span>
-                                    Conforme
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="summary-item">
-
-                            <div class="summary-icon red">
-                                <i class="fa-solid fa-circle-xmark"></i>
-                            </div>
-
-                            <div>
-
-                                <strong id="summaryNonConform">
-                                    0
-                                </strong>
-
-                                <span>
-                                    Não conforme
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="summary-item">
-
-                            <div class="summary-icon purple">
-                                <i class="fa-solid fa-magnifying-glass-chart"></i>
-                            </div>
-
-                            <div>
-
-                                <strong id="summaryAudits">
-                                    0
-                                </strong>
-
-                                <span>
-                                    Auditorias
-                                </span>
-
-                            </div>
+                            <p>
+                                Indicador geral das inspeções.
+                            </p>
 
                         </div>
 
                     </div>
 
-                </article>
 
-            </section>
+                    <div class="summary-list">
+
+
+                        <div class="summary-item">
+
+                            <span>
+                                <i class="fas fa-check-circle"></i>
+                                Conforme
+                            </span>
+
+                            <strong id="summaryConforme">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-item">
+
+                            <span>
+                                <i class="fas fa-times-circle"></i>
+                                Não conforme
+                            </span>
+
+                            <strong id="summaryNaoConforme">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-item">
+
+                            <span>
+                                <i class="fas fa-clipboard-check"></i>
+                                Auditorias
+                            </span>
+
+                            <strong id="totalAuditorias">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
+
+            </div>
+
 
 
             <!-- =================================================
-                 INSPEÇÕES / AÇÕES
-            ================================================== -->
+                 INSPEÇÕES + AÇÕES
+                 ================================================= -->
 
-            <section class="dashboard-grid">
+            <div class="dashboard-grid">
 
 
                 <!-- INSPEÇÕES RECENTES -->
 
-                <article class="dashboard-card table-card">
+                <section class="dashboard-card table-card">
 
-                    <div class="dashboard-card-header">
+
+                    <div class="card-header">
 
                         <div>
 
-                            <span class="dashboard-label">
+                            <span class="section-label">
                                 ACOMPANHAMENTO
                             </span>
 
-                            <h2>
+                            <h3>
                                 Inspeções recentes
-                            </h2>
+                            </h3>
 
                         </div>
 
 
                         <a
                             href="qualidade.html"
-                            class="details-link"
+                            class="card-link"
                         >
                             Ver todas
-                            <i class="fa-solid fa-arrow-right"></i>
                         </a>
 
                     </div>
@@ -810,14 +1367,15 @@
                             </thead>
 
 
-                            <tbody id="recentInspections">
+                            <tbody id="inspecoesRecentesBody">
 
                                 <tr>
 
-                                    <td colspan="4">
-                                        <div class="empty-table">
-                                            Nenhuma inspeção cadastrada.
-                                        </div>
+                                    <td
+                                        colspan="4"
+                                        class="loading-cell"
+                                    >
+                                        Carregando...
                                     </td>
 
                                 </tr>
@@ -828,309 +1386,399 @@
 
                     </div>
 
-                </article>
+
+                </section>
+
 
 
                 <!-- AÇÕES PENDENTES -->
 
-                <article class="dashboard-card actions-card">
+                <section class="dashboard-card actions-card">
 
-                    <div class="dashboard-card-header">
+
+                    <div class="card-header">
 
                         <div>
 
-                            <span class="dashboard-label">
+                            <span class="section-label">
                                 ATENÇÃO
                             </span>
 
-                            <h2>
+                            <h3>
                                 Ações pendentes
-                            </h2>
+                            </h3>
 
                         </div>
 
 
                         <a
                             href="qualidade.html"
-                            class="details-link"
+                            class="card-link"
                         >
                             Ver todas
-                            <i class="fa-solid fa-arrow-right"></i>
                         </a>
 
                     </div>
 
 
                     <div
-                        class="pending-actions"
-                        id="pendingActionsList"
+                        id="acoesPendentesList"
+                        class="pending-list"
                     >
 
                         <div class="empty-state">
 
                             <div class="empty-icon">
-                                <i class="fa-solid fa-circle-check"></i>
+
+                                <i class="fas fa-check"></i>
+
                             </div>
 
                             <strong>
                                 Tudo em dia!
                             </strong>
 
-                            <span>
+                            <p>
                                 Nenhuma ação pendente.
-                            </span>
+                            </p>
 
                         </div>
 
                     </div>
 
-                </article>
 
-            </section>
+                </section>
+
+
+            </div>
+
 
 
             <!-- =================================================
                  NÃO CONFORMIDADES
-            ================================================== -->
+                 ================================================= -->
 
-            <section class="dashboard-card nc-card">
+            <section class="dashboard-card nonconformity-card">
 
-                <div class="dashboard-card-header">
+
+                <div class="card-header">
 
                     <div>
 
-                        <span class="dashboard-label">
+                        <span class="section-label">
                             QUALIDADE
                         </span>
 
-                        <h2>
+                        <h3>
                             Não conformidades
-                        </h2>
+                        </h3>
 
                     </div>
 
 
                     <a
                         href="qualidade.html"
-                        class="details-link"
+                        class="card-link"
                     >
                         Gerenciar
-                        <i class="fa-solid fa-arrow-right"></i>
                     </a>
 
                 </div>
 
 
-                <div class="nc-stats">
+                <div class="nc-grid">
 
 
-                    <div class="nc-stat">
-
-                        <span>
-                            Total registradas
-                        </span>
+                    <div class="nc-total">
 
                         <strong id="totalNC">
                             0
                         </strong>
 
-                    </div>
-
-
-                    <div class="nc-stat">
-
                         <span>
-                            Abertas
+                            total registradas
                         </span>
-
-                        <strong
-                            class="text-red"
-                            id="openNC"
-                        >
-                            0
-                        </strong>
 
                     </div>
 
 
-                    <div class="nc-stat">
+                    <div class="nc-status">
 
-                        <span>
-                            Em análise
-                        </span>
+                        <div>
 
-                        <strong
-                            class="text-orange"
-                            id="analysisNC"
-                        >
-                            0
-                        </strong>
+                            <span>
+                                Abertas
+                            </span>
 
-                    </div>
+                            <strong id="ncAbertas">
+                                0
+                            </strong>
+
+                        </div>
 
 
-                    <div class="nc-stat">
+                        <div>
 
-                        <span>
-                            Encerradas
-                        </span>
+                            <span>
+                                Em análise
+                            </span>
 
-                        <strong
-                            class="text-green"
-                            id="closedNC"
-                        >
-                            0
-                        </strong>
+                            <strong id="ncAnalise">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Encerradas
+                            </span>
+
+                            <strong id="ncEncerradas">
+                                0
+                            </strong>
+
+                        </div>
 
                     </div>
 
                 </div>
+
 
             </section>
 
 
+
             <!-- =================================================
-                 AÇÕES RÁPIDAS
-            ================================================== -->
+                 ATALHOS
+                 ================================================= -->
 
-            <section class="quick-section">
+            <section class="quick-actions-section">
 
-                <div class="quick-header">
+
+                <div class="card-header">
 
                     <div>
 
-                        <span class="dashboard-label">
+                        <span class="section-label">
                             AÇÕES RÁPIDAS
                         </span>
 
-                        <h2>
+                        <h3>
                             Atalhos
-                        </h2>
+                        </h3>
 
                     </div>
 
                 </div>
 
 
-                <div class="quick-actions">
+                <div class="quick-actions-grid">
 
+
+                    <!-- NOVA INSPEÇÃO -->
 
                     <a
-                        href="qualidade.html"
+                        href="qualidade.html?acao=nova-inspecao"
                         class="quick-action"
                     >
 
-                        <div class="quick-icon blue">
-                            <i class="fa-solid fa-clipboard-check"></i>
+                        <div class="quick-action-icon blue">
+
+                            <i class="fas fa-clipboard-check"></i>
+
                         </div>
 
-                        <span>
-                            Nova inspeção
-                        </span>
+                        <div>
+
+                            <strong>
+                                Nova inspeção
+                            </strong>
+
+                            <span>
+                                Registrar inspeção
+                            </span>
+
+                        </div>
 
                     </a>
 
 
+
+                    <!-- NOVA NC -->
+
                     <a
-                        href="qualidade.html"
+                        href="qualidade.html?acao=nova-nc"
                         class="quick-action"
                     >
 
-                        <div class="quick-icon red">
-                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        <div class="quick-action-icon red">
+
+                            <i class="fas fa-exclamation-triangle"></i>
+
                         </div>
 
-                        <span>
-                            Nova NC
-                        </span>
+                        <div>
+
+                            <strong>
+                                Nova NC
+                            </strong>
+
+                            <span>
+                                Registrar não conformidade
+                            </span>
+
+                        </div>
 
                     </a>
 
 
+
+                    <!-- NOVA AÇÃO -->
+
                     <a
-                        href="qualidade.html"
+                        href="qualidade.html?acao=nova-acao"
                         class="quick-action"
                     >
 
-                        <div class="quick-icon orange">
-                            <i class="fa-solid fa-list-check"></i>
+                        <div class="quick-action-icon orange">
+
+                            <i class="fas fa-tasks"></i>
+
                         </div>
 
-                        <span>
-                            Nova ação
-                        </span>
+                        <div>
+
+                            <strong>
+                                Nova ação
+                            </strong>
+
+                            <span>
+                                Criar ação corretiva
+                            </span>
+
+                        </div>
 
                     </a>
 
 
+
+                    <!-- NOVA AUDITORIA -->
+
                     <a
-                        href="qualidade.html"
+                        href="auditorias.html"
                         class="quick-action"
                     >
 
-                        <div class="quick-icon purple">
-                            <i class="fa-solid fa-file-circle-check"></i>
+                        <div class="quick-action-icon purple">
+
+                            <i class="fas fa-clipboard-check"></i>
+
                         </div>
 
-                        <span>
-                            Nova auditoria
-                        </span>
+                        <div>
+
+                            <strong>
+                                Nova auditoria
+                            </strong>
+
+                            <span>
+                                Planejar auditoria
+                            </span>
+
+                        </div>
 
                     </a>
 
 
+
+                    <!-- NOVO DOCUMENTO -->
+
                     <a
-                        href="qualidade.html"
+                        href="documentos.html"
                         class="quick-action"
                     >
 
-                        <div class="quick-icon green">
-                            <i class="fa-solid fa-file-lines"></i>
+                        <div class="quick-action-icon green">
+
+                            <i class="fas fa-file-alt"></i>
+
                         </div>
 
-                        <span>
-                            Novo documento
-                        </span>
+                        <div>
+
+                            <strong>
+                                Novo documento
+                            </strong>
+
+                            <span>
+                                Cadastrar documento
+                            </span>
+
+                        </div>
 
                     </a>
 
+
+
+                    <!-- NOVO PRODUTO -->
 
                     <a
                         href="produtos.html"
                         class="quick-action"
                     >
 
-                        <div class="quick-icon cyan">
-                            <i class="fa-solid fa-box"></i>
+                        <div class="quick-action-icon blue">
+
+                            <i class="fas fa-box"></i>
+
                         </div>
 
-                        <span>
-                            Novo produto
-                        </span>
+                        <div>
+
+                            <strong>
+                                Novo produto
+                            </strong>
+
+                            <span>
+                                Cadastrar produto
+                            </span>
+
+                        </div>
 
                     </a>
 
+
                 </div>
+
 
             </section>
 
 
-        </div>
+        </section>
+
 
 
         <!-- =================================================
-             FOOTER
-        ================================================== -->
+             RODAPÉ
+             ================================================= -->
 
-        <footer class="atlas-footer">
+        <footer class="dashboard-footer">
 
-            <strong>
-                Atlas Gestão
-            </strong>
+            <div>
 
-            <span>
-                Gestão inteligente para empresas modernas.
-            </span>
+                <strong>
+                    Atlas Gestão
+                </strong>
+
+                <span>
+                    Gestão inteligente para empresas modernas.
+                </span>
+
+            </div>
+
 
             <span>
                 © 2026 Atlas Gestão
@@ -1142,43 +1790,65 @@
     </main>
 
 
+
     <!-- =====================================================
          PESQUISA GLOBAL
-    ====================================================== -->
+         ===================================================== -->
 
     <div
-        class="search-overlay"
-        id="searchOverlay"
+        id="globalSearchModal"
+        class="modal-overlay"
+        style="display:none;"
     >
 
         <div class="search-modal">
 
             <div class="search-modal-header">
 
-                <h2>
-                    O que você procura?
-                </h2>
+                <div>
+
+                    <span>
+                        PESQUISA GLOBAL
+                    </span>
+
+                    <h3>
+                        O que você procura?
+                    </h3>
+
+                </div>
+
 
                 <button
                     type="button"
-                    id="closeSearch"
+                    id="closeSearchModal"
                 >
-                    <i class="fa-solid fa-xmark"></i>
+                    ×
                 </button>
 
             </div>
 
 
-            <input
-                type="search"
-                id="searchInput"
-                placeholder="Pesquise produtos, inspeções, funcionários..."
-            >
+            <div class="search-input-wrapper">
+
+                <i class="fas fa-search"></i>
+
+                <input
+                    type="text"
+                    id="globalSearchInput"
+                    placeholder="Pesquise produtos, inspeções, funcionários..."
+                    autocomplete="off"
+                >
+
+                <kbd>
+                    ESC
+                </kbd>
+
+            </div>
 
 
             <div
+                id="globalSearchResults"
                 class="search-results"
-                id="searchResults"
             >
 
                 <p>
@@ -1192,24 +1862,418 @@
     </div>
 
 
-</div>
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <!-- Chart.js -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"
+    ></script>
 
 
-<!-- =====================================================
-     DATABASE
-====================================================== -->
+    <!-- Banco de dados existente -->
 
-<script src="js/database.js"></script>
+    <script src="js/database.js"></script>
 
-<!-- =====================================================
-     DASHBOARD
-====================================================== -->
 
-<script src="js/dashboard.js"></script>
+    <!-- Dashboard existente -->
 
-<script src="js/database.js"></script>
-<script src="js/dashboard.js"></script>
-<script src="js/sidebar.js"></script>
+    <script src="js/dashboard.js"></script>
+
+
+    <!-- Sidebar global -->
+
+    <script src="js/sidebar.js"></script>
+
+
+
+    <!-- =====================================================
+         SCRIPT DO DASHBOARD
+         ===================================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+                /* =========================================
+                   DATA ATUAL
+                   ========================================= */
+
+                const dataElemento =
+                    document.getElementById(
+                        "dashboardDate"
+                    );
+
+
+                if (dataElemento) {
+
+                    const hoje = new Date();
+
+
+                    dataElemento.textContent =
+                        hoje.toLocaleDateString(
+                            "pt-BR"
+                        );
+
+                }
+
+
+
+                /* =========================================
+                   PERFIL
+                   ========================================= */
+
+                let usuario = null;
+
+
+                try {
+
+                    usuario =
+                        JSON.parse(
+                            localStorage.getItem(
+                                "atlas_usuario"
+                            )
+                        );
+
+                } catch (erro) {
+
+                    usuario = null;
+
+                }
+
+
+                if (usuario) {
+
+                    const nome =
+                        usuario.nome ||
+                        usuario.name ||
+                        "Administrador";
+
+
+                    const email =
+                        usuario.email ||
+                        "admin@atlasgestao.com";
+
+
+                    const welcome =
+                        document.getElementById(
+                            "welcomeUserName"
+                        );
+
+
+                    const profile =
+                        document.getElementById(
+                            "profileName"
+                        );
+
+
+                    const sidebarName =
+                        document.getElementById(
+                            "sidebarUserName"
+                        );
+
+
+                    const sidebarEmail =
+                        document.getElementById(
+                            "sidebarUserEmail"
+                        );
+
+
+                    const initial =
+                        document.getElementById(
+                            "profileInitial"
+                        );
+
+
+                    if (welcome) {
+
+                        welcome.textContent =
+                            nome;
+
+                    }
+
+
+                    if (profile) {
+
+                        profile.textContent =
+                            nome;
+
+                    }
+
+
+                    if (sidebarName) {
+
+                        sidebarName.textContent =
+                            nome;
+
+                    }
+
+
+                    if (sidebarEmail) {
+
+                        sidebarEmail.textContent =
+                            email;
+
+                    }
+
+
+                    if (initial) {
+
+                        initial.textContent =
+                            nome
+                                .charAt(0)
+                                .toUpperCase();
+
+                    }
+
+                }
+
+
+
+                /* =========================================
+                   LOGOUT
+                   ========================================= */
+
+                const logout =
+                    document.getElementById(
+                        "btnLogout"
+                    );
+
+
+                if (logout) {
+
+                    logout.addEventListener(
+                        "click",
+                        function () {
+
+                            if (
+                                confirm(
+                                    "Deseja realmente sair do Atlas Gestão?"
+                                )
+                            ) {
+
+                                localStorage.removeItem(
+                                    "atlas_usuario"
+                                );
+
+                                localStorage.removeItem(
+                                    "usuario"
+                                );
+
+                                localStorage.removeItem(
+                                    "usuarioLogado"
+                                );
+
+
+                                window.location.href =
+                                    "index.html";
+
+                            }
+
+                        }
+                    );
+
+                }
+
+
+
+                /* =========================================
+                   PESQUISA
+                   ========================================= */
+
+                const searchButton =
+                    document.getElementById(
+                        "globalSearchButton"
+                    );
+
+
+                const searchModal =
+                    document.getElementById(
+                        "globalSearchModal"
+                    );
+
+
+                const closeSearch =
+                    document.getElementById(
+                        "closeSearchModal"
+                    );
+
+
+                const searchInput =
+                    document.getElementById(
+                        "globalSearchInput"
+                    );
+
+
+                if (
+                    searchButton &&
+                    searchModal
+                ) {
+
+                    searchButton.addEventListener(
+                        "click",
+                        function () {
+
+                            searchModal.style.display =
+                                "flex";
+
+                            setTimeout(
+                                function () {
+
+                                    if (searchInput) {
+
+                                        searchInput.focus();
+
+                                    }
+
+                                },
+                                100
+                            );
+
+                        }
+                    );
+
+                }
+
+
+                if (closeSearch) {
+
+                    closeSearch.addEventListener(
+                        "click",
+                        function () {
+
+                            searchModal.style.display =
+                                "none";
+
+                        }
+                    );
+
+                }
+
+
+                if (searchModal) {
+
+                    searchModal.addEventListener(
+                        "click",
+                        function (event) {
+
+                            if (
+                                event.target ===
+                                searchModal
+                            ) {
+
+                                searchModal.style.display =
+                                    "none";
+
+                            }
+
+                        }
+                    );
+
+                }
+
+
+                document.addEventListener(
+                    "keydown",
+                    function (event) {
+
+                        if (
+                            event.key ===
+                            "Escape"
+                        ) {
+
+                            if (searchModal) {
+
+                                searchModal.style.display =
+                                    "none";
+
+                            }
+
+                        }
+
+                    }
+                );
+
+
+
+                /* =========================================
+                   MENU MOBILE
+                   ========================================= */
+
+                if (
+                    window.innerWidth <=
+                    768
+                ) {
+
+                    const sidebar =
+                        document.querySelector(
+                            ".sidebar"
+                        );
+
+
+                    if (sidebar) {
+
+                        const button =
+                            document.createElement(
+                                "button"
+                            );
+
+
+                        button.className =
+                            "mobile-menu-button";
+
+
+                        button.innerHTML =
+                            '<i class="fas fa-bars"></i>';
+
+
+                        button.style.cssText = `
+                            position: fixed;
+                            top: 15px;
+                            left: 15px;
+                            width: 42px;
+                            height: 42px;
+                            border: none;
+                            border-radius: 9px;
+                            background: #2563eb;
+                            color: white;
+                            z-index: 10001;
+                            cursor: pointer;
+                        `;
+
+
+                        document.body.appendChild(
+                            button
+                        );
+
+
+                        button.addEventListener(
+                            "click",
+                            function () {
+
+                                sidebar.classList.toggle(
+                                    "mobile-open"
+                                );
+
+                            }
+                        );
+
+                    }
+
+                }
+
+            }
+
+        );
+
+    </script>
+
 
 </body>
 
