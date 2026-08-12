@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Configurações | Atlas Gestão</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/configuracoes.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- MENU -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="logo-icon">
+                <i class="fa-solid fa-layer-group"></i>
+            </div>
+
+            <div>
+                <h2>Atlas Gestão</h2>
+                <span>Gestão inteligente</span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+            <a href="dashboard.html">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="produtos.html">
+                <i class="fa-solid fa-box"></i>
+                <span>Produtos</span>
+            </a>
+
+            <a href="financeiro.html">
+                <i class="fa-solid fa-wallet"></i>
+                <span>Financeiro</span>
+            </a>
+
+            <a href="vendas.html">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Vendas</span>
+            </a>
+
+            <a href="equipe.html">
+                <i class="fa-solid fa-users"></i>
+                <span>Equipe</span>
+            </a>
+
+            <a href="qualidade.html">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Garantia da Qualidade</span>
+            </a>
+
+            <a href="contato.html">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Contato</span>
+            </a>
+
+            <a href="configuracoes.html" class="active">
+                <i class="fa-solid fa-gear"></i>
+                <span>Configurações</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="system-status">
+
+                <span class="status-dot"></span>
+
+                <span>Sistema operacional</span>
+
+            </div>
+
+
+            <button class="logout-button" id="logoutButton">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Sair
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- CONTEÚDO -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <button class="mobile-menu" id="mobileMenu">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+            <div class="topbar-search">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    placeholder="Pesquisar..."
+                    id="globalSearch"
+                >
+
+            </div>
+
+
+            <div class="topbar-actions">
+
+                <button class="notification-button">
+
+                    <i class="fa-regular fa-bell"></i>
+
+                    <span class="notification-badge">0</span>
+
+                </button>
+
+
+                <div class="user-profile">
+
+                    <div class="user-avatar">
+                        A
+                    </div>
+
+                    <div class="user-info">
+
+                        <strong id="userName">
+                            Administrador
+                        </strong>
+
+                        <span>
+                            Administrador
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PÁGINA -->
+        <section class="page-content">
+
+            <div class="page-header">
+
+                <div>
+
+                    <span class="page-label">
+                        SISTEMA
+                    </span>
+
+                    <h1>
+                        Configurações
+                    </h1>
+
+                    <p>
+                        Personalize o Atlas Gestão e os dados da empresa.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="settings-layout">
+
+
+                <!-- MENU DE CONFIGURAÇÕES -->
+                <aside class="settings-menu">
+
+                    <button
+                        class="settings-menu-item active"
+                        data-section="empresa"
+                    >
+                        <i class="fa-solid fa-building"></i>
+
+                        <div>
+                            <strong>Dados da empresa</strong>
+                            <span>Informações gerais</span>
+                        </div>
+
+                    </button>
+
+
+                    <button
+                        class="settings-menu-item"
+                        data-section="perfil"
+                    >
+                        <i class="fa-solid fa-user"></i>
+
+                        <div>
+                            <strong>Meu perfil</strong>
+                            <span>Dados do usuário</span>
+                        </div>
+
+                    </button>
+
+
+                    <button
+                        class="settings-menu-item"
+                        data-section="aparencia"
+                    >
+                        <i class="fa-solid fa-palette"></i>
+
+                        <div>
+                            <strong>Aparência</strong>
+                            <span>Tema do sistema</span>
+                        </div>
+
+                    </button>
+
+
+                    <button
+                        class="settings-menu-item"
+                        data-section="sistema"
+                    >
+                        <i class="fa-solid fa-sliders"></i>
+
+                        <div>
+                            <strong>Sistema</strong>
+                            <span>Preferências</span>
+                        </div>
+
+                    </button>
+
+                </aside>
+
+
+                <!-- CONTEÚDO -->
+                <div class="settings-content">
+
+
+                    <!-- EMPRESA -->
+                    <section
+                        class="settings-section active"
+                        id="section-empresa"
+                    >
+
+                        <div class="section-header">
+
+                            <div>
+                                <span class="page-label">
+                                    EMPRESA
+                                </span>
+
+                                <h2>
+                                    Dados da empresa
+                                </h2>
+
+                                <p>
+                                    Atualize as informações principais
+                                    da empresa.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <form id="companyForm">
+
+                            <div class="form-grid">
+
+                                <div class="form-group">
+
+                                    <label>
+                                        Nome da empresa
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="companyName"
+                                        value="Atlas Gestão"
+                                    >
+
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    <label>
+                                        CNPJ
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="companyCnpj"
+                                        placeholder="00.000.000/0001-00"
+                                    >
+
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    <label>
+                                        E-mail
+                                    </label>
+
+                                    <input
+                                        type="email"
+                                        id="companyEmail"
+                                        value="contato@atlasgestao.com"
+                                    >
+
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    <label>
+                                        Telefone
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="companyPhone"
+                                        placeholder="(00) 00000-0000"
+                                    >
+
+                                </div>
+
+
+                                <div class="form-group full">
+
+                                    <label>
+                                        Endereço
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="companyAddress"
+                                        placeholder="Rua, número, bairro, cidade - UF"
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-actions">
+
+                                <button
+                                    type="submit"
+                                    class="btn-primary"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                    Salvar alterações
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </section>
+
+
+                    <!-- PERFIL -->
+                    <section
+                        class="settings-section"
+                        id="section-perfil"
+                    >
+
+                        <div class="section-header">
+
+                            <span class="page-label">
+                                USUÁRIO
+                            </span>
+
+                            <h2>
+                                Meu perfil
+                            </h2>
+
+                            <p>
+                                Gerencie suas informações de acesso.
+                            </p>
+
+                        </div>
+
+
+                        <form id="profileForm">
+
+                            <div class="profile-preview">
+
+                                <div class="large-avatar">
+                                    A
+                                </div>
+
+                                <div>
+                                    <strong id="profileDisplayName">
+                                        Administrador
+                                    </strong>
+
+                                    <span>
+                                        Administrador do sistema
+                                    </span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-grid">
+
+                                <div class="form-group">
+
+                                    <label>
+                                        Nome
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="profileName"
+                                        value="Administrador"
+                                    >
+
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    <label>
+                                        E-mail
+                                    </label>
+
+                                    <input
+                                        type="email"
+                                        id="profileEmail"
+                                        value="admin@atlasgestao.com"
+                                    >
+
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    <label>
+                                        Cargo
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        value="Administrador"
+                                        disabled
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-actions">
+
+                                <button
+                                    type="submit"
+                                    class="btn-primary"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                    Salvar perfil
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </section>
+
+
+                    <!-- APARÊNCIA -->
+                    <section
+                        class="settings-section"
+                        id="section-aparencia"
+                    >
+
+                        <div class="section-header">
+
+                            <span class="page-label">
+                                PERSONALIZAÇÃO
+                            </span>
+
+                            <h2>
+                                Aparência
+                            </h2>
+
+                            <p>
+                                Escolha como o Atlas Gestão será exibido.
+                            </p>
+
+                        </div>
+
+
+                        <div class="appearance-options">
+
+                            <label class="theme-option">
+
+                                <input
+                                    type="radio"
+                                    name="theme"
+                                    value="light"
+                                    checked
+                                >
+
+                                <div class="theme-preview light-preview">
+
+                                    <div class="preview-top"></div>
+
+                                    <div class="preview-body">
+
+                                        <div class="preview-side"></div>
+
+                                        <div class="preview-content"></div>
+
+                                    </div>
+
+                                </div>
+
+                                <strong>
+                                    Tema claro
+                                </strong>
+
+                                <span>
+                                    Visual padrão
+                                </span>
+
+                            </label>
+
+
+                            <label class="theme-option">
+
+                                <input
+                                    type="radio"
+                                    name="theme"
+                                    value="dark"
+                                >
+
+                                <div class="theme-preview dark-preview">
+
+                                    <div class="preview-top"></div>
+
+                                    <div class="preview-body">
+
+                                        <div class="preview-side"></div>
+
+                                        <div class="preview-content"></div>
+
+                                    </div>
+
+                                </div>
+
+                                <strong>
+                                    Tema escuro
+                                </strong>
+
+                                <span>
+                                    Mais confortável à noite
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- SISTEMA -->
+                    <section
+                        class="settings-section"
+                        id="section-sistema"
+                    >
+
+                        <div class="section-header">
+
+                            <span class="page-label">
+                                SISTEMA
+                            </span>
+
+                            <h2>
+                                Preferências
+                            </h2>
+
+                            <p>
+                                Configure recursos do sistema.
+                            </p>
+
+                        </div>
+
+
+                        <div class="system-options">
+
+
+                            <div class="system-option">
+
+                                <div class="system-option-icon">
+                                    <i class="fa-solid fa-bell"></i>
+                                </div>
+
+                                <div class="system-option-info">
+
+                                    <strong>
+                                        Notificações
+                                    </strong>
+
+                                    <span>
+                                        Receber alertas do sistema
+                                    </span>
+
+                                </div>
+
+                                <label class="switch">
+
+                                    <input
+                                        type="checkbox"
+                                        id="notificationsToggle"
+                                        checked
+                                    >
+
+                                    <span class="slider"></span>
+
+                                </label>
+
+                            </div>
+
+
+                            <div class="system-option">
+
+                                <div class="system-option-icon">
+                                    <i class="fa-solid fa-box"></i>
+                                </div>
+
+                                <div class="system-option-info">
+
+                                    <strong>
+                                        Estoque baixo
+                                    </strong>
+
+                                    <span>
+                                        Alertar quando o estoque estiver baixo
+                                    </span>
+
+                                </div>
+
+                                <label class="switch">
+
+                                    <input
+                                        type="checkbox"
+                                        id="stockToggle"
+                                        checked
+                                    >
+
+                                    <span class="slider"></span>
+
+                                </label>
+
+                            </div>
+
+
+                            <div class="system-option">
+
+                                <div class="system-option-icon">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                </div>
+
+                                <div class="system-option-info">
+
+                                    <strong>
+                                        Alertas de qualidade
+                                    </strong>
+
+                                    <span>
+                                        Avisar sobre não conformidades
+                                    </span>
+
+                                </div>
+
+                                <label class="switch">
+
+                                    <input
+                                        type="checkbox"
+                                        id="qualityToggle"
+                                        checked
+                                    >
+
+                                    <span class="slider"></span>
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="danger-zone">
+
+                            <div>
+
+                                <span class="page-label">
+                                    ZONA DE SEGURANÇA
+                                </span>
+
+                                <h3>
+                                    Dados locais
+                                </h3>
+
+                                <p>
+                                    Remova os dados armazenados localmente
+                                    neste navegador.
+                                </p>
+
+                            </div>
+
+
+                            <button
+                                class="btn-danger"
+                                id="clearDataButton"
+                            >
+                                <i class="fa-solid fa-trash"></i>
+                                Limpar dados
+                            </button>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="js/configuracoes.js"></script>
+
+</body>
+</html>
