@@ -10,1920 +10,381 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <meta
-        name="description"
-        content="Atlas Gestão - Sistema de Gestão da Qualidade"
-    >
-
     <title>Dashboard | Atlas Gestão</title>
-
-
-    <!-- =====================================================
-         FONTES
-         ===================================================== -->
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
-        rel="stylesheet"
-    >
-
-
-    <!-- =====================================================
-         FONT AWESOME
-         ===================================================== -->
-
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
-
-
-    <!-- =====================================================
-         CSS GERAL
-         ===================================================== -->
 
     <link
         rel="stylesheet"
         href="css/style.css"
     >
 
-
-    <!-- =====================================================
-         CSS DO DASHBOARD
-         ===================================================== -->
-
-    <link
-        rel="stylesheet"
-        href="css/dashboard.css"
-    >
-
-
-    <!-- =====================================================
-         CORREÇÃO DA SIDEBAR
-         ===================================================== -->
-
-    <style>
-
-        /* =================================================
-           ESTRUTURA
-           ================================================= */
-
-        html,
-        body {
-
-            margin: 0;
-            padding: 0;
-
-            min-height: 100%;
-
-        }
-
-
-        body {
-
-            font-family: "Inter", sans-serif;
-
-        }
-
-
-        /* =================================================
-           SIDEBAR
-           ================================================= */
-
-        .atlas-sidebar {
-
-            position: fixed !important;
-
-            top: 0 !important;
-            left: 0 !important;
-
-            width: 250px !important;
-            height: 100vh !important;
-
-            background: #ffffff !important;
-
-            border-right: 1px solid #e5e7eb !important;
-
-            display: flex !important;
-
-            flex-direction: column !important;
-
-            z-index: 10000 !important;
-
-            overflow: hidden !important;
-
-            box-sizing: border-box !important;
-
-        }
-
-
-        /* =================================================
-           LOGO
-           ================================================= */
-
-        .atlas-sidebar-logo {
-
-            width: 100%;
-
-            height: 76px;
-
-            padding: 0 20px;
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 12px;
-
-            box-sizing: border-box;
-
-            border-bottom: 1px solid #f1f5f9;
-
-            flex-shrink: 0;
-
-        }
-
-
-        .atlas-logo-icon {
-
-            width: 40px;
-            height: 40px;
-
-            min-width: 40px;
-
-            border-radius: 10px;
-
-            background: #2563eb;
-
-            color: #ffffff;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            font-size: 18px;
-
-        }
-
-
-        .atlas-logo-text {
-
-            display: flex;
-
-            flex-direction: column;
-
-            line-height: 1.1;
-
-        }
-
-
-        .atlas-logo-text strong {
-
-            font-family: "Poppins", sans-serif;
-
-            font-size: 18px;
-
-            font-weight: 700;
-
-            color: #1f2937;
-
-        }
-
-
-        .atlas-logo-text span {
-
-            margin-top: 3px;
-
-            color: #64748b;
-
-            font-size: 11px;
-
-        }
-
-
-        /* =================================================
-           MENU
-           ================================================= */
-
-        .atlas-sidebar-menu {
-
-            flex: 1;
-
-            width: 100%;
-
-            padding: 18px 12px;
-
-            overflow-y: auto;
-
-            box-sizing: border-box;
-
-        }
-
-
-        .atlas-sidebar-menu::-webkit-scrollbar {
-
-            width: 5px;
-
-        }
-
-
-        .atlas-sidebar-menu::-webkit-scrollbar-thumb {
-
-            background: #cbd5e1;
-
-            border-radius: 10px;
-
-        }
-
-
-        .atlas-menu-section {
-
-            width: 100%;
-
-            margin-bottom: 24px;
-
-        }
-
-
-        .atlas-menu-title {
-
-            display: block;
-
-            width: 100%;
-
-            padding: 0 12px;
-
-            margin-bottom: 8px;
-
-            box-sizing: border-box;
-
-            color: #94a3b8;
-
-            font-size: 10px;
-
-            font-weight: 700;
-
-            letter-spacing: 1.2px;
-
-        }
-
-
-        /* =================================================
-           LINKS
-           ================================================= */
-
-        .atlas-menu-link {
-
-            display: flex !important;
-
-            align-items: center !important;
-
-            width: 100% !important;
-
-            height: 44px !important;
-
-            min-height: 44px !important;
-
-            padding: 0 12px !important;
-
-            margin: 3px 0 !important;
-
-            box-sizing: border-box !important;
-
-            border-radius: 8px !important;
-
-            text-decoration: none !important;
-
-            color: #475569 !important;
-
-            background: transparent !important;
-
-            font-family: "Inter", sans-serif !important;
-
-            font-size: 14px !important;
-
-            font-weight: 500 !important;
-
-            visibility: visible !important;
-
-            opacity: 1 !important;
-
-        }
-
-
-        .atlas-menu-link i {
-
-            display: flex !important;
-
-            align-items: center !important;
-
-            justify-content: center !important;
-
-            width: 24px !important;
-
-            min-width: 24px !important;
-
-            margin-right: 12px !important;
-
-            color: #64748b !important;
-
-        }
-
-
-        .atlas-menu-link span {
-
-            display: block !important;
-
-            visibility: visible !important;
-
-            opacity: 1 !important;
-
-        }
-
-
-        .atlas-menu-link:hover {
-
-            background: #eff6ff !important;
-
-            color: #2563eb !important;
-
-        }
-
-
-        .atlas-menu-link:hover i {
-
-            color: #2563eb !important;
-
-        }
-
-
-        .atlas-menu-link.active {
-
-            background: #eff6ff !important;
-
-            color: #2563eb !important;
-
-            font-weight: 600 !important;
-
-        }
-
-
-        .atlas-menu-link.active i {
-
-            color: #2563eb !important;
-
-        }
-
-
-        /* =================================================
-           BADGE
-           ================================================= */
-
-        .atlas-menu-badge {
-
-            margin-left: auto;
-
-            min-width: 21px;
-
-            height: 21px;
-
-            padding: 0 6px;
-
-            border-radius: 50px;
-
-            display: flex !important;
-
-            align-items: center;
-
-            justify-content: center;
-
-            background: #fee2e2;
-
-            color: #ef4444;
-
-            font-size: 11px;
-
-            font-weight: 700;
-
-        }
-
-
-        /* =================================================
-           USUÁRIO
-           ================================================= */
-
-        .atlas-sidebar-user {
-
-            width: 100%;
-
-            min-height: 68px;
-
-            padding: 12px 14px;
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 9px;
-
-            box-sizing: border-box;
-
-            border-top: 1px solid #e5e7eb;
-
-            flex-shrink: 0;
-
-        }
-
-
-        .atlas-user-avatar {
-
-            width: 36px;
-            height: 36px;
-
-            min-width: 36px;
-
-            border-radius: 50%;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            background: #dbeafe;
-
-            color: #2563eb;
-
-        }
-
-
-        .atlas-user-info {
-
-            flex: 1;
-
-            min-width: 0;
-
-            display: flex;
-
-            flex-direction: column;
-
-        }
-
-
-        .atlas-user-info strong {
-
-            color: #1f2937;
-
-            font-size: 12px;
-
-            white-space: nowrap;
-
-            overflow: hidden;
-
-            text-overflow: ellipsis;
-
-        }
-
-
-        .atlas-user-info span {
-
-            color: #94a3b8;
-
-            font-size: 10px;
-
-            white-space: nowrap;
-
-            overflow: hidden;
-
-            text-overflow: ellipsis;
-
-        }
-
-
-        .atlas-logout {
-
-            width: 32px;
-            height: 32px;
-
-            border: none;
-
-            background: transparent;
-
-            color: #94a3b8;
-
-            border-radius: 7px;
-
-            cursor: pointer;
-
-        }
-
-
-        .atlas-logout:hover {
-
-            background: #fee2e2;
-
-            color: #ef4444;
-
-        }
-
-
-        /* =================================================
-           CONTEÚDO PRINCIPAL
-           ================================================= */
-
-        .atlas-main {
-
-            margin-left: 250px;
-
-            width: calc(100% - 250px);
-
-            min-height: 100vh;
-
-            box-sizing: border-box;
-
-        }
-
-
-        /* =================================================
-           MOBILE
-           ================================================= */
-
-        .atlas-mobile-button {
-
-            display: none;
-
-            position: fixed;
-
-            top: 15px;
-
-            left: 15px;
-
-            width: 42px;
-
-            height: 42px;
-
-            border: none;
-
-            border-radius: 9px;
-
-            background: #2563eb;
-
-            color: #ffffff;
-
-            z-index: 10001;
-
-            cursor: pointer;
-
-            align-items: center;
-
-            justify-content: center;
-
-        }
-
-
-        @media (max-width: 768px) {
-
-            .atlas-sidebar {
-
-                transform: translateX(-100%) !important;
-
-                transition:
-                    transform 0.25s ease;
-
-            }
-
-
-            .atlas-sidebar.open {
-
-                transform: translateX(0) !important;
-
-            }
-
-
-            .atlas-main {
-
-                margin-left: 0;
-
-                width: 100%;
-
-            }
-
-
-            .atlas-mobile-button {
-
-                display: flex;
-
-            }
-
-        }
-
-    </style>
-
 </head>
-
 
 <body>
 
+<div id="sidebar-container"></div>
 
-    <!-- =====================================================
-         BOTÃO MOBILE
-         ===================================================== -->
+<div class="atlas-main">
 
-    <button
-        type="button"
-        id="atlasMobileButton"
-        class="atlas-mobile-button"
-        aria-label="Abrir menu"
-    >
+    <div id="topbar-container"></div>
 
-        <i class="fas fa-bars"></i>
+    <main class="page-content">
 
-    </button>
+        <div class="page-header">
 
+            <div>
 
-    <!-- =====================================================
-         SIDEBAR
-         ===================================================== -->
+                <div class="page-kicker">
+                    VISÃO GERAL
+                </div>
 
-    <aside class="atlas-sidebar">
+                <h1 class="page-title">
+                    Dashboard
+                </h1>
 
-
-        <!-- LOGO -->
-
-        <div class="atlas-sidebar-logo">
-
-            <div class="atlas-logo-icon">
-
-                <i class="fas fa-layer-group"></i>
+                <p class="page-description">
+                    Acompanhe os principais indicadores da empresa.
+                </p>
 
             </div>
-
-
-            <div class="atlas-logo-text">
-
-                <strong>Atlas</strong>
-
-                <span>Gestão</span>
-
-            </div>
-
-        </div>
-
-
-        <!-- MENU -->
-
-        <nav class="atlas-sidebar-menu">
-
-
-            <!-- ================================
-                 PRINCIPAL
-                 ================================ -->
-
-            <div class="atlas-menu-section">
-
-                <span class="atlas-menu-title">
-                    PRINCIPAL
-                </span>
-
-
-                <a
-                    href="dashboard.html"
-                    class="atlas-menu-link active"
-                >
-
-                    <i class="fas fa-chart-pie"></i>
-
-                    <span>Dashboard</span>
-
-                </a>
-
-
-                <a
-                    href="produtos.html"
-                    class="atlas-menu-link"
-                >
-
-                    <i class="fas fa-box"></i>
-
-                    <span>Produtos</span>
-
-                </a>
-
-
-                <a
-                    href="financeiro.html"
-                    class="atlas-menu-link"
-                >
-
-                    <i class="fas fa-wallet"></i>
-
-                    <span>Financeiro</span>
-
-                </a>
-
-
-                <a
-                    href="vendas.html"
-                    class="atlas-menu-link"
-                >
-
-                    <i class="fas fa-shopping-cart"></i>
-
-                    <span>Vendas</span>
-
-                </a>
-
-
-                <a
-                    href="equipe.html"
-                    class="atlas-menu-link"
-                >
-
-                    <i class="fas fa-users"></i>
-
-                    <span>Equipe</span>
-
-                </a>
-
-            </div>
-
-
-            <!-- ================================
-                 QUALIDADE
-                 ================================ -->
-
-            <div class="atlas-menu-section">
-
-                <span class="atlas-menu-title">
-                    QUALIDADE
-                </span>
-
-
-                <a
-                    href="qualidade.html"
-                    class="atlas-menu-link"
-                >
-
-                    <i class="fas fa-shield-alt"></i>
-
-                    <span>Qualidade</span>
-
-                    <span
-                        id="menuBadgeQualidade"
-                        class="atlas-menu-badge"
-                        style="display:none;"
-                    >
-                        0
-                    </span>
-
-                </a>
-
-
-                <a
-                    href="auditorias.html"
-                    class="atlas-menu-link"
-                >
-
-                    <i class="fas fa-clipboard-check"></i>
-
-                    <span>Auditorias</span>
-
-                </a>
-
-
-                <a
-                    href="documentos.html"
-                    class="atlas-menu-link"
-                >
-
-                    <i class="fas fa-file-alt"></i>
-
-                    <span>Documentos</span>
-
-                </a>
-
-            </div>
-
-
-            <!-- ================================
-                 SISTEMA
-                 ================================ -->
-
-            <div class="atlas-menu-section">
-
-                <span class="atlas-menu-title">
-                    SISTEMA
-                </span>
-
-
-                <a
-                    href="contato.html"
-                    class="atlas-menu-link"
-                >
-
-                    <i class="fas fa-envelope"></i>
-
-                    <span>Contato</span>
-
-                </a>
-
-
-                <a
-                    href="configuracoes.html"
-                    class="atlas-menu-link"
-                >
-
-                    <i class="fas fa-cog"></i>
-
-                    <span>Configurações</span>
-
-                </a>
-
-            </div>
-
-
-        </nav>
-
-
-        <!-- USUÁRIO -->
-
-        <div class="atlas-sidebar-user">
-
-            <div class="atlas-user-avatar">
-
-                <i class="fas fa-user"></i>
-
-            </div>
-
-
-            <div class="atlas-user-info">
-
-                <strong id="sidebarUserName">
-                    Administrador
-                </strong>
-
-                <span id="sidebarUserEmail">
-                    admin@atlasgestao.com
-                </span>
-
-            </div>
-
 
             <button
-                type="button"
-                id="atlasLogout"
-                class="atlas-logout"
-                title="Sair"
+                class="btn btn-primary"
+                onclick="window.location.href='qualidade.html'"
             >
-
-                <i class="fas fa-sign-out-alt"></i>
-
+                + Nova inspeção
             </button>
 
         </div>
 
 
-    </aside>
+        <section class="stats-grid">
 
+            <div class="stat-card">
 
-    <!-- =====================================================
-         CONTEÚDO PRINCIPAL
-         ===================================================== -->
+                <div class="stat-top">
 
-    <main class="atlas-main">
-
-
-        <!-- =================================================
-             TOPO
-             ================================================= -->
-
-        <header class="topbar">
-
-
-            <div class="topbar-left">
-
-                <div>
-
-                    <span class="page-overline">
-                        VISÃO GERAL
+                    <span>
+                        Produtos
                     </span>
 
-                    <h1>
-                        Dashboard
-                    </h1>
+                    <div class="stat-icon">
+                        📦
+                    </div>
 
                 </div>
 
-            </div>
-
-
-            <div class="topbar-right">
-
-
-                <button
-                    type="button"
-                    class="topbar-button"
-                    id="globalSearchButton"
-                    title="Pesquisar"
+                <div
+                    class="stat-value"
+                    id="totalProdutos"
                 >
+                    0
+                </div>
 
-                    <i class="fas fa-search"></i>
+                <div class="stat-label">
+                    Produtos cadastrados
+                </div>
 
-                </button>
+            </div>
 
 
-                <button
-                    type="button"
-                    class="topbar-button notification-button"
-                    id="notificationButton"
-                    title="Notificações"
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <span>
+                        Funcionários
+                    </span>
+
+                    <div class="stat-icon">
+                        👥
+                    </div>
+
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="totalEquipe"
                 >
+                    0
+                </div>
 
-                    <i class="fas fa-bell"></i>
+                <div class="stat-label">
+                    Colaboradores cadastrados
+                </div>
 
-                    <span
-                        id="notificationBadge"
-                        class="notification-badge"
-                    >
-                        0
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <span>
+                        Vendas
                     </span>
 
-                </button>
-
-
-                <div class="topbar-profile">
-
-                    <div class="profile-avatar">
-
-                        <span id="profileInitial">
-                            A
-                        </span>
-
-                    </div>
-
-
-                    <div class="profile-data">
-
-                        <strong id="profileName">
-                            Administrador
-                        </strong>
-
-                        <span>
-                            Administrador
-                        </span>
-
+                    <div class="stat-icon">
+                        🛒
                     </div>
 
                 </div>
 
+                <div
+                    class="stat-value"
+                    id="totalVendas"
+                >
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Vendas registradas
+                </div>
+
             </div>
 
-        </header>
 
+            <div class="stat-card">
 
-        <!-- =================================================
-             DASHBOARD
-             ================================================= -->
+                <div class="stat-top">
 
-        <section class="dashboard-container">
-
-
-            <!-- CABEÇALHO -->
-
-            <div class="dashboard-header">
-
-                <div>
-
-                    <span class="section-label">
-                        VISÃO GERAL DA QUALIDADE
+                    <span>
+                        Conformidade
                     </span>
 
-
-                    <h2>
-
-                        Olá,
-                        <span id="welcomeUserName">
-                            Administrador
-                        </span>!
-
-                    </h2>
-
-
-                    <p>
-                        Acompanhe os principais indicadores
-                        da sua gestão da qualidade.
-                    </p>
+                    <div class="stat-icon">
+                        ✓
+                    </div>
 
                 </div>
 
+                <div
+                    class="stat-value"
+                    id="taxaConformidade"
+                >
+                    0%
+                </div>
 
-                <div class="dashboard-date">
-
-                    <i class="far fa-calendar"></i>
-
-                    <span id="dashboardDate">
-                        --/--/----
-                    </span>
-
+                <div class="stat-label">
+                    Taxa de qualidade
                 </div>
 
             </div>
-
-
-            <!-- =================================================
-                 CARDS
-                 ================================================= -->
-
-            <div class="stats-grid">
-
-
-                <!-- INSPEÇÕES -->
-
-                <div class="stat-card">
-
-                    <div class="stat-icon blue">
-
-                        <i class="fas fa-clipboard-check"></i>
-
-                    </div>
-
-
-                    <div class="stat-content">
-
-                        <span>
-                            INSPEÇÕES
-                        </span>
-
-                        <strong id="totalInspecoes">
-                            0
-                        </strong>
-
-                        <small>
-                            Inspeções realizadas
-                        </small>
-
-                    </div>
-
-                </div>
-
-
-                <!-- CONFORMIDADE -->
-
-                <div class="stat-card">
-
-                    <div class="stat-icon green">
-
-                        <i class="fas fa-check-circle"></i>
-
-                    </div>
-
-
-                    <div class="stat-content">
-
-                        <span>
-                            CONFORMIDADE
-                        </span>
-
-                        <strong id="taxaConformidade">
-                            0%
-                        </strong>
-
-                        <small>
-                            Taxa de conformidade
-                        </small>
-
-                    </div>
-
-                </div>
-
-
-                <!-- NÃO CONFORMIDADES -->
-
-                <div class="stat-card">
-
-                    <div class="stat-icon red">
-
-                        <i class="fas fa-exclamation-triangle"></i>
-
-                    </div>
-
-
-                    <div class="stat-content">
-
-                        <span>
-                            NÃO CONFORMIDADES
-                        </span>
-
-                        <strong id="totalNaoConformidades">
-                            0
-                        </strong>
-
-                        <small>
-                            Ocorrências em aberto
-                        </small>
-
-                    </div>
-
-                </div>
-
-
-                <!-- AÇÕES -->
-
-                <div class="stat-card">
-
-                    <div class="stat-icon orange">
-
-                        <i class="fas fa-tasks"></i>
-
-                    </div>
-
-
-                    <div class="stat-content">
-
-                        <span>
-                            AÇÕES CORRETIVAS
-                        </span>
-
-                        <strong id="acoesPendentes">
-                            0
-                        </strong>
-
-                        <small>
-                            Ações pendentes
-                        </small>
-
-                    </div>
-
-                </div>
-
-
-            </div>
-
-
-            <!-- =================================================
-                 GRÁFICOS
-                 ================================================= -->
-
-            <div class="dashboard-grid">
-
-
-                <!-- GRÁFICO -->
-
-                <section class="dashboard-card chart-card">
-
-                    <div class="card-header">
-
-                        <div>
-
-                            <span class="section-label">
-                                QUALIDADE
-                            </span>
-
-                            <h3>
-                                Status das inspeções
-                            </h3>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="chart-container">
-
-                        <canvas
-                            id="inspectionStatusChart"
-                        ></canvas>
-
-                    </div>
-
-                </section>
-
-
-                <!-- RESUMO -->
-
-                <section class="dashboard-card summary-card">
-
-                    <div class="card-header">
-
-                        <div>
-
-                            <span class="section-label">
-                                INDICADORES
-                            </span>
-
-                            <h3>
-                                Resumo da qualidade
-                            </h3>
-
-                        </div>
-
-
-                        <a
-                            href="qualidade.html"
-                            class="card-link"
-                        >
-                            Ver detalhes
-                        </a>
-
-                    </div>
-
-
-                    <div class="quality-score">
-
-                        <div class="score-circle">
-
-                            <span id="qualityScore">
-                                0%
-                            </span>
-
-                        </div>
-
-
-                        <div>
-
-                            <strong>
-                                Taxa de conformidade
-                            </strong>
-
-                            <p>
-                                Indicador geral das inspeções.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="summary-list">
-
-
-                        <div class="summary-item">
-
-                            <span>
-
-                                <i class="fas fa-check-circle"></i>
-
-                                Conforme
-
-                            </span>
-
-                            <strong id="summaryConforme">
-                                0
-                            </strong>
-
-                        </div>
-
-
-                        <div class="summary-item">
-
-                            <span>
-
-                                <i class="fas fa-times-circle"></i>
-
-                                Não conforme
-
-                            </span>
-
-                            <strong id="summaryNaoConforme">
-                                0
-                            </strong>
-
-                        </div>
-
-
-                        <div class="summary-item">
-
-                            <span>
-
-                                <i class="fas fa-clipboard-check"></i>
-
-                                Auditorias
-
-                            </span>
-
-                            <strong id="totalAuditorias">
-                                0
-                            </strong>
-
-                        </div>
-
-                    </div>
-
-                </section>
-
-            </div>
-
-
-            <!-- =================================================
-                 INSPEÇÕES RECENTES
-                 ================================================= -->
-
-            <section class="dashboard-card table-card">
-
-
-                <div class="card-header">
-
-                    <div>
-
-                        <span class="section-label">
-                            ACOMPANHAMENTO
-                        </span>
-
-                        <h3>
-                            Inspeções recentes
-                        </h3>
-
-                    </div>
-
-
-                    <a
-                        href="qualidade.html"
-                        class="card-link"
-                    >
-                        Ver todas
-                    </a>
-
-                </div>
-
-
-                <div class="table-wrapper">
-
-                    <table>
-
-                        <thead>
-
-                            <tr>
-
-                                <th>
-                                    Produto
-                                </th>
-
-                                <th>
-                                    Responsável
-                                </th>
-
-                                <th>
-                                    Data
-                                </th>
-
-                                <th>
-                                    Resultado
-                                </th>
-
-                            </tr>
-
-                        </thead>
-
-
-                        <tbody id="inspecoesRecentesBody">
-
-                            <tr>
-
-                                <td
-                                    colspan="4"
-                                    class="loading-cell"
-                                >
-                                    Carregando...
-                                </td>
-
-                            </tr>
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </section>
-
-
-            <!-- =================================================
-                 ATALHOS RÁPIDOS
-                 ================================================= -->
-
-            <section class="quick-actions-section">
-
-
-                <div class="card-header">
-
-                    <div>
-
-                        <span class="section-label">
-                            AÇÕES RÁPIDAS
-                        </span>
-
-                        <h3>
-                            Atalhos
-                        </h3>
-
-                    </div>
-
-                </div>
-
-
-                <div class="quick-actions-grid">
-
-
-                    <!-- INSPEÇÃO -->
-
-                    <a
-                        href="qualidade.html"
-                        class="quick-action"
-                    >
-
-                        <div class="quick-action-icon blue">
-
-                            <i class="fas fa-clipboard-check"></i>
-
-                        </div>
-
-
-                        <div>
-
-                            <strong>
-                                Nova inspeção
-                            </strong>
-
-                            <span>
-                                Registrar inspeção
-                            </span>
-
-                        </div>
-
-                    </a>
-
-
-                    <!-- NÃO CONFORMIDADE -->
-
-                    <a
-                        href="qualidade.html"
-                        class="quick-action"
-                    >
-
-                        <div class="quick-action-icon red">
-
-                            <i class="fas fa-exclamation-triangle"></i>
-
-                        </div>
-
-
-                        <div>
-
-                            <strong>
-                                Nova não conformidade
-                            </strong>
-
-                            <span>
-                                Registrar ocorrência
-                            </span>
-
-                        </div>
-
-                    </a>
-
-
-                    <!-- AUDITORIA -->
-
-                    <a
-                        href="auditorias.html"
-                        class="quick-action"
-                    >
-
-                        <div class="quick-action-icon purple">
-
-                            <i class="fas fa-clipboard-check"></i>
-
-                        </div>
-
-
-                        <div>
-
-                            <strong>
-                                Nova auditoria
-                            </strong>
-
-                            <span>
-                                Planejar auditoria
-                            </span>
-
-                        </div>
-
-                    </a>
-
-
-                    <!-- DOCUMENTO -->
-
-                    <a
-                        href="documentos.html"
-                        class="quick-action"
-                    >
-
-                        <div class="quick-action-icon green">
-
-                            <i class="fas fa-file-alt"></i>
-
-                        </div>
-
-
-                        <div>
-
-                            <strong>
-                                Novo documento
-                            </strong>
-
-                            <span>
-                                Cadastrar documento
-                            </span>
-
-                        </div>
-
-                    </a>
-
-
-                    <!-- PRODUTO -->
-
-                    <a
-                        href="produtos.html"
-                        class="quick-action"
-                    >
-
-                        <div class="quick-action-icon blue">
-
-                            <i class="fas fa-box"></i>
-
-                        </div>
-
-
-                        <div>
-
-                            <strong>
-                                Novo produto
-                            </strong>
-
-                            <span>
-                                Cadastrar produto
-                            </span>
-
-                        </div>
-
-                    </a>
-
-
-                    <!-- RELATÓRIO -->
-
-                    <a
-                        href="qualidade.html"
-                        class="quick-action"
-                    >
-
-                        <div class="quick-action-icon orange">
-
-                            <i class="fas fa-chart-bar"></i>
-
-                        </div>
-
-
-                        <div>
-
-                            <strong>
-                                Relatório
-                            </strong>
-
-                            <span>
-                                Consultar qualidade
-                            </span>
-
-                        </div>
-
-                    </a>
-
-
-                </div>
-
-            </section>
-
 
         </section>
 
 
-        <!-- =================================================
-             RODAPÉ
-             ================================================= -->
+        <section class="stats-grid">
 
-        <footer class="dashboard-footer">
+            <div class="stat-card">
 
-            <div>
+                <div class="stat-top">
 
-                <strong>
-                    Atlas Gestão
-                </strong>
+                    <span>
+                        Receita
+                    </span>
 
-                <span>
-                    Gestão inteligente para empresas modernas.
-                </span>
+                    <div class="stat-icon">
+                        💰
+                    </div>
+
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="receitaTotal"
+                >
+                    R$ 0,00
+                </div>
+
+                <div class="stat-label">
+                    Receita registrada
+                </div>
 
             </div>
 
 
-            <span>
-                © 2026 Atlas Gestão
-            </span>
+            <div class="stat-card">
 
-        </footer>
+                <div class="stat-top">
 
+                    <span>
+                        Despesas
+                    </span>
+
+                    <div class="stat-icon">
+                        💸
+                    </div>
+
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="despesaTotal"
+                >
+                    R$ 0,00
+                </div>
+
+                <div class="stat-label">
+                    Despesas registradas
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <span>
+                        Não conformidades
+                    </span>
+
+                    <div class="stat-icon">
+                        ⚠️
+                    </div>
+
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="naoConformidades"
+                >
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Ocorrências encontradas
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <span>
+                        Documentos
+                    </span>
+
+                    <div class="stat-icon">
+                        📄
+                    </div>
+
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="totalDocumentos"
+                >
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Documentos cadastrados
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <div class="dashboard-grid">
+
+            <section class="card">
+
+                <div class="card-header">
+
+                    <h2 class="card-title">
+                        Resumo da Qualidade
+                    </h2>
+
+                    <a
+                        href="qualidade.html"
+                        class="btn btn-secondary"
+                    >
+                        Ver detalhes
+                    </a>
+
+                </div>
+
+                <div class="card-body">
+
+                    <div
+                        id="qualitySummary"
+                        class="chart-area"
+                    ></div>
+
+                </div>
+
+            </section>
+
+
+            <section class="card">
+
+                <div class="card-header">
+
+                    <h2 class="card-title">
+                        Acesso rápido
+                    </h2>
+
+                </div>
+
+                <div class="card-body">
+
+                    <div
+                        style="
+                        display:grid;
+                        gap:10px;
+                        "
+                    >
+
+                        <a
+                            class="btn btn-primary"
+                            href="produtos.html"
+                        >
+                            + Novo produto
+                        </a>
+
+                        <a
+                            class="btn btn-primary"
+                            href="vendas.html"
+                        >
+                            + Nova venda
+                        </a>
+
+                        <a
+                            class="btn btn-primary"
+                            href="equipe.html"
+                        >
+                            + Funcionário
+                        </a>
+
+                        <a
+                            class="btn btn-primary"
+                            href="qualidade.html"
+                        >
+                            + Nova inspeção
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
 
     </main>
 
+</div>
 
-    <!-- =====================================================
-         CHART.JS
-         ===================================================== -->
 
-    <script
-        src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"
-    ></script>
+<script src="js/database.js"></script>
 
+<script src="js/app.js"></script>
 
-    <!-- =====================================================
-         BANCO DE DADOS
-         ===================================================== -->
-
-    <script src="js/database.js"></script>
-
-
-    <!-- =====================================================
-         JAVASCRIPT DO DASHBOARD
-         ===================================================== -->
-
-    <script src="js/dashboard.js"></script>
-
-
-    <!-- =====================================================
-         SCRIPT EXCLUSIVO DO HTML
-         ===================================================== -->
-
-    <script>
-
-        document.addEventListener(
-            "DOMContentLoaded",
-            function () {
-
-
-                /* =========================================
-                   DATA
-                   ========================================= */
-
-                const data =
-                    document.getElementById(
-                        "dashboardDate"
-                    );
-
-
-                if (data) {
-
-                    data.textContent =
-                        new Date().toLocaleDateString(
-                            "pt-BR"
-                        );
-
-                }
-
-
-                /* =========================================
-                   USUÁRIO
-                   ========================================= */
-
-                let usuario = null;
-
-
-                const chaves = [
-                    "atlas_usuario",
-                    "usuario",
-                    "usuarioLogado"
-                ];
-
-
-                for (
-                    let i = 0;
-                    i < chaves.length;
-                    i++
-                ) {
-
-                    try {
-
-                        const valor =
-                            localStorage.getItem(
-                                chaves[i]
-                            );
-
-
-                        if (valor) {
-
-                            usuario =
-                                JSON.parse(valor);
-
-                            break;
-
-                        }
-
-                    } catch (erro) {
-
-                        console.warn(
-                            "Não foi possível carregar usuário.",
-                            erro
-                        );
-
-                    }
-
-                }
-
-
-                if (usuario) {
-
-                    const nome =
-                        usuario.nome ||
-                        usuario.name ||
-                        "Administrador";
-
-
-                    const email =
-                        usuario.email ||
-                        "admin@atlasgestao.com";
-
-
-                    const elementos = {
-
-                        welcome:
-                            document.getElementById(
-                                "welcomeUserName"
-                            ),
-
-                        profile:
-                            document.getElementById(
-                                "profileName"
-                            ),
-
-                        sidebarName:
-                            document.getElementById(
-                                "sidebarUserName"
-                            ),
-
-                        sidebarEmail:
-                            document.getElementById(
-                                "sidebarUserEmail"
-                            ),
-
-                        initial:
-                            document.getElementById(
-                                "profileInitial"
-                            )
-
-                    };
-
-
-                    if (elementos.welcome) {
-
-                        elementos.welcome.textContent =
-                            nome;
-
-                    }
-
-
-                    if (elementos.profile) {
-
-                        elementos.profile.textContent =
-                            nome;
-
-                    }
-
-
-                    if (elementos.sidebarName) {
-
-                        elementos.sidebarName.textContent =
-                            nome;
-
-                    }
-
-
-                    if (elementos.sidebarEmail) {
-
-                        elementos.sidebarEmail.textContent =
-                            email;
-
-                    }
-
-
-                    if (elementos.initial) {
-
-                        elementos.initial.textContent =
-                            nome
-                                .charAt(0)
-                                .toUpperCase();
-
-                    }
-
-                }
-
-
-                /* =========================================
-                   LOGOUT
-                   ========================================= */
-
-                const logout =
-                    document.getElementById(
-                        "atlasLogout"
-                    );
-
-
-                if (logout) {
-
-                    logout.addEventListener(
-                        "click",
-                        function () {
-
-                            const confirmar =
-                                confirm(
-                                    "Deseja realmente sair do Atlas Gestão?"
-                                );
-
-
-                            if (!confirmar) {
-                                return;
-                            }
-
-
-                            localStorage.removeItem(
-                                "atlas_usuario"
-                            );
-
-                            localStorage.removeItem(
-                                "usuario"
-                            );
-
-                            localStorage.removeItem(
-                                "usuarioLogado"
-                            );
-
-
-                            window.location.href =
-                                "index.html";
-
-                        }
-                    );
-
-                }
-
-
-                /* =========================================
-                   MOBILE
-                   ========================================= */
-
-                const mobileButton =
-                    document.getElementById(
-                        "atlasMobileButton"
-                    );
-
-
-                const sidebar =
-                    document.querySelector(
-                        ".atlas-sidebar"
-                    );
-
-
-                if (
-                    mobileButton &&
-                    sidebar
-                ) {
-
-                    mobileButton.addEventListener(
-                        "click",
-                        function () {
-
-                            sidebar.classList.toggle(
-                                "open"
-                            );
-
-                        }
-                    );
-
-                }
-
-
-            }
-        );
-
-    </script>
-
+<script src="js/dashboard.js"></script>
 
 </body>
 
