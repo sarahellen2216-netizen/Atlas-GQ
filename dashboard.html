@@ -10,176 +10,77 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <meta
-        name="description"
-        content="Atlas Gestão - Sistema de Gestão da Qualidade"
-    >
+    <title>Dashboard | Atlas Gestão</title>
 
-    <meta
-        name="theme-color"
-        content="#2563EB"
-    >
-
-    <title>
-        Dashboard | Atlas Gestão
-    </title>
-
-
-    <!-- =====================================================
-         GOOGLE FONTS
-         ===================================================== -->
+    <!-- FONTES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
         rel="stylesheet"
     >
 
-
-    <!-- =====================================================
-         FONT AWESOME
-         ===================================================== -->
-
+    <!-- ÍCONES -->
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
 
+    <!-- CSS GLOBAL -->
+    <link rel="stylesheet" href="css/style.css">
 
-    <!-- =====================================================
-         CHART.JS
-         ===================================================== -->
-
-    <script
-        src="https://cdn.jsdelivr.net/npm/chart.js"
-    ></script>
-
-
-    <!-- =====================================================
-         CSS
-         ===================================================== -->
-
-    <link
-        rel="stylesheet"
-        href="css/style.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="css/dashboard.css"
-    >
+    <!-- CSS DO DASHBOARD -->
+    <link rel="stylesheet" href="css/dashboard.css">
 
 </head>
 
 
 <body>
 
-
-<!-- =========================================================
-     APP
-     ========================================================= -->
-
-<div
-    class="app"
-    id="app"
->
+<div class="atlas-app">
 
 
     <!-- =====================================================
          SIDEBAR
-         ===================================================== -->
+    ====================================================== -->
 
-    <aside
-        class="sidebar"
-        id="sidebar"
-    >
+    <aside class="atlas-sidebar" id="sidebar">
 
+        <div class="atlas-logo">
 
-        <!-- LOGO -->
+            <div class="atlas-logo-icon">
+                <i class="fa-solid fa-layer-group"></i>
+            </div>
 
-        <div class="sidebar-header">
+            <div class="atlas-logo-text">
 
-            <a
-                href="dashboard.html"
-                class="brand"
-            >
+                <strong>Atlas Gestão</strong>
 
-                <div class="brand-icon">
+                <span>
+                    Gestão inteligente
+                </span>
 
-                    <i
-                        class="fa-solid fa-layer-group"
-                    ></i>
-
-                </div>
-
-                <div class="brand-text">
-
-                    <strong>
-                        Atlas
-                    </strong>
-
-                    <span>
-                        Gestão
-                    </span>
-
-                </div>
-
-            </a>
-
-
-            <button
-                type="button"
-                class="sidebar-close"
-                id="sidebarClose"
-                aria-label="Fechar menu"
-            >
-
-                <i
-                    class="fa-solid fa-xmark"
-                ></i>
-
-            </button>
+            </div>
 
         </div>
 
 
-        <!-- MENU -->
-
-        <nav
-            class="sidebar-nav"
-            aria-label="Menu principal"
-        >
-
+        <nav class="atlas-navigation">
 
             <div class="nav-section">
 
-                <span class="nav-section-title">
+                <span class="nav-title">
                     PRINCIPAL
                 </span>
 
 
                 <a
                     href="dashboard.html"
-                    class="nav-item active"
+                    class="nav-link active"
                 >
 
-                    <span class="nav-icon">
-
-                        <i
-                            class="fa-solid fa-chart-pie"
-                        ></i>
-
-                    </span>
+                    <i class="fa-solid fa-chart-pie"></i>
 
                     <span>
                         Dashboard
@@ -190,16 +91,10 @@
 
                 <a
                     href="produtos.html"
-                    class="nav-item"
+                    class="nav-link"
                 >
 
-                    <span class="nav-icon">
-
-                        <i
-                            class="fa-solid fa-box"
-                        ></i>
-
-                    </span>
+                    <i class="fa-solid fa-box"></i>
 
                     <span>
                         Produtos
@@ -210,16 +105,10 @@
 
                 <a
                     href="financeiro.html"
-                    class="nav-item"
+                    class="nav-link"
                 >
 
-                    <span class="nav-icon">
-
-                        <i
-                            class="fa-solid fa-wallet"
-                        ></i>
-
-                    </span>
+                    <i class="fa-solid fa-wallet"></i>
 
                     <span>
                         Financeiro
@@ -230,16 +119,10 @@
 
                 <a
                     href="vendas.html"
-                    class="nav-item"
+                    class="nav-link"
                 >
 
-                    <span class="nav-icon">
-
-                        <i
-                            class="fa-solid fa-cart-shopping"
-                        ></i>
-
-                    </span>
+                    <i class="fa-solid fa-cart-shopping"></i>
 
                     <span>
                         Vendas
@@ -250,16 +133,10 @@
 
                 <a
                     href="equipe.html"
-                    class="nav-item"
+                    class="nav-link"
                 >
 
-                    <span class="nav-icon">
-
-                        <i
-                            class="fa-solid fa-users"
-                        ></i>
-
-                    </span>
+                    <i class="fa-solid fa-users"></i>
 
                     <span>
                         Equipe
@@ -272,73 +149,20 @@
 
             <div class="nav-section">
 
-                <span class="nav-section-title">
+                <span class="nav-title">
                     QUALIDADE
                 </span>
 
 
                 <a
                     href="qualidade.html"
-                    class="nav-item"
+                    class="nav-link"
                 >
 
-                    <span class="nav-icon">
-
-                        <i
-                            class="fa-solid fa-shield-halved"
-                        ></i>
-
-                    </span>
+                    <i class="fa-solid fa-shield-halved"></i>
 
                     <span>
-                        Qualidade
-                    </span>
-
-                    <span
-                        class="nav-badge"
-                        id="qualityBadge"
-                    >
-                        0
-                    </span>
-
-                </a>
-
-
-                <a
-                    href="auditorias.html"
-                    class="nav-item"
-                >
-
-                    <span class="nav-icon">
-
-                        <i
-                            class="fa-solid fa-clipboard-check"
-                        ></i>
-
-                    </span>
-
-                    <span>
-                        Auditorias
-                    </span>
-
-                </a>
-
-
-                <a
-                    href="documentos.html"
-                    class="nav-item"
-                >
-
-                    <span class="nav-icon">
-
-                        <i
-                            class="fa-solid fa-file-lines"
-                        ></i>
-
-                    </span>
-
-                    <span>
-                        Documentos
+                        Garantia da Qualidade
                     </span>
 
                 </a>
@@ -348,23 +172,17 @@
 
             <div class="nav-section">
 
-                <span class="nav-section-title">
+                <span class="nav-title">
                     SISTEMA
                 </span>
 
 
                 <a
                     href="contato.html"
-                    class="nav-item"
+                    class="nav-link"
                 >
 
-                    <span class="nav-icon">
-
-                        <i
-                            class="fa-solid fa-envelope"
-                        ></i>
-
-                    </span>
+                    <i class="fa-solid fa-envelope"></i>
 
                     <span>
                         Contato
@@ -375,16 +193,10 @@
 
                 <a
                     href="configuracoes.html"
-                    class="nav-item"
+                    class="nav-link"
                 >
 
-                    <span class="nav-icon">
-
-                        <i
-                            class="fa-solid fa-gear"
-                        ></i>
-
-                    </span>
+                    <i class="fa-solid fa-gear"></i>
 
                     <span>
                         Configurações
@@ -397,35 +209,32 @@
         </nav>
 
 
-        <!-- USUÁRIO NO RODAPÉ -->
-
         <div class="sidebar-footer">
 
-            <div
-                class="sidebar-user"
-                id="sidebarUser"
-            >
+            <div class="system-status">
 
-                <div
-                    class="user-avatar"
-                    id="sidebarAvatar"
-                >
-                    A
-                </div>
+                <span class="status-indicator"></span>
 
-                <div class="user-info">
-
-                    <strong id="sidebarUserName">
-                        Administrador
-                    </strong>
-
-                    <span id="sidebarUserRole">
-                        Administrador
-                    </span>
-
-                </div>
+                <span>
+                    Sistema operacional
+                </span>
 
             </div>
+
+
+            <button
+                type="button"
+                class="logout-btn"
+                id="logoutButton"
+            >
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>
+                    Sair
+                </span>
+
+            </button>
 
         </div>
 
@@ -433,276 +242,84 @@
 
 
     <!-- =====================================================
-         OVERLAY MOBILE
-         ===================================================== -->
+         CONTEÚDO
+    ====================================================== -->
 
-    <div
-        class="sidebar-overlay"
-        id="sidebarOverlay"
-    ></div>
-
-
-    <!-- =====================================================
-         CONTEÚDO PRINCIPAL
-         ===================================================== -->
-
-    <main class="main-content">
+    <main class="atlas-main">
 
 
         <!-- =================================================
              TOPBAR
-             ================================================= -->
+        ================================================== -->
 
-        <header class="topbar">
+        <header class="atlas-topbar">
 
 
-            <div class="topbar-left">
+            <button
+                type="button"
+                class="mobile-menu-btn"
+                id="mobileMenu"
+                aria-label="Abrir menu"
+            >
 
-                <button
-                    type="button"
-                    class="mobile-menu-button"
-                    id="mobileMenuButton"
-                    aria-label="Abrir menu"
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+            <div class="topbar-search">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="search"
+                    id="globalSearch"
+                    placeholder="Pesquisar no sistema..."
+                    autocomplete="off"
                 >
-
-                    <i
-                        class="fa-solid fa-bars"
-                    ></i>
-
-                </button>
-
-
-                <div class="page-heading">
-
-                    <span class="page-overline">
-                        VISÃO GERAL
-                    </span>
-
-                    <h1>
-                        Dashboard
-                    </h1>
-
-                </div>
 
             </div>
 
 
-            <div class="topbar-actions">
+            <div class="topbar-right">
 
-
-                <!-- PESQUISA -->
 
                 <button
                     type="button"
-                    class="topbar-button"
-                    id="globalSearchButton"
-                    title="Pesquisar"
+                    class="notification-btn"
+                    id="notificationButton"
                 >
 
-                    <i
-                        class="fa-solid fa-magnifying-glass"
-                    ></i>
+                    <i class="fa-regular fa-bell"></i>
+
+                    <span
+                        class="notification-count"
+                        id="notificationCount"
+                    >
+                        0
+                    </span>
 
                 </button>
 
 
-                <!-- NOTIFICAÇÕES -->
+                <div class="user-menu">
 
-                <div class="notification-wrapper">
-
-                    <button
-                        type="button"
-                        class="topbar-button notification-button"
-                        id="notificationButton"
-                        title="Notificações"
-                    >
-
-                        <i
-                            class="fa-regular fa-bell"
-                        ></i>
-
-                        <span
-                            class="notification-dot hidden"
-                            id="notificationDot"
-                        ></span>
-
-                    </button>
-
-
-                    <div
-                        class="notification-dropdown hidden"
-                        id="notificationDropdown"
-                    >
-
-                        <div class="dropdown-header">
-
-                            <div>
-
-                                <strong>
-                                    Notificações
-                                </strong>
-
-                                <span id="notificationCount">
-                                    0 pendentes
-                                </span>
-
-                            </div>
-
-
-                            <button
-                                type="button"
-                                id="markAllRead"
-                            >
-                                Marcar como lidas
-                            </button>
-
-                        </div>
-
-
-                        <div
-                            class="notification-list"
-                            id="notificationList"
-                        >
-
-                            <div
-                                class="empty-notifications"
-                            >
-
-                                <i
-                                    class="fa-regular fa-bell-slash"
-                                ></i>
-
-                                <span>
-                                    Nenhuma notificação
-                                </span>
-
-                            </div>
-
-                        </div>
-
+                    <div class="user-avatar">
+                        <span id="userInitial">
+                            A
+                        </span>
                     </div>
 
-                </div>
 
+                    <div class="user-data">
 
-                <!-- PERFIL -->
+                        <strong id="topUserName">
+                            Administrador
+                        </strong>
 
-                <div class="profile-wrapper">
-
-                    <button
-                        type="button"
-                        class="profile-button"
-                        id="profileButton"
-                    >
-
-                        <div
-                            class="user-avatar"
-                            id="topbarAvatar"
-                        >
-                            A
-                        </div>
-
-                        <div class="profile-text">
-
-                            <strong
-                                id="topbarUserName"
-                            >
-                                Administrador
-                            </strong>
-
-                            <span>
-                                Administrador
-                            </span>
-
-                        </div>
-
-                        <i
-                            class="fa-solid fa-chevron-down profile-arrow"
-                        ></i>
-
-                    </button>
-
-
-                    <div
-                        class="profile-dropdown hidden"
-                        id="profileDropdown"
-                    >
-
-                        <div class="profile-dropdown-header">
-
-                            <div
-                                class="user-avatar large"
-                                id="dropdownAvatar"
-                            >
-                                A
-                            </div>
-
-                            <div>
-
-                                <strong
-                                    id="dropdownUserName"
-                                >
-                                    Administrador
-                                </strong>
-
-                                <span
-                                    id="dropdownUserEmail"
-                                >
-                                    admin@atlasgestao.com
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="dropdown-divider"></div>
-
-
-                        <a
-                            href="configuracoes.html"
-                            class="dropdown-item"
-                        >
-
-                            <i
-                                class="fa-solid fa-user-gear"
-                            ></i>
-
-                            Meu perfil
-
-                        </a>
-
-
-                        <a
-                            href="configuracoes.html"
-                            class="dropdown-item"
-                        >
-
-                            <i
-                                class="fa-solid fa-gear"
-                            ></i>
-
-                            Configurações
-
-                        </a>
-
-
-                        <div class="dropdown-divider"></div>
-
-
-                        <button
-                            type="button"
-                            class="dropdown-item danger"
-                            id="logoutButton"
-                        >
-
-                            <i
-                                class="fa-solid fa-right-from-bracket"
-                            ></i>
-
-                            Sair
-
-                        </button>
+                        <span>
+                            Administrador
+                        </span>
 
                     </div>
 
@@ -714,49 +331,37 @@
 
 
         <!-- =================================================
-             CONTEÚDO
-             ================================================= -->
+             DASHBOARD
+        ================================================== -->
 
-        <div class="content">
+        <div class="dashboard-content">
 
 
-            <!-- =================================================
-                 BANNER DE BOAS-VINDAS
-                 ================================================= -->
+            <!-- CABEÇALHO -->
 
-            <section class="welcome-section">
+            <section class="dashboard-header">
 
                 <div>
 
-                    <span class="welcome-label">
-                        <i
-                            class="fa-solid fa-sun"
-                        ></i>
-
+                    <span class="dashboard-label">
                         VISÃO GERAL DA QUALIDADE
                     </span>
 
-                    <h2>
-                        Olá,
-                        <span id="welcomeUserName">
-                            Administrador
-                        </span>!
-                    </h2>
+                    <h1>
+                        Olá, <span id="welcomeName">Administrador</span>!
+                    </h1>
 
                     <p>
-                        Acompanhe os principais
-                        indicadores da sua gestão
-                        da qualidade.
+                        Acompanhe os principais indicadores
+                        da sua gestão da qualidade.
                     </p>
 
                 </div>
 
 
-                <div class="welcome-date">
+                <div class="current-date">
 
-                    <i
-                        class="fa-regular fa-calendar"
-                    ></i>
+                    <i class="fa-regular fa-calendar"></i>
 
                     <span id="currentDate">
                         --/--/----
@@ -768,59 +373,37 @@
 
 
             <!-- =================================================
-                 CARDS DE QUALIDADE
-                 ================================================= -->
+                 INDICADORES
+            ================================================== -->
 
-            <section class="metrics-grid">
+            <section class="quality-stats">
 
 
                 <!-- INSPEÇÕES -->
 
-                <article class="metric-card">
+                <article class="quality-card">
 
-                    <div class="metric-card-top">
+                    <div class="quality-card-top">
 
-                        <div
-                            class="metric-icon blue"
-                        >
-
-                            <i
-                                class="fa-solid fa-clipboard-check"
-                            ></i>
-
+                        <div class="quality-icon blue">
+                            <i class="fa-solid fa-clipboard-check"></i>
                         </div>
 
-                        <span class="metric-label">
+                        <span class="quality-card-title">
                             INSPEÇÕES
                         </span>
 
                     </div>
 
 
-                    <div class="metric-value-row">
-
-                        <strong
-                            id="totalInspections"
-                        >
+                    <div class="quality-number">
+                        <span id="totalInspections">
                             0
-                        </strong>
-
-                        <span
-                            class="metric-trend positive"
-                        >
-
-                            <i
-                                class="fa-solid fa-arrow-up"
-                            ></i>
-
-                            Total
-
                         </span>
-
                     </div>
 
 
-                    <span class="metric-description">
+                    <span class="quality-description">
                         Inspeções realizadas
                     </span>
 
@@ -829,52 +412,29 @@
 
                 <!-- CONFORMIDADE -->
 
-                <article class="metric-card">
+                <article class="quality-card">
 
-                    <div class="metric-card-top">
+                    <div class="quality-card-top">
 
-                        <div
-                            class="metric-icon green"
-                        >
-
-                            <i
-                                class="fa-solid fa-circle-check"
-                            ></i>
-
+                        <div class="quality-icon green">
+                            <i class="fa-solid fa-circle-check"></i>
                         </div>
 
-                        <span class="metric-label">
+                        <span class="quality-card-title">
                             CONFORMIDADE
                         </span>
 
                     </div>
 
 
-                    <div class="metric-value-row">
-
-                        <strong
-                            id="conformityRate"
-                        >
+                    <div class="quality-number">
+                        <span id="complianceRate">
                             0%
-                        </strong>
-
-                        <span
-                            class="metric-trend positive"
-                            id="conformityTrend"
-                        >
-
-                            <i
-                                class="fa-solid fa-check"
-                            ></i>
-
-                            Meta
-
                         </span>
-
                     </div>
 
 
-                    <span class="metric-description">
+                    <span class="quality-description">
                         Taxa de conformidade
                     </span>
 
@@ -883,51 +443,29 @@
 
                 <!-- NÃO CONFORMIDADES -->
 
-                <article class="metric-card">
+                <article class="quality-card">
 
-                    <div class="metric-card-top">
+                    <div class="quality-card-top">
 
-                        <div
-                            class="metric-icon red"
-                        >
-
-                            <i
-                                class="fa-solid fa-triangle-exclamation"
-                            ></i>
-
+                        <div class="quality-icon red">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
                         </div>
 
-                        <span class="metric-label">
+                        <span class="quality-card-title">
                             NÃO CONFORMIDADES
                         </span>
 
                     </div>
 
 
-                    <div class="metric-value-row">
-
-                        <strong
-                            id="openNC"
-                        >
+                    <div class="quality-number">
+                        <span id="openNonConformities">
                             0
-                        </strong>
-
-                        <span
-                            class="metric-trend negative"
-                        >
-
-                            <i
-                                class="fa-solid fa-circle-exclamation"
-                            ></i>
-
-                            Pendentes
-
                         </span>
-
                     </div>
 
 
-                    <span class="metric-description">
+                    <span class="quality-description">
                         Ocorrências em aberto
                     </span>
 
@@ -936,53 +474,33 @@
 
                 <!-- AÇÕES -->
 
-                <article class="metric-card">
+                <article class="quality-card">
 
-                    <div class="metric-card-top">
+                    <div class="quality-card-top">
 
-                        <div
-                            class="metric-icon orange"
-                        >
-
-                            <i
-                                class="fa-solid fa-list-check"
-                            ></i>
-
+                        <div class="quality-icon orange">
+                            <i class="fa-solid fa-list-check"></i>
                         </div>
 
-                        <span class="metric-label">
+                        <span class="quality-card-title">
                             AÇÕES CORRETIVAS
                         </span>
 
                     </div>
 
 
-                    <div class="metric-value-row">
-
-                        <strong
-                            id="pendingActions"
-                        >
+                    <div class="quality-number">
+                        <span id="pendingActions">
                             0
-                        </strong>
-
-                        <span
-                            class="metric-trend warning"
-                            id="overdueActions"
-                        >
-
-                            <i
-                                class="fa-regular fa-clock"
-                            ></i>
-
-                            0 atrasadas
-
                         </span>
-
                     </div>
 
 
-                    <span class="metric-description">
-                        Ações pendentes
+                    <span
+                        class="quality-description"
+                        id="lateActions"
+                    >
+                        0 atrasadas
                     </span>
 
                 </article>
@@ -991,37 +509,36 @@
 
 
             <!-- =================================================
-                 SEGUNDA LINHA
-                 ================================================= -->
+                 GRÁFICOS / RESUMO
+            ================================================== -->
 
             <section class="dashboard-grid">
 
 
-                <!-- GRÁFICO DE CONFORMIDADE -->
+                <!-- STATUS DAS INSPEÇÕES -->
 
-                <article class="dashboard-card chart-card large">
+                <article class="dashboard-card chart-card">
 
-
-                    <div class="card-header">
+                    <div class="dashboard-card-header">
 
                         <div>
 
-                            <span class="card-overline">
+                            <span class="dashboard-label">
                                 QUALIDADE
                             </span>
 
-                            <h3>
+                            <h2>
                                 Status das inspeções
-                            </h3>
+                            </h2>
 
                         </div>
 
 
-                        <div class="chart-actions">
+                        <div class="chart-filters">
 
                             <button
                                 type="button"
-                                class="chart-period active"
+                                class="chart-filter active"
                                 data-period="all"
                             >
                                 Geral
@@ -1029,7 +546,7 @@
 
                             <button
                                 type="button"
-                                class="chart-period"
+                                class="chart-filter"
                                 data-period="month"
                             >
                                 Mês
@@ -1040,51 +557,62 @@
                     </div>
 
 
-                    <div class="chart-container">
+                    <div class="inspection-chart">
 
-                        <canvas
-                            id="inspectionChart"
-                        ></canvas>
+                        <div
+                            class="donut-chart"
+                            id="donutChart"
+                        >
 
-                    </div>
+                            <div class="donut-center">
 
+                                <strong id="chartTotal">
+                                    0
+                                </strong>
 
-                    <div class="chart-legend">
+                                <span>
+                                    inspeções
+                                </span>
 
-                        <div class="legend-item">
-
-                            <span
-                                class="legend-dot conform"
-                            ></span>
-
-                            <span>
-                                Conforme
-                            </span>
-
-                            <strong
-                                id="legendConform"
-                            >
-                                0
-                            </strong>
+                            </div>
 
                         </div>
 
 
-                        <div class="legend-item">
+                        <div class="chart-legend">
 
-                            <span
-                                class="legend-dot non-conform"
-                            ></span>
+                            <div class="legend-item">
 
-                            <span>
-                                Não conforme
-                            </span>
+                                <span class="legend-color conform"></span>
 
-                            <strong
-                                id="legendNonConform"
-                            >
-                                0
-                            </strong>
+                                <div>
+                                    <strong>
+                                        Conforme
+                                    </strong>
+
+                                    <span id="conformCount">
+                                        0
+                                    </span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="legend-item">
+
+                                <span class="legend-color nonconform"></span>
+
+                                <div>
+                                    <strong>
+                                        Não conforme
+                                    </strong>
+
+                                    <span id="nonConformCount">
+                                        0
+                                    </span>
+                                </div>
+
+                            </div>
 
                         </div>
 
@@ -1093,47 +621,48 @@
                 </article>
 
 
-                <!-- RESUMO DE QUALIDADE -->
+                <!-- RESUMO -->
 
-                <article class="dashboard-card quality-summary">
+                <article class="dashboard-card">
 
-
-                    <div class="card-header">
+                    <div class="dashboard-card-header">
 
                         <div>
 
-                            <span class="card-overline">
+                            <span class="dashboard-label">
                                 INDICADORES
                             </span>
 
-                            <h3>
+                            <h2>
                                 Resumo da qualidade
-                            </h3>
+                            </h2>
 
                         </div>
 
+
                         <a
                             href="qualidade.html"
-                            class="card-link"
+                            class="details-link"
                         >
                             Ver detalhes
-                            <i
-                                class="fa-solid fa-arrow-right"
-                            ></i>
+                            <i class="fa-solid fa-arrow-right"></i>
                         </a>
 
                     </div>
 
 
-                    <div class="quality-progress">
+                    <div class="summary-grid">
 
-                        <div class="progress-circle">
 
-                            <div class="progress-inner">
+                        <div class="summary-item">
 
-                                <strong
-                                    id="qualityCircleValue"
-                                >
+                            <div class="summary-icon green">
+                                <i class="fa-solid fa-percent"></i>
+                            </div>
+
+                            <div>
+
+                                <strong id="summaryCompliance">
                                     0%
                                 </strong>
 
@@ -1145,24 +674,16 @@
 
                         </div>
 
-                    </div>
 
+                        <div class="summary-item">
 
-                    <div class="quality-stats">
-
-                        <div class="quality-stat">
-
-                            <span class="quality-stat-icon green">
-                                <i
-                                    class="fa-solid fa-check"
-                                ></i>
-                            </span>
+                            <div class="summary-icon blue">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </div>
 
                             <div>
 
-                                <strong
-                                    id="conformingCount"
-                                >
+                                <strong id="summaryConform">
                                     0
                                 </strong>
 
@@ -1175,19 +696,15 @@
                         </div>
 
 
-                        <div class="quality-stat">
+                        <div class="summary-item">
 
-                            <span class="quality-stat-icon red">
-                                <i
-                                    class="fa-solid fa-xmark"
-                                ></i>
-                            </span>
+                            <div class="summary-icon red">
+                                <i class="fa-solid fa-circle-xmark"></i>
+                            </div>
 
                             <div>
 
-                                <strong
-                                    id="nonConformingCount"
-                                >
+                                <strong id="summaryNonConform">
                                     0
                                 </strong>
 
@@ -1200,19 +717,15 @@
                         </div>
 
 
-                        <div class="quality-stat">
+                        <div class="summary-item">
 
-                            <span class="quality-stat-icon blue">
-                                <i
-                                    class="fa-solid fa-clipboard-list"
-                                ></i>
-                            </span>
+                            <div class="summary-icon purple">
+                                <i class="fa-solid fa-magnifying-glass-chart"></i>
+                            </div>
 
                             <div>
 
-                                <strong
-                                    id="auditCount"
-                                >
+                                <strong id="summaryAudits">
                                     0
                                 </strong>
 
@@ -1232,8 +745,8 @@
 
 
             <!-- =================================================
-                 TERCEIRA LINHA
-                 ================================================= -->
+                 INSPEÇÕES / AÇÕES
+            ================================================== -->
 
             <section class="dashboard-grid">
 
@@ -1242,30 +755,27 @@
 
                 <article class="dashboard-card table-card">
 
-
-                    <div class="card-header">
+                    <div class="dashboard-card-header">
 
                         <div>
 
-                            <span class="card-overline">
+                            <span class="dashboard-label">
                                 ACOMPANHAMENTO
                             </span>
 
-                            <h3>
+                            <h2>
                                 Inspeções recentes
-                            </h3>
+                            </h2>
 
                         </div>
 
 
                         <a
                             href="qualidade.html"
-                            class="card-link"
+                            class="details-link"
                         >
                             Ver todas
-                            <i
-                                class="fa-solid fa-arrow-right"
-                            ></i>
+                            <i class="fa-solid fa-arrow-right"></i>
                         </a>
 
                     </div>
@@ -1300,19 +810,14 @@
                             </thead>
 
 
-                            <tbody
-                                id="recentInspections"
-                            >
+                            <tbody id="recentInspections">
 
                                 <tr>
 
-                                    <td
-                                        colspan="4"
-                                        class="table-empty"
-                                    >
-
-                                        Carregando...
-
+                                    <td colspan="4">
+                                        <div class="empty-table">
+                                            Nenhuma inspeção cadastrada.
+                                        </div>
                                     </td>
 
                                 </tr>
@@ -1328,47 +833,44 @@
 
                 <!-- AÇÕES PENDENTES -->
 
-                <article class="dashboard-card action-card">
+                <article class="dashboard-card actions-card">
 
-
-                    <div class="card-header">
+                    <div class="dashboard-card-header">
 
                         <div>
 
-                            <span class="card-overline">
+                            <span class="dashboard-label">
                                 ATENÇÃO
                             </span>
 
-                            <h3>
+                            <h2>
                                 Ações pendentes
-                            </h3>
+                            </h2>
 
                         </div>
 
 
                         <a
                             href="qualidade.html"
-                            class="card-link"
+                            class="details-link"
                         >
                             Ver todas
-                            <i
-                                class="fa-solid fa-arrow-right"
-                            ></i>
+                            <i class="fa-solid fa-arrow-right"></i>
                         </a>
 
                     </div>
 
 
                     <div
-                        class="pending-list"
+                        class="pending-actions"
                         id="pendingActionsList"
                     >
 
-                        <div class="list-empty">
+                        <div class="empty-state">
 
-                            <i
-                                class="fa-solid fa-circle-check"
-                            ></i>
+                            <div class="empty-icon">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </div>
 
                             <strong>
                                 Tudo em dia!
@@ -1388,387 +890,300 @@
 
 
             <!-- =================================================
-                 QUARTA LINHA
-                 ================================================= -->
+                 NÃO CONFORMIDADES
+            ================================================== -->
 
-            <section class="dashboard-grid">
+            <section class="dashboard-card nc-card">
 
+                <div class="dashboard-card-header">
 
-                <!-- NÃO CONFORMIDADES -->
+                    <div>
 
-                <article class="dashboard-card">
+                        <span class="dashboard-label">
+                            QUALIDADE
+                        </span>
 
-
-                    <div class="card-header">
-
-                        <div>
-
-                            <span class="card-overline">
-                                QUALIDADE
-                            </span>
-
-                            <h3>
-                                Não conformidades
-                            </h3>
-
-                        </div>
-
-
-                        <a
-                            href="qualidade.html"
-                            class="card-link"
-                        >
-                            Gerenciar
-                            <i
-                                class="fa-solid fa-arrow-right"
-                            ></i>
-                        </a>
+                        <h2>
+                            Não conformidades
+                        </h2>
 
                     </div>
 
 
-                    <div
-                        class="nc-summary"
-                        id="ncSummary"
+                    <a
+                        href="qualidade.html"
+                        class="details-link"
                     >
+                        Gerenciar
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
 
-                        <div class="nc-total">
-
-                            <strong
-                                id="ncTotal"
-                            >
-                                0
-                            </strong>
-
-                            <span>
-                                total registradas
-                            </span>
-
-                        </div>
+                </div>
 
 
-                        <div class="nc-status-grid">
-
-                            <div class="nc-status">
-
-                                <span class="status-indicator red"></span>
-
-                                <span>
-                                    Abertas
-                                </span>
-
-                                <strong
-                                    id="ncOpen"
-                                >
-                                    0
-                                </strong>
-
-                            </div>
+                <div class="nc-stats">
 
 
-                            <div class="nc-status">
+                    <div class="nc-stat">
 
-                                <span class="status-indicator orange"></span>
+                        <span>
+                            Total registradas
+                        </span>
 
-                                <span>
-                                    Em análise
-                                </span>
-
-                                <strong
-                                    id="ncAnalysis"
-                                >
-                                    0
-                                </strong>
-
-                            </div>
-
-
-                            <div class="nc-status">
-
-                                <span class="status-indicator green"></span>
-
-                                <span>
-                                    Encerradas
-                                </span>
-
-                                <strong
-                                    id="ncClosed"
-                                >
-                                    0
-                                </strong>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- ATALHOS -->
-
-                <article class="dashboard-card shortcuts-card">
-
-
-                    <div class="card-header">
-
-                        <div>
-
-                            <span class="card-overline">
-                                AÇÕES RÁPIDAS
-                            </span>
-
-                            <h3>
-                                Atalhos
-                            </h3>
-
-                        </div>
+                        <strong id="totalNC">
+                            0
+                        </strong>
 
                     </div>
 
 
-                    <div class="shortcut-grid">
+                    <div class="nc-stat">
 
+                        <span>
+                            Abertas
+                        </span>
 
-                        <a
-                            href="qualidade.html?action=new-inspection"
-                            class="shortcut"
+                        <strong
+                            class="text-red"
+                            id="openNC"
                         >
-
-                            <span class="shortcut-icon blue">
-
-                                <i
-                                    class="fa-solid fa-clipboard-check"
-                                ></i>
-
-                            </span>
-
-                            <span>
-                                Nova inspeção
-                            </span>
-
-                        </a>
-
-
-                        <a
-                            href="qualidade.html?action=new-nc"
-                            class="shortcut"
-                        >
-
-                            <span class="shortcut-icon red">
-
-                                <i
-                                    class="fa-solid fa-triangle-exclamation"
-                                ></i>
-
-                            </span>
-
-                            <span>
-                                Nova NC
-                            </span>
-
-                        </a>
-
-
-                        <a
-                            href="qualidade.html?action=new-action"
-                            class="shortcut"
-                        >
-
-                            <span class="shortcut-icon orange">
-
-                                <i
-                                    class="fa-solid fa-list-check"
-                                ></i>
-
-                            </span>
-
-                            <span>
-                                Nova ação
-                            </span>
-
-                        </a>
-
-
-                        <a
-                            href="auditorias.html?action=new"
-                            class="shortcut"
-                        >
-
-                            <span class="shortcut-icon green">
-
-                                <i
-                                    class="fa-solid fa-clipboard-list"
-                                ></i>
-
-                            </span>
-
-                            <span>
-                                Nova auditoria
-                            </span>
-
-                        </a>
-
-
-                        <a
-                            href="documentos.html?action=new"
-                            class="shortcut"
-                        >
-
-                            <span class="shortcut-icon purple">
-
-                                <i
-                                    class="fa-solid fa-file-circle-plus"
-                                ></i>
-
-                            </span>
-
-                            <span>
-                                Novo documento
-                            </span>
-
-                        </a>
-
-
-                        <a
-                            href="produtos.html?action=new"
-                            class="shortcut"
-                        >
-
-                            <span class="shortcut-icon teal">
-
-                                <i
-                                    class="fa-solid fa-box-open"
-                                ></i>
-
-                            </span>
-
-                            <span>
-                                Novo produto
-                            </span>
-
-                        </a>
+                            0
+                        </strong>
 
                     </div>
 
-                </article>
+
+                    <div class="nc-stat">
+
+                        <span>
+                            Em análise
+                        </span>
+
+                        <strong
+                            class="text-orange"
+                            id="analysisNC"
+                        >
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="nc-stat">
+
+                        <span>
+                            Encerradas
+                        </span>
+
+                        <strong
+                            class="text-green"
+                            id="closedNC"
+                        >
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
 
             </section>
 
 
             <!-- =================================================
-                 RODAPÉ
-                 ================================================= -->
+                 AÇÕES RÁPIDAS
+            ================================================== -->
 
-            <footer class="main-footer">
+            <section class="quick-section">
 
-                <div>
+                <div class="quick-header">
 
-                    <strong>
-                        Atlas Gestão
-                    </strong>
+                    <div>
 
-                    <span>
-                        Gestão inteligente para empresas modernas.
-                    </span>
+                        <span class="dashboard-label">
+                            AÇÕES RÁPIDAS
+                        </span>
+
+                        <h2>
+                            Atalhos
+                        </h2>
+
+                    </div>
 
                 </div>
 
 
-                <span>
-                    ©
-                    <span id="footerYear">
-                        2026
-                    </span>
-                    Atlas Gestão
-                </span>
+                <div class="quick-actions">
 
-            </footer>
+
+                    <a
+                        href="qualidade.html"
+                        class="quick-action"
+                    >
+
+                        <div class="quick-icon blue">
+                            <i class="fa-solid fa-clipboard-check"></i>
+                        </div>
+
+                        <span>
+                            Nova inspeção
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="qualidade.html"
+                        class="quick-action"
+                    >
+
+                        <div class="quick-icon red">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+
+                        <span>
+                            Nova NC
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="qualidade.html"
+                        class="quick-action"
+                    >
+
+                        <div class="quick-icon orange">
+                            <i class="fa-solid fa-list-check"></i>
+                        </div>
+
+                        <span>
+                            Nova ação
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="qualidade.html"
+                        class="quick-action"
+                    >
+
+                        <div class="quick-icon purple">
+                            <i class="fa-solid fa-file-circle-check"></i>
+                        </div>
+
+                        <span>
+                            Nova auditoria
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="qualidade.html"
+                        class="quick-action"
+                    >
+
+                        <div class="quick-icon green">
+                            <i class="fa-solid fa-file-lines"></i>
+                        </div>
+
+                        <span>
+                            Novo documento
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="produtos.html"
+                        class="quick-action"
+                    >
+
+                        <div class="quick-icon cyan">
+                            <i class="fa-solid fa-box"></i>
+                        </div>
+
+                        <span>
+                            Novo produto
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </section>
 
 
         </div>
 
+
+        <!-- =================================================
+             FOOTER
+        ================================================== -->
+
+        <footer class="atlas-footer">
+
+            <strong>
+                Atlas Gestão
+            </strong>
+
+            <span>
+                Gestão inteligente para empresas modernas.
+            </span>
+
+            <span>
+                © 2026 Atlas Gestão
+            </span>
+
+        </footer>
+
+
     </main>
 
-</div>
 
+    <!-- =====================================================
+         PESQUISA GLOBAL
+    ====================================================== -->
 
-<!-- =========================================================
-     MODAL DE PESQUISA
-     ========================================================= -->
+    <div
+        class="search-overlay"
+        id="searchOverlay"
+    >
 
-<div
-    class="modal-overlay hidden"
-    id="searchModal"
->
+        <div class="search-modal">
 
-    <div class="search-modal">
+            <div class="search-modal-header">
 
-        <div class="search-modal-header">
-
-            <div>
-
-                <span>
-                    PESQUISA GLOBAL
-                </span>
-
-                <h3>
+                <h2>
                     O que você procura?
-                </h3>
+                </h2>
+
+                <button
+                    type="button"
+                    id="closeSearch"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
 
             </div>
 
 
-            <button
-                type="button"
-                class="modal-close"
-                id="closeSearchModal"
-            >
-
-                <i
-                    class="fa-solid fa-xmark"
-                ></i>
-
-            </button>
-
-        </div>
-
-
-        <div class="global-search-box">
-
-            <i
-                class="fa-solid fa-magnifying-glass"
-            ></i>
-
             <input
                 type="search"
-                id="globalSearchInput"
+                id="searchInput"
                 placeholder="Pesquise produtos, inspeções, funcionários..."
-                autocomplete="off"
             >
 
-            <kbd>
-                ESC
-            </kbd>
 
-        </div>
+            <div
+                class="search-results"
+                id="searchResults"
+            >
 
-
-        <div
-            class="global-search-results"
-            id="globalSearchResults"
-        >
-
-            <div class="search-hint">
-
-                <i
-                    class="fa-solid fa-magnifying-glass"
-                ></i>
-
-                <span>
+                <p>
                     Digite para pesquisar no sistema.
-                </span>
+                </p>
 
             </div>
 
@@ -1776,34 +1191,21 @@
 
     </div>
 
+
 </div>
 
 
-<!-- =========================================================
-     TOAST
-     ========================================================= -->
+<!-- =====================================================
+     DATABASE
+====================================================== -->
 
-<div
-    class="toast-container"
-    id="toastContainer"
-></div>
+<script src="js/database.js"></script>
 
+<!-- =====================================================
+     DASHBOARD
+====================================================== -->
 
-<!-- =========================================================
-     JAVASCRIPT
-     ========================================================= -->
-
-<script
-    src="js/auth.js"
-></script>
-
-<script
-    src="js/database.js"
-></script>
-
-<script
-    src="js/dashboard.js"
-></script>
+<script src="js/dashboard.js"></script>
 
 
 </body>
