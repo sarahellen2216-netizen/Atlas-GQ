@@ -1,85 +1,188 @@
-const AtlasDB = {
+/* =========================================================
+   ATLAS GESTÃO
+   Banco de dados local - LocalStorage
+   ========================================================= */
 
-    keys: {
-        produtos: "atlas_produtos",
-        vendas: "atlas_vendas",
-        financeiro: "atlas_financeiro",
-        equipe: "atlas_equipe",
-        inspeções: "atlas_inspecoes",
-        auditorias: "atlas_auditorias",
-        documentos: "atlas_documentos",
-        contatos: "atlas_contatos",
-        configuracoes: "atlas_configuracoes"
-    },
+(function () {
+    "use strict";
 
-    get(key) {
-        try {
-            return JSON.parse(localStorage.getItem(key)) || [];
-        } catch {
-            return [];
+    const DB_KEY = "atlas_gestao_database_v3";
+
+    const defaultDatabase = {
+        products: [],
+        finances: [],
+        sales: [],
+        team: [],
+        inspections: [],
+        audits: [],
+        documents: [],
+        messages: [],
+
+        settings: {
+            company: {
+                name: "Atlas Gestão",
+                cnpj: "",
+                email: "contato@atlasgestao.com",
+                phone: "(11) 4000-0000",
+                address: "São Paulo - SP"
+            },
+
+            user: {
+                name: "Administrador",
+                email: "admin@atlasgestao.com",
+                role: "Administrador"
+            },
+
+            theme: "light",
+
+            preferences: {
+                notifications: true,
+                stockAlerts: true,
+                qualityAlerts: true
+            }
         }
-    },
+    };
 
-    set(key, data) {
-        localStorage.setItem(key, JSON.stringify(data));
-    },
+    function clone(value) {
+        return JSON.parse(JSON.stringify(value));
+    }
 
-    add(key, item) {
-        const data = this.get(key);
+    function load() {
+        try {
+            const saved = localStorage.getItem(DB_KEY);
 
-        item.id = item.id || Date.now();
+            if (!saved) {
+                localStorage.setItem(DB_KEY, JSON.stringify(defaultDatabase));
+                return clone(defaultDatabase);
+            }
 
-        data.push(item);
+            const parsed = JSON.parse(saved);
 
-        this.set(key, data);
+            return {
+                ...clone(defaultDatabase),
+                ...parsed,
+                settings: {
+                    ...clone(defaultDatabase.settings),
+                    ...(parsed.settings || {}),
+                    company: {
+                        ...clone(defaultDatabase.settings.company),
+                        ...(parsed.settings?.company || {})
+                    },
+                    user: {
+                        ...clone(defaultDatabase.settings.user),
+                        ...(parsed.settings?.user || {})
+                    },
+                    preferences: {
+                        ...clone(defaultDatabase.settings.preferences),
+                        ...(parsed.settings?.preferences || {})
+                    }
+                }
+            };
+        } catch (error) {
+            console.error("Erro ao carregar banco:", error);
+            return clone(defaultDatabase);
+        }
+    }
 
-        return item;
-    },
+    function save(database) {
+        localStorage.setItem(DB_KEY, JSON.stringify(database));
+        window.dispatchEvent(new CustomEvent("atlas:database-updated"));
+    }
 
-    update(key, id, changes) {
-        const data = this.get(key);
+    function get(collection) {
+        const database = load();
+        return database[collection] || [];
+    }
 
-        const index = data.findIndex(
+    function set(collection, value) {
+        const database = load();
+        database[collection] = value;
+        save(database);
+        return value;
+    }
+
+    function add(collection, item) {
+        const database = load();
+
+        const newItem = {
+            id: item.id || crypto.randomUUID(),
+            createdAt: item.createdAt || new Date().toISOString(),
+            ...item
+        };
+
+        if (!Array.isArray(database[collection])) {
+            database[collection] = [];
+        }
+
+        database[collection].push(newItem);
+        save(database);
+
+        return newItem;
+    }
+
+    function update(collection, id, changes) {
+        const database = load();
+
+        const index = database[collection].findIndex(
             item => String(item.id) === String(id)
         );
 
-        if (index === -1) return false;
+        if (index === -1) return null;
 
-        data[index] = {
-            ...data[index],
-            ...changes
+        database[collection][index] = {
+            ...database[collection][index],
+            ...changes,
+            updatedAt: new Date().toISOString()
         };
 
-        this.set(key, data);
+        save(database);
 
-        return true;
-    },
+        return database[collection][index];
+    }
 
-    remove(key, id) {
-        const data = this.get(key);
+    function remove(collection, id) {
+        const database = load();
 
-        const filtered = data.filter(
+        database[collection] = database[collection].filter(
             item => String(item.id) !== String(id)
         );
 
-        this.set(key, filtered);
-
-        return true;
-    },
-
-    clear(key) {
-        localStorage.removeItem(key);
-    },
-
-    count(key) {
-        return this.get(key).length;
-    },
-
-    find(key, id) {
-        return this.get(key).find(
-            item => String(item.id) === String(id)
-        );
+        save(database);
     }
-};
 
-window.AtlasDB = AtlasDB;
+    function clearAll() {
+        localStorage.removeItem(DB_KEY);
+        localStorage.removeItem("atlas_logged");
+        location.reload();
+    }
+
+    function getSettings() {
+        return load().settings;
+    }
+
+    function saveSettings(settings) {
+        const database = load();
+
+        database.settings = {
+            ...database.settings,
+            ...settings
+        };
+
+        save(database);
+        return database.settings;
+    }
+
+    window.AtlasDB = {
+        load,
+        save,
+        get,
+        set,
+        add,
+        update,
+        remove,
+        clearAll,
+        getSettings,
+        saveSettings,
+        key: DB_KEY
+    };
+})();
